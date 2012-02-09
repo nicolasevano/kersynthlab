@@ -100,7 +100,6 @@ class Out implements Module {
 	@Override
 	public void masterNotify() {
 		// TODO Auto-generated method stub
-		
 	}
 	
 	
