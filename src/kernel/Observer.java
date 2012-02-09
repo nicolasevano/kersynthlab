@@ -1,7 +1,7 @@
 
 package kernel;
 
-interface Observer {
+public interface Observer {
 	void update() ;
 
 }

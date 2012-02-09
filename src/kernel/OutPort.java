@@ -2,7 +2,7 @@
 package kernel;
 
 
-interface OutPort {
+public interface OutPort {
 	
 	void setValue( int value );
 

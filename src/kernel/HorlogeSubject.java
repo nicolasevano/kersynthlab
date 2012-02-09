@@ -1,7 +1,7 @@
 
 package kernel;
 
-interface HorlogeSubject {
+public interface HorlogeSubject {
   void tick() ;
 
   void addModuleObserver(HorlogeObserver toAdd) ;

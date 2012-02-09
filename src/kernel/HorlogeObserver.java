@@ -1,7 +1,7 @@
 
 package kernel;
 
-interface HorlogeObserver {
+public interface HorlogeObserver {
 	void moduleFunction() ;
 
 }
