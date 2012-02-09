@@ -102,8 +102,8 @@ class VCO implements Module {
 		vco.setBase( 8 );
 		vco.setPitch( 1 );
 		//vco.setWaveForm( WaveForm.SQUARE );
-		//vco.setWaveForm( WaveForm.SAW );
-		vco.setWaveForm( WaveForm.TRIANGLE );
+		vco.setWaveForm( WaveForm.SAW );
+		//vco.setWaveForm( WaveForm.TRIANGLE );
 		HorlogeSubject timeBase = new HorlogeImpl();
 		timeBase.addModuleObserver( vco );
 		timeBase.addModuleObserver( out );
