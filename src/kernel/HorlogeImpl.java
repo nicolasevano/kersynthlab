@@ -12,6 +12,7 @@ class HorlogeImpl implements HorlogeSubject {
 		observers = new ArrayList<HorlogeObserver>();
 		sampleRate = ( 10000 / 441 );
 	}
+	
 	@Override
 	public void addModuleObserver( HorlogeObserver toAdd ) {
 		// TODO Auto-generated method stub
