@@ -1,7 +1,7 @@
 
 package kernel;
 
-interface InPort extends Observer {
+public interface InPort extends Observer {
 	void setValue(int value) ;
 
 	int getValue() ;

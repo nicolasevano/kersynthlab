@@ -1,7 +1,7 @@
 
 package kernel;
 
-interface Subject {
+public interface Subject {
 	void masterNotify() ;
 
 	void addObserver(Observer toAdd) ;
