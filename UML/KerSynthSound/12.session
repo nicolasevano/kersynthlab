@@ -1,0 +1,16 @@
+window_sizes 1600 878 429 1165 600 82
+diagrams
+  active  classdiagram_ref 134540 // kernelClassDiagram
+    1165 722 100 4 0 0
+  usecasediagram_ref 141068 // VCOUseCase
+    928 577 100 4 0 0
+end
+show_stereotypes
+selected classview_ref 134540 // kernelClassDiagram
+open
+  classview_ref 134540 // kernelClassDiagram
+  deploymentview_ref 128012 // kernelClassDiagram
+  usecaseview_ref 128012 // VCOUseCase
+end
+end
+verbose

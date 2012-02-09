@@ -1,0 +1,69 @@
+format 76
+
+classcanvas 128012 class_ref 142220 // user
+  class_drawing_mode default show_context_mode default show_stereotype_properties default
+  xyz 55 79 2000
+end
+usecasecanvas 128140 usecase_ref 128012 // create
+  xyzwh 228 62 3005 64 32 label_xy 245 94
+end
+usecasecanvas 128268 usecase_ref 128140 // change pitch
+  xyzwh 229 115 3005 64 32 label_xy 230 147
+end
+usecasecanvas 128396 usecase_ref 128268 // wire output
+  xyzwh 231 271 3005 64 32 label_xy 235 303
+end
+usecasecanvas 128524 usecase_ref 128396 // wire fm
+  xyzwh 235 329 3005 64 32 label_xy 248 361
+end
+usecasecanvas 128652 usecase_ref 128524 // remove ouput wire
+  xyzwh 233 375 3005 64 32 label_xy 220 407
+end
+usecasecanvas 128780 usecase_ref 128652 // remove fm wire
+  xyzwh 235 431 3005 64 32 label_xy 229 463
+end
+usecasecanvas 128908 usecase_ref 128780 // change wave form
+  xyzwh 230 215 3010 64 32 label_xy 216 247
+end
+usecasecanvas 129036 usecase_ref 128908 // change base
+  xyzwh 229 167 3005 64 32 label_xy 229 199
+end
+usecasecanvas 129164 usecase_ref 129036 // scie wave form
+  xyzwh 375 188 3005 64 32 label_xy 369 220
+end
+usecasecanvas 129420 usecase_ref 129164 // square ware form
+  xyzwh 376 246 3005 64 32 label_xy 364 278
+end
+subject 129676 "KerSynthSound VCO"
+  xyzwh 179 31 2000 362 480
+simplerelationcanvas 129292 simplerelation_ref 128012
+  from ref 128908 z 3011 stereotype "<<include>>" xyz 304 215 3000 to ref 129164
+end
+simplerelationcanvas 129548 simplerelation_ref 128140
+  from ref 128908 z 3011 stereotype "<<include>>" xyz 305 244 3000 to ref 129420
+end
+line 129804 --->
+  from ref 128012 z 3006 to point 161 74
+  line 131724 z 3006 to ref 128140
+line 129932 --->
+  from ref 128012 z 3006 to point 163 127
+  line 131596 z 3006 to ref 128268
+line 130060 --->
+  from ref 128012 z 3006 to point 165 179
+  line 131468 z 3006 to ref 129036
+line 130188 --->
+  from ref 128012 z 3011 to point 167 228
+  line 131340 z 3011 to ref 128908
+line 130316 --->
+  from ref 128012 z 3006 to point 164 283
+  line 131212 z 3006 to ref 128396
+line 130444 --->
+  from ref 128012 z 3006 to point 134 341
+  line 131084 z 3006 to ref 128524
+line 130572 --->
+  from ref 128012 z 3006 to point 100 387
+  line 130956 z 3006 to ref 128652
+line 130700 --->
+  from ref 128012 z 3006 to point 73 443
+  line 130828 z 3006 to ref 128780
+end
