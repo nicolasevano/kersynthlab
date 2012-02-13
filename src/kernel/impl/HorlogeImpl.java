@@ -26,8 +26,9 @@ public class HorlogeImpl implements HorlogeSubject {
 	public HorlogeImpl(){
 		observers = new ArrayList<HorlogeObserver>();
 		outs = new ArrayList<Out>();
+		toCalls = new ArrayList<Callable>();
 		sampleRate = 44100;
-		timerScheduler = Executors.newScheduledThreadPool( 1 );
+		timerScheduler = /*Executors.newScheduledThreadPool( 1 )*/Executors.newCachedThreadPool();
 	}
 	
 	/**
@@ -57,19 +58,10 @@ public class HorlogeImpl implements HorlogeSubject {
 	@Override
 	public void tick() {
 		// TODO Auto-generated method stub
-		for(final HorlogeObserver observer : observers){
-			if(!(observer instanceof Out))
-			( ( ScheduledExecutorService ) timerScheduler ).schedule( 
-					new Callable<Integer>(){
-
-						@Override
-						public Integer call() throws Exception {
-							// TODO Auto-generated method stub
-							observer.moduleFunction();
-							return 0;
-						}
-
-					},0,TimeUnit.MILLISECONDS);
+		for(final Callable toCall : toCalls){
+			//( ( ScheduledExecutorService ) timerScheduler ).submit(toCall);
+			timerScheduler.submit( toCall );
+			//( ( ScheduledExecutorService ) timerScheduler ).schedule( toCall,0,TimeUnit.MILLISECONDS);
 		}
 	}
 
@@ -78,6 +70,18 @@ public class HorlogeImpl implements HorlogeSubject {
 	 */
 	public void start(){
 		timer = new Timer();
+		for(final HorlogeObserver observer : observers){
+			if(!(observer instanceof Out)){
+				toCalls.add(new Callable<Integer>(){
+					@Override
+					public Integer call() throws Exception {
+						// TODO Auto-generated method stub
+						observer.moduleFunction();
+						return 0;
+					}
+				});
+			}
+		}
         timer.schedule (new TimerTask() {
             public void run(){
             	tick();
@@ -108,6 +112,7 @@ public class HorlogeImpl implements HorlogeSubject {
 		}
 		System.out.println( "Horloge stopped!" );
 		timer.cancel();
+		toCalls.clear();
 	}
 		
 	public static int getSampleRate(){
@@ -134,6 +139,7 @@ public class HorlogeImpl implements HorlogeSubject {
 	 */
 	private List<HorlogeObserver> observers;
 	
+	private List<Callable> toCalls;
 	/**
 	 * module function clock observer launcher 
 	 */

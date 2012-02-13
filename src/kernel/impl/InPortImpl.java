@@ -1,7 +1,7 @@
 package kernel.impl;
 
-import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import kernel.InPort;
 import kernel.Module;
@@ -17,14 +17,14 @@ public class InPortImpl implements InPort {
 	 * Public constructor.
 	 */
 	public InPortImpl(){
-		buffer = new  LinkedList< Integer >();
+		buffer = new  LinkedBlockingQueue< Integer >();
 	}
 	
 	/**
 	 * Return head value on in port buffer instance.
 	 */
 	@Override
-	public int getValue() {
+	synchronized public int getValue() {
 		// TODO Auto-generated method stub
 		return buffer.poll();
 	}
@@ -33,7 +33,8 @@ public class InPortImpl implements InPort {
 	 * Add a value on the current in port buffer instance.
 	 */
 	@Override
-	public void setValue( int value ) {
+	synchronized public void setValue( int value ) {
+		//System.out.println("Add a Value:" + value);
 		// TODO Auto-generated method stub
 		buffer.add( value );
 	}

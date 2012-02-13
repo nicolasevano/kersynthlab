@@ -72,18 +72,18 @@ public class VCA implements Module {
 	 * VCA module function amplify or divide input signal on this output port
 	 */
 	@Override
-	public void moduleFunction() {
+	public synchronized void moduleFunction() {
 		// TODO Auto-generated method stub modulation de l'amplitude en foncton de la valeur 
 		//du potentiomètre
 		
 		int sample;
-		for (int i = 0; i < 100; i++) {
+		for (int i = 0; i < 200; i++) {
 			if( !inPorts.get( "in" ).isEmpty() ){
-				sample = inPorts.get("in").getValue();
+				sample = inPorts.get( "in" ).getValue();
 				//TODO deal with minus att
-				if( !inPorts.get("am").isEmpty())
-					sample = (att>0)? sample*att*inPorts.get("am").getValue():
-						sample*inPorts.get("am").getValue()/Math.abs(att);
+				if( !inPorts.get( "am" ).isEmpty())
+					sample = (att>0)? sample*att*inPorts.get( "am" ).getValue():
+						sample*inPorts.get( "am" ).getValue()/Math.abs(att);
 				else 
 					sample = (att>0)? sample*att:sample/Math.abs(att);
 				if (sample>32768) sample = 32768;
@@ -139,14 +139,14 @@ public class VCA implements Module {
 		Out out = new Out();
 		vco.addObserver( vca.getInPorts().get( "in" ) );
 		vca.addObserver( out.getInPorts().get( "in" ) );
-		vca.setAttVCA( 2 );
+		vca.setAttVCA( -8 );
 		vco.setAtt( 1 );
 		vco.setBase( 8 );
-		vco.setPitch( 5 );
-		out.setBufferSize( 2000 );
+		vco.setPitch( 1 );
+		out.setBufferSize( 1000 );
 		//vco.setWaveForm( WaveForm.SQUARE );
-		//vco.setWaveForm( WaveForm.SAW );
-		vco.setWaveForm( WaveForm.TRIANGLE );
+		vco.setWaveForm( WaveForm.SAW );
+		//vco.setWaveForm( WaveForm.TRIANGLE );
 		HorlogeSubject timeBase = new HorlogeImpl();
 		timeBase.addModuleObserver( vco );
 		timeBase.addModuleObserver( vca );
@@ -154,7 +154,7 @@ public class VCA implements Module {
 		HorlogeImpl.setSampleRate( 44100 );
 		( ( HorlogeImpl ) timeBase ).start();
 		try {
-			Thread.sleep( 5000 );
+			Thread.sleep( 20000 );
 		} catch ( InterruptedException e ) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

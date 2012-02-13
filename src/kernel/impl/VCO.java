@@ -121,7 +121,7 @@ class VCO implements Module {
 	 * VCO module function generate the selected wave form on this output port. 
 	 */
 	@Override
-	public void moduleFunction() {
+	public synchronized void moduleFunction() {
 		// TODO Auto-generated method stub
 		strategies.get( waveFormSelected ).waveForm();
 	}
@@ -143,18 +143,18 @@ class VCO implements Module {
 		vco.addObserver( out.getInPorts().get( "in" ) );
 		vco.setAtt( 1 );
 		vco.setBase( 8 );
-		vco.setPitch( 1 );
+		vco.setPitch( 10 );
 		//vco.setWaveForm( WaveForm.SQUARE );
-		vco.setWaveForm( WaveForm.SAW );
-		//vco.setWaveForm( WaveForm.TRIANGLE );
+		//vco.setWaveForm( WaveForm.SAW );
+		vco.setWaveForm( WaveForm.TRIANGLE );
 		HorlogeSubject timeBase = new HorlogeImpl();
 		timeBase.addModuleObserver( vco );
 		timeBase.addModuleObserver( out );
 		out.setBufferSize( 2000 );
-		HorlogeImpl.setSampleRate( 16000 );
+		HorlogeImpl.setSampleRate( 44100 );
 		( ( HorlogeImpl ) timeBase ).start();
 		try {
-			Thread.sleep( 5000 );
+			Thread.sleep( 20000 );
 		} catch ( InterruptedException e ) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

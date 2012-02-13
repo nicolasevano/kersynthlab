@@ -1,7 +1,7 @@
 package kernel.impl;
 
-import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import kernel.OutPort;
 
@@ -16,14 +16,14 @@ public class OutPortImpl implements OutPort{
 	 * public constructor.
 	 */
 	public OutPortImpl(){
-		buffer = new LinkedList<Integer>();
+		buffer = new LinkedBlockingQueue< Integer >();
 	}
 
 	/**
 	 * Return head value on current out port buffer.
 	 */
 	@Override
-	public int getValue() {
+	public synchronized int getValue() {
 		// TODO Auto-generated method stub
 		return buffer.element();
 	}
@@ -32,7 +32,8 @@ public class OutPortImpl implements OutPort{
 	 * Add a value on current out port buffer.
 	 */
 	@Override
-	public void setValue(int value) {
+	public synchronized void setValue(int value) {
+		//System.out.println("add a value in out:" + value);
 		// TODO Auto-generated method stub
 		buffer.add( value );
 	}

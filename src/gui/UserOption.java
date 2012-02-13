@@ -10,7 +10,6 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 import controler.CUserOption;
-import kernel.impl.HorlogeImpl;
 
 public class UserOption extends JMenuBar{
 

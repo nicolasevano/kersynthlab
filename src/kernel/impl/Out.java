@@ -78,8 +78,8 @@ class Out implements Module {
 			
 			af = new AudioFormat( HorlogeImpl.sampleRate, 16, 1, true, false );
 			sdl = AudioSystem.getSourceDataLine( af );
-			sdl.open( af );
-			
+			/*sdl.open( af, 10000 );*/
+			sdl.open( af);
 		} catch (LineUnavailableException e) {
 			
 			// TODO Auto-generated catch block
@@ -112,16 +112,19 @@ class Out implements Module {
 		// TODO Auto-generated method stub
 		int sample;
 		System.out.println( "sound card launched!" );
+		int oldsample = 0;
 		while( isALive ) {
 			
 			if( !inPorts.get( "in" ).isEmpty() ){
 				try{
 					sample = inPorts.get( "in" ).getValue();
-					System.out.println( "sample: " + sample );
+					//System.out.println( "sample: " + sample );
 					sdl.write( new byte[] { ( byte ) ( sample & 0xFF ), ( byte ) ( ( sample & 0xFF00 ) >> 8 ) }, 
-						   0, 2 );
+								0, 2 );
+					oldsample = sample;
 				}catch(java.util.NoSuchElementException nsee){
-					
+					sdl.write( new byte[] { ( byte ) ( oldsample & 0xFF ), ( byte ) ( ( oldsample & 0xFF00 ) >> 8 ) }, 
+							   0, 2 );
 				}
 				//
 			}
