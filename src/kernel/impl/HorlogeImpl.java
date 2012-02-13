@@ -18,7 +18,7 @@ import kernel.HorlogeSubject;
  * @author nicolas
  *
  */
-class HorlogeImpl implements HorlogeSubject {
+public class HorlogeImpl implements HorlogeSubject {
 
 	/**
 	 * Public constructor initiate each list
@@ -106,8 +106,8 @@ class HorlogeImpl implements HorlogeSubject {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		timer.cancel();
 		System.out.println( "Horloge stopped!" );
+		timer.cancel();
 	}
 		
 	public static int getSampleRate(){

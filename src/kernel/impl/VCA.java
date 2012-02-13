@@ -25,6 +25,7 @@ public class VCA implements Module {
 	 * Public constructor.
 	 */
 	public VCA (){
+		
 		observers = new ArrayList<Observer>();
 		inPorts = new TreeMap<String,InPort>();
 		inPorts.put( "am", new InPortImpl() );
@@ -51,7 +52,7 @@ public class VCA implements Module {
 	 * @param toAdd new in port subscriber.
 	 */
 	@Override
-	public void addObserver(Observer toAdd) {
+	public void addObserver( Observer toAdd ) {
 		// TODO Auto-generated method stub
 		observers.add( toAdd );
 		( ( InPortImpl )toAdd ).setModule( this );
@@ -138,17 +139,19 @@ public class VCA implements Module {
 		Out out = new Out();
 		vco.addObserver( vca.getInPorts().get( "in" ) );
 		vca.addObserver( out.getInPorts().get( "in" ) );
-		vca.setAttVCA( -2 );
+		vca.setAttVCA( 2 );
 		vco.setAtt( 1 );
 		vco.setBase( 8 );
-		vco.setPitch( 15 );
+		vco.setPitch( 5 );
+		out.setBufferSize( 2000 );
 		//vco.setWaveForm( WaveForm.SQUARE );
-		vco.setWaveForm( WaveForm.SAW );
-		//vco.setWaveForm( WaveForm.TRIANGLE );
+		//vco.setWaveForm( WaveForm.SAW );
+		vco.setWaveForm( WaveForm.TRIANGLE );
 		HorlogeSubject timeBase = new HorlogeImpl();
 		timeBase.addModuleObserver( vco );
 		timeBase.addModuleObserver( vca );
 		timeBase.addModuleObserver( out );
+		HorlogeImpl.setSampleRate( 44100 );
 		( ( HorlogeImpl ) timeBase ).start();
 		try {
 			Thread.sleep( 5000 );

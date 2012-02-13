@@ -34,7 +34,7 @@ public class SquareWaveForm implements VCOStrategie {
 							);
 			counterPeriod = ( counterPeriod < samplePeriod )? counterPeriod + 1 : 0 ;
 			vco.masterNotify();
-			( ( OutPortImpl ) vco.getOutPorts().get("out") ).removeHead();
+			( ( OutPortImpl ) vco.getOutPorts().get( "out" ) ).removeHead();
 			
 		}
 	}

@@ -75,9 +75,11 @@ class Out implements Module {
 	public void start(){
 		
 		try {
+			
 			af = new AudioFormat( HorlogeImpl.sampleRate, 16, 1, true, false );
 			sdl = AudioSystem.getSourceDataLine( af );
 			sdl.open( af );
+			
 		} catch (LineUnavailableException e) {
 			
 			// TODO Auto-generated catch block
@@ -115,13 +117,13 @@ class Out implements Module {
 			if( !inPorts.get( "in" ).isEmpty() ){
 				try{
 					sample = inPorts.get( "in" ).getValue();
-				
+					System.out.println( "sample: " + sample );
 					sdl.write( new byte[] { ( byte ) ( sample & 0xFF ), ( byte ) ( ( sample & 0xFF00 ) >> 8 ) }, 
 						   0, 2 );
 				}catch(java.util.NoSuchElementException nsee){
 					
 				}
-				//System.out.println( "sample: " + sample );
+				//
 			}
 			
 		}
