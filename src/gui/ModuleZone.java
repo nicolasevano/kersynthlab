@@ -29,7 +29,7 @@ import listener.ModuleZoneDropTargetListener;
 //import listener.ModuleZoneTropListener;
 //import listener.ZoneDeDessinDropTargetListener;
 
-import presentation.presentationOUTImpl;
+//import presentation.presentationOUTImpl;
 //import shape.Dessin;
 import controler.CModuleZone;
 

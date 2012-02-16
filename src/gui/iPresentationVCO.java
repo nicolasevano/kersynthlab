@@ -1,13 +1,14 @@
 package gui;
 
-import Abstraction.WaveForme;
+import kernel.impl.VCO.WaveForm;
+
 
 public interface iPresentationVCO {
 
 	//bouton radio
-	void setFormeOnde(WaveForme wf);
+	void setFormeOnde(WaveForm wf);
 	
-	WaveForme getFormeOnde();
+	WaveForm getFormeOnde();
 
 
 }

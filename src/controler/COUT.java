@@ -1,12 +1,12 @@
 package controler;
 
-import presentation.presentationOUTImpl;
+import gui.presentationOUTImpl;
 
 
 public class COUT {
 	public COUT(){
 		presentation = new presentationOUTImpl();
-		presentation.setControl( this );
+		presentation.setControle( this );
 	}
 	
 	public presentationOUTImpl getPresentation() {

@@ -19,7 +19,7 @@ import kernel.VCOStrategie;
  * @author nicolas
  *
  */
-class VCO implements Module {
+public class VCO implements Module {
 
 	/**
 	 * WaveForm definition

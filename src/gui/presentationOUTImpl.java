@@ -8,15 +8,14 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import controler.COUT;
+import gui.presentationInPortImpl;
 
-import port.iPresentationInPort;
-import port.presentationInPortImpl;
-
-public class presentationOUTImpl extends JComponent implements iPresentationOUT{
+public class presentationOUTImpl extends Module implements iPresentationOUT{
 
 	/**
 	 * 
@@ -28,8 +27,12 @@ public class presentationOUTImpl extends JComponent implements iPresentationOUT{
 	protected JLabel face ;
 	protected JPanel portIn;
 	protected GridLayout myGridLay;
+
 	
-	public presentationOUTImpl(){		
+	private COUT controle = new COUT(); 
+
+
+	public presentationOUTImpl(){	
 		portIn = new presentationInPortImpl();
 		icone = new ImageIcon ("images/baffle.png") ;
 		face = new JLabel(icone);
@@ -41,9 +44,16 @@ public class presentationOUTImpl extends JComponent implements iPresentationOUT{
 		face.setVisible (true) ;
 		setLayout(new BorderLayout());		
 		add(BorderLayout.WEST,portIn); add(BorderLayout.EAST,face);		
+		controle.setPresentation(this);
 	}
 	
+	public COUT getControle() {
+		return controle;
+	}
 
+	public void setControle(COUT controle) {
+		this.controle = controle;
+	}
 	
 	
 	@Override
