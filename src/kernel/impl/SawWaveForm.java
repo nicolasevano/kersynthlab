@@ -30,7 +30,7 @@ public class SawWaveForm implements VCOStrategie{
 		int frequency = 0;
 		for( int i = 0; i < vco.getSampleComputer(); i++ )/*while(true)*/{
 			frequency = vco.computeFrequency();
-			samplePeriod = HorlogeImpl3.sampleRate / frequency;
+			samplePeriod = HorlogeImpl.sampleRate / frequency;
 			step = ( 65536 / samplePeriod );
 			if(begin){
 				begin = false;

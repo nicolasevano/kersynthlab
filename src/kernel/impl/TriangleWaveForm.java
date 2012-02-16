@@ -29,7 +29,7 @@ public class TriangleWaveForm implements VCOStrategie {
 		//System.out.println( " Triangle wave form running. " );
 		for( int i = 0; i < vco.getSampleComputer(); i++ )/*while(true)*/{
 			frequency = vco.computeFrequency();
-			samplePeriod = HorlogeImpl3.sampleRate / frequency;
+			samplePeriod = HorlogeImpl.sampleRate / frequency;
 			step = ( 65536 / samplePeriod ) * 2;
 			step *= toggle;
 			sampleValue = ( Math.abs( ( 32768 * toggle ) - sampleValue ) >= Math.abs( step ) )? 
