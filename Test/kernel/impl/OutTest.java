@@ -7,73 +7,26 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class OutTest {
+	private Out out;
+	
 
 	@Before
 	public void setUp() throws Exception {
+		// affectation de la référence out
+		out = new Out();
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		out = null;
 	}
-
 	@Test
 	public void testOut() {
-		fail("Not yet implemented");
+		assertNotNull(out);		
 	}
 
 	@Test
 	public void testGetInPorts() {
-		fail("Not yet implemented");
+		assertNotNull(out.getInPorts());
 	}
-
-	@Test
-	public void testGetOutPorts() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testAddObserver() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testRemoveObserver() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testStart() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testStop() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testModuleFunction() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testMasterNotify() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testIsALive() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGetBufferSize() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testSetBufferSize() {
-		fail("Not yet implemented");
-	}
-
 }

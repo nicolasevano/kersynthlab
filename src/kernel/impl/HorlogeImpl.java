@@ -97,12 +97,12 @@ public class HorlogeImpl implements HorlogeSubject{
 	}
 	
 	public static int getSampleRate(){
-		return HorlogeImpl3.sampleRate;
+		return HorlogeImpl.sampleRate;
 	}
 	
 	
 	public static void setSampleRate( int sampleRate ){
-		HorlogeImpl3.sampleRate = sampleRate;
+		HorlogeImpl.sampleRate = sampleRate;
 	}
 	
 	/**
