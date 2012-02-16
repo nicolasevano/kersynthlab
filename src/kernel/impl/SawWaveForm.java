@@ -28,9 +28,9 @@ public class SawWaveForm implements VCOStrategie{
 		// TODO remove number sample rate value and use something else.
 		//TODO Working however first sample doesn't appear. Fix it.
 		int frequency = 0;
-		for( int i = 0; i < 200; i++ ){
+		for( int i = 0; i < vco.getSampleComputer(); i++ )/*while(true)*/{
 			frequency = vco.computeFrequency();
-			samplePeriod = HorlogeImpl.sampleRate / frequency;
+			samplePeriod = HorlogeImpl3.sampleRate / frequency;
 			step = ( 65536 / samplePeriod );
 			if(begin){
 				begin = false;

@@ -1,127 +1,108 @@
-
 package kernel.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import kernel.HorlogeObserver;
 import kernel.HorlogeSubject;
+
 /**
- * implementation clock implementation
- * @author nicolas
+ * Horloge ( implementation bis ) sequential one thread only
+ * @author Nicolas
  *
  */
-public class HorlogeImpl implements HorlogeSubject {
+public class HorlogeImpl implements HorlogeSubject{
 
 	/**
-	 * Public constructor initiate each list
+	 * Public constructor.
 	 */
 	public HorlogeImpl(){
 		observers = new ArrayList<HorlogeObserver>();
-		outs = new ArrayList<Out>();
-		toCalls = new ArrayList<Callable>();
-		sampleRate = 44100;
-		timerScheduler = /*Executors.newScheduledThreadPool( 1 )*/Executors.newCachedThreadPool();
+		timerScheduler = Executors.newCachedThreadPool();
 	}
 	
 	/**
-	 * Function addModuleObserver to current clock instance
-	 * @param HorlogeObserver toAdd clock observer to add on the current clock instance
+	 * Add a new observers on this clock instance.
 	 */
 	@Override
-	public void addModuleObserver( HorlogeObserver toAdd ) {
+	public void addModuleObserver(HorlogeObserver toAdd) {
 		// TODO Auto-generated method stub
 		observers.add( toAdd );
 	}
 
 	/**
-	 * Function removeModuleObserver remove a clock observer
-	 * @param HorlogeObserver toRemove clock observer to remove on the current clock instance
+	 * Remove one observer on this clock current instance.
 	 */
 	@Override
-	public void removeModuleObserver( HorlogeObserver toRemove ) {
+	public void removeModuleObserver(HorlogeObserver toRemove) {
 		// TODO Auto-generated method stub
 		observers.remove( toRemove );
 	}
-	
+
 	/**
-	 * Function tick call each moduleFunction from clock observer on a thread 
-	 * however not for out observer instance. 
+	 * Call each moduleFunction of each clock observers.
 	 */
 	@Override
-	public void tick() {
+	public synchronized void tick() {
 		// TODO Auto-generated method stub
-		for(final Callable toCall : toCalls){
-			//( ( ScheduledExecutorService ) timerScheduler ).submit(toCall);
-			timerScheduler.submit( toCall );
-			//( ( ScheduledExecutorService ) timerScheduler ).schedule( toCall,0,TimeUnit.MILLISECONDS);
+		for( final HorlogeObserver observer : observers ){
+			// TODO Auto-generated method stub
+			observer.moduleFunction();
+			//System.out.println(" Call one module function. ");
 		}
 	}
-
+	
 	/**
 	 * Start function launch clock synchronization of each clock module observer.
 	 */
 	public void start(){
-		timer = new Timer();
 		for(final HorlogeObserver observer : observers){
-			if(!(observer instanceof Out)){
-				toCalls.add(new Callable<Integer>(){
-					@Override
-					public Integer call() throws Exception {
-						// TODO Auto-generated method stub
-						observer.moduleFunction();
-						return 0;
-					}
-				});
+			if( observer instanceof Out ){
+				( ( Out ) observer ).start();
 			}
 		}
-        timer.schedule (new TimerTask() {
-            public void run(){
-            	tick();
-            }
-        }, 1, 2 );
-        for(final HorlogeObserver observer : observers){
-			if( observer instanceof Out){
-				( ( Out ) observer).start();
-				outs.add( ( ( Out ) observer ) );
+		Callable<Integer> ordonancer = new Callable<Integer>(){
+			@Override
+			public Integer call() throws Exception {
+				isALive = true;
+				System.out.println( " Launch ordonancer." );
+				// TODO Auto-generated method stub
+				while( isALive ){
+					tick();
+				}
+				return 0;
 			}
-		}
-        System.out.println( "Horloge started!" );
+		};
+		timerScheduler.submit( ordonancer );
+		System.out.println( "Horloge started!" );
 	}
 	
 	/**
 	 * Stop function break clock synchronization of each module observer.
 	 */
 	public void stop(){
-		for( Out out:outs ){
-			out.stop();
-		}
-		outs.clear();
-		try {
-			Thread.sleep( 500 );
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		isALive = false;
+		timerScheduler.shutdown();
+		for(final HorlogeObserver observer : observers){
+			
+			if( observer instanceof Out ){
+				( ( Out ) observer).stop();
+			}
+			
 		}
 		System.out.println( "Horloge stopped!" );
-		timer.cancel();
-		toCalls.clear();
 	}
-		
+	
 	public static int getSampleRate(){
-		return HorlogeImpl.sampleRate;
+		return HorlogeImpl3.sampleRate;
 	}
 	
 	
 	public static void setSampleRate( int sampleRate ){
-		HorlogeImpl.sampleRate = sampleRate;
+		HorlogeImpl3.sampleRate = sampleRate;
 	}
 	
 	/**
@@ -130,23 +111,18 @@ public class HorlogeImpl implements HorlogeSubject {
 	protected static int sampleRate;
 	
 	/**
-	 * tick function scheduler
-	 */
-	private Timer timer;
-	
-	/**
-	 * clock observer list
+	 * Clock observer list
 	 */
 	private List<HorlogeObserver> observers;
 	
-	private List<Callable> toCalls;
 	/**
-	 * module function clock observer launcher 
+	 * Module function clock observer launcher. 
 	 */
 	private ExecutorService timerScheduler;
-
+	
 	/**
-	 * sound card list
+	 * When horloge is started this boolean is set to true, otherwise false.
 	 */
-	private List<Out> outs;
+	private boolean isALive = false;
+
 }

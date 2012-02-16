@@ -77,7 +77,7 @@ public class VCA implements Module {
 		//du potentiomètre
 		
 		int sample;
-		for (int i = 0; i < 200; i++) {
+		for ( int i = 0; i < sampleComputer; i++ )/*while(true)*/ {
 			if( !inPorts.get( "in" ).isEmpty() ){
 				sample = inPorts.get( "in" ).getValue();
 				//TODO deal with minus att
@@ -139,30 +139,34 @@ public class VCA implements Module {
 		Out out = new Out();
 		vco.addObserver( vca.getInPorts().get( "in" ) );
 		vca.addObserver( out.getInPorts().get( "in" ) );
-		vca.setAttVCA( -8 );
+		vca.setAttVCA( -16 );
 		vco.setAtt( 1 );
 		vco.setBase( 8 );
-		vco.setPitch( 1 );
-		out.setBufferSize( 1000 );
+		vco.setPitch( 30 );
+		//out.setBufferSize( 2000 );
 		//vco.setWaveForm( WaveForm.SQUARE );
-		vco.setWaveForm( WaveForm.SAW );
-		//vco.setWaveForm( WaveForm.TRIANGLE );
+		//vco.setWaveForm( WaveForm.SAW );
+		vco.setWaveForm( WaveForm.TRIANGLE );
 		HorlogeSubject timeBase = new HorlogeImpl();
 		timeBase.addModuleObserver( vco );
 		timeBase.addModuleObserver( vca );
 		timeBase.addModuleObserver( out );
 		HorlogeImpl.setSampleRate( 44100 );
 		( ( HorlogeImpl ) timeBase ).start();
-		try {
-			Thread.sleep( 20000 );
-		} catch ( InterruptedException e ) {
+		//try {
+		//	Thread.sleep( 60000 );
+		//} catch ( InterruptedException e ) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		( ( HorlogeImpl ) timeBase ).stop();
-		System.exit(0);
+		//	e.printStackTrace();
+		//}
+		//( ( HorlogeImpl ) timeBase ).stop();
+		//System.exit(0);
 	}
-
+	
+	public void setSampleComputer(int sampleComputer) {
+		this.sampleComputer = sampleComputer;
+	}
+	
 	/**
 	 * Contains each pair name and in port of this VCA instance.
 	 */
@@ -182,6 +186,9 @@ public class VCA implements Module {
 	 * Att parameter factor should be 8,4,2,1,-2,-4,-8.
 	 */
 	private int att;
+	
+	private int sampleComputer = 1;
+
 }
 
 

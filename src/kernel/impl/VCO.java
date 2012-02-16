@@ -139,7 +139,7 @@ class VCO implements Module {
 	
 	public static final void main( String...args ){
 		VCO vco = new VCO();
-		Out out = new Out();
+		Out3 out = new Out3();
 		vco.addObserver( out.getInPorts().get( "in" ) );
 		vco.setAtt( 1 );
 		vco.setBase( 8 );
@@ -147,19 +147,27 @@ class VCO implements Module {
 		//vco.setWaveForm( WaveForm.SQUARE );
 		//vco.setWaveForm( WaveForm.SAW );
 		vco.setWaveForm( WaveForm.TRIANGLE );
-		HorlogeSubject timeBase = new HorlogeImpl();
+		HorlogeSubject timeBase = new HorlogeImpl3();
 		timeBase.addModuleObserver( vco );
 		timeBase.addModuleObserver( out );
 		out.setBufferSize( 2000 );
-		HorlogeImpl.setSampleRate( 44100 );
-		( ( HorlogeImpl ) timeBase ).start();
+		HorlogeImpl3.setSampleRate( 44100 );
+		( ( HorlogeImpl3 ) timeBase ).start();
 		try {
 			Thread.sleep( 20000 );
 		} catch ( InterruptedException e ) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		( ( HorlogeImpl ) timeBase ).stop();
+		( ( HorlogeImpl3 ) timeBase ).stop();
+	}
+	
+	public int getSampleComputer() {
+		return sampleComputer;
+	}
+
+	public void setSampleComputer(int sampleComputer) {
+		this.sampleComputer = sampleComputer;
 	}
 	
 	/**
@@ -213,5 +221,7 @@ class VCO implements Module {
 	 * In port subcriber list on this VCO instance.
 	 */
 	private List<Observer> observers;
+	
+	private int sampleComputer = 1;
 
 }

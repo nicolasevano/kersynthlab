@@ -25,9 +25,9 @@ public class SquareWaveForm implements VCOStrategie {
 	public void waveForm() {
 		// TODO remove number sample rate value and use something else.
 		int frequency = 0;
-		for( int i = 0; i < 200; i++ ){
+		for( int i = 0; i < vco.getSampleComputer(); i++ )/*while(true)*/{
 			frequency = vco.computeFrequency();
-			samplePeriod = HorlogeImpl.sampleRate / frequency;
+			samplePeriod = HorlogeImpl3.sampleRate / frequency;
 			//System.out.println("samplePeriod:" + samplePeriod);
 			vco.getOutPorts().get( "out" ).setValue( 
 					( ( samplePeriod / 2 ) < counterPeriod ) ? 32768:-32768 
