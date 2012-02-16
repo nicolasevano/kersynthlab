@@ -1,10 +1,12 @@
 package controler;
 
+import java.io.IOException;
+
 import gui.ToolBoxes;
 
 public class CToolBoxes {
 	
-	public CToolBoxes(){
+	public CToolBoxes() throws IOException{
 		presentation = new ToolBoxes();
 		presentation.setControl( this );
 	}

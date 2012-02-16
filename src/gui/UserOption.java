@@ -10,6 +10,7 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 import controler.CUserOption;
+import kernel.impl.HorlogeImpl;
 
 public class UserOption extends JMenuBar{
 
@@ -20,6 +21,7 @@ public class UserOption extends JMenuBar{
 				"option courante du montage"
 		);
 		this.add( file );
+		
 		save = new JMenuItem("save montage",
                 KeyEvent.VK_S);
 		save.setAccelerator(KeyStroke.getKeyStroke(
@@ -33,6 +35,7 @@ public class UserOption extends JMenuBar{
 				}
 		});
 		file.add( save );
+		
 		load = new JMenuItem("load montage",
                 KeyEvent.VK_L);
 		load.setAccelerator(KeyStroke.getKeyStroke(
@@ -46,6 +49,7 @@ public class UserOption extends JMenuBar{
 				}
 		});
 		file.add( load );
+		
 		start = new JMenuItem("launch montage",
                 KeyEvent.VK_A);
 		start.setAccelerator(KeyStroke.getKeyStroke(
@@ -59,7 +63,8 @@ public class UserOption extends JMenuBar{
 				}
 		});
 		file.add( start );
-		stop = new JMenuItem("arrêt montage",
+		
+		stop = new JMenuItem("arr montage",
                 KeyEvent.VK_O);
 		stop.setAccelerator(KeyStroke.getKeyStroke(
 				KeyEvent.VK_O, ActionEvent.ALT_MASK));
@@ -71,12 +76,15 @@ public class UserOption extends JMenuBar{
 				}
 		});
 		file.add( stop );
+		
+		
 		config = new JMenu( "Config" );
 		config.setMnemonic( KeyEvent.VK_C );
 		config.getAccessibleContext().setAccessibleDescription(
 				"option courante du montage"
 		);
 		this.add( config );
+		
 		bufferSize = new JMenuItem("delaie demarrage carte son",
                 KeyEvent.VK_B);
 		bufferSize.setAccelerator(KeyStroke.getKeyStroke(
@@ -90,7 +98,8 @@ public class UserOption extends JMenuBar{
 				}
 		});
 		config.add( bufferSize );
-		sampleRate = new JMenuItem("fréquence d'échantillonnage",
+		
+		sampleRate = new JMenuItem("fruence d'hantillonnage",
                 KeyEvent.VK_R);
 		sampleRate.setAccelerator(KeyStroke.getKeyStroke(
 				KeyEvent.VK_R, ActionEvent.ALT_MASK));
@@ -103,6 +112,14 @@ public class UserOption extends JMenuBar{
 				}
 		});
 		config.add( sampleRate );
+		
+		
+		about = new JMenu( "About" );
+		about.setMnemonic( KeyEvent.VK_O );
+		about.getAccessibleContext().setAccessibleDescription(
+				"notre produit et notre groupe"
+		);
+		this.add( about );
 	}
 	
 	public CUserOption getControl() {
@@ -118,6 +135,7 @@ public class UserOption extends JMenuBar{
 	//menu
 	private JMenu file;
 	private JMenu config;
+	private JMenu about;
 	
 	//menu option
 	private JMenuItem save;

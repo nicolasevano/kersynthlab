@@ -7,6 +7,12 @@ public class CModuleZone {
 	public CModuleZone(){
 		presentation = new ModuleZone();
 		presentation.setControl( this );
+		
+		cPoubelle = new CPoubelle();
+		presentation.setPoubelle( cPoubelle.getPresentation() );
+		
+		//cOUT = new COUT();
+		//presentation.setOUT( cOUT.getPresentation() );
 	}
 	
 	public ModuleZone getPresentation() {
@@ -18,5 +24,6 @@ public class CModuleZone {
 	}
 	
 	private ModuleZone presentation;
-
+	private CPoubelle cPoubelle;
+	//private COUT cOUT;
 }

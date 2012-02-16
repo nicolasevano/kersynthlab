@@ -8,9 +8,6 @@ import java.util.TimerTask;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-
 import kernel.HorlogeObserver;
 import kernel.HorlogeSubject;
 
@@ -108,7 +105,8 @@ public class HorlogeImpl3 implements HorlogeSubject {
 			
 		//});
         timer.schedule (new TimerTask() {
-            public void run(){
+            @Override
+			public void run(){
             	//isRunning = true;
             	//while(isRunning){
             	tick();	

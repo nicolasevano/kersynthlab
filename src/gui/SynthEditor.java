@@ -56,6 +56,7 @@ public class SynthEditor extends JFrame{
 		this.repaint();
 	}
 	
+	
 	private CSynthEditor control;
 	private ModuleZone moduleZone;
 	private ToolBoxes toolBoxes;

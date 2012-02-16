@@ -1,10 +1,12 @@
 package controler;
 
+import java.io.IOException;
+
 import gui.SynthEditor;
 
 public class CSynthEditor {
 
-	public CSynthEditor(){
+	public CSynthEditor() throws IOException{
 		presentation = new SynthEditor();
 		presentation.setControl( this );
 		
@@ -14,10 +16,11 @@ public class CSynthEditor {
 		presentation.setToolBoxes( cToolBoxes.getPresentation() );
 		cModuleZone = new CModuleZone();
 		presentation.setModuleZone( cModuleZone.getPresentation() );
+		
 		presentation.pack();
 	}
 	
-	public static final void main( String...args ){
+	public static final void main( String...args ) throws IOException{
 		new CSynthEditor();
 	}
 	

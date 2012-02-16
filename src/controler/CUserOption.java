@@ -2,14 +2,14 @@ package controler;
 
 import kernel.HorlogeSubject;
 import gui.UserOption;
-import kernel.impl.HorlogeImpl3;
+import kernel.impl.HorlogeImpl;
 
 public class CUserOption {
 
 	public CUserOption(){
 		presentation = new UserOption();
 		presentation.setControl( this );
-		horloge = new HorlogeImpl3();
+		horloge = new HorlogeImpl();
 	}
 	
 	public UserOption getPresentation() {
@@ -30,12 +30,12 @@ public class CUserOption {
 	
 	public void startHorloge(){
 		if(horloge != null)
-			( ( HorlogeImpl3 ) this.horloge ).start();
+			( ( HorlogeImpl ) this.horloge ).start();
 	}
 	
 	public void stopHorloge(){
 		if(horloge != null)
-			( ( HorlogeImpl3 ) this.horloge ).stop();
+			( ( HorlogeImpl ) this.horloge ).stop();
 	}
 	
 	public void saveMontage(){

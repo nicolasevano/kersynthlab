@@ -90,7 +90,8 @@ class Out3 implements Module {
 		sdl.start();
 		isALive = true;
         timer.schedule (new TimerTask() {
-            public void run(){
+            @Override
+			public void run(){
             	moduleFunction();
             }
         }, bufferSize );

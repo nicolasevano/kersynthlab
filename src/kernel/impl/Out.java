@@ -1,7 +1,6 @@
 package kernel.impl;
 
 import java.util.Map;
-import java.util.TimerTask;
 import java.util.TreeMap;
 
 import javax.sound.sampled.AudioFormat;
