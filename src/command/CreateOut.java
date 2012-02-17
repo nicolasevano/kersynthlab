@@ -16,7 +16,7 @@ public class CreateOut extends Command {
 				  						   p.y,
 				  						   result.getPresentation().getWidth(), 
 				  						   result.getPresentation().getHeight() );*/
-		result.getPresentation().setLocation(p.x, p.y);
+		result.getPresentation().setLocation( p.x, p.y );
 		result.getPresentation().repaint();
 		super.setModule( result.getPresentation() );
 		

@@ -1,74 +1,90 @@
 package gui;
-
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridLayout;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+
+import javax.swing.JFrame;
 import javax.swing.JLabel;
-
+import javax.swing.JPanel;
 import controler.COUT;
+import gui.presentationInPortImpl;
 
-public class presentationOUTImpl extends Module {
+public class presentationOUTImpl extends Module implements iPresentationOUT{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private static int largeur = 0;
+	private static int hauteur = 0;
+	protected ImageIcon icone ;
+	protected JLabel face ;
+	protected JPanel portIn;
+	protected GridLayout myGridLay;
+
 	
-	public presentationOUTImpl(){
-		this.setBackground( Color.BLACK );
-		this.setPreferredSize( new Dimension( 240, 200 ) );
-		//this.setLayout( new GridLayout( 1,2 ) );
-		/*this.setOpaque( true );*/
-		this.setSize( 240,200 );
-		//ImageIcon port = new ImageIcon( "images/port.png" );
-		lIn = new JLabel( new ImageIcon( "images/port.png" ) );
-		this.add( lIn,0 );
-		lIn.setVisible( true );
-		
-		//lBaffle = new JLabel( new ImageIcon( "images/baffle.png" ) );
-		//this.add( lBaffle );
-		//lBaffle.setVisible( true );
-		this.setVisible( true );
-		//this.setIgnoreRepaint( true );
-		this.repaint();
+	private COUT controle; 
+
+
+	public presentationOUTImpl(){	
+		portIn = new presentationInPortImpl();
+		icone = new ImageIcon ( "images/port.png" ) ;
+		face = new JLabel(icone);
+		//face.setLocation (0, 0) ;
+		this.setBackground(Color.gray);
+		setSize( 240,200 );
+		setPreferredSize(this.getSize());
+		largeur = icone.getIconWidth ();
+		hauteur = icone.getIconHeight ();
+		//face.setSize (largeur, hauteur) ;
+		face.setVisible ( true ) ;
+		JPanel faceContainer = new JPanel();
+		faceContainer.setLayout( new BorderLayout() );
+		faceContainer.add( BorderLayout.CENTER, face );
+		faceContainer.setBackground( Color.red );
+		faceContainer.setSize( icone.getIconWidth(), icone.getIconHeight() );
+		faceContainer.setPreferredSize( faceContainer.getSize() );
+		faceContainer.setOpaque( false );
+		//setOpaque(false);
+		setLayout(new BorderLayout());
+		add(BorderLayout.WEST,faceContainer);
+		add(BorderLayout.WEST,portIn);		
+		//controle.setPresentation(this);
 	}
 	
-	public void setControl( COUT cOut ){
-		this.cOut = cOut;  
+	public COUT getControle() {
+		return controle;
+	}
+
+	public void setControle(COUT controle) {
+		this.controle = controle;
 	}
 	
-	private COUT getControl(){
-		return this.cOut;
+	
+	@Override
+	public boolean isConnectedCable() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
-	//@Override
-	public void paint( Graphics rectangle ) {
-		super.paint( rectangle );
-		//rectangle.fillRect( super.getOrigine().x, super.getOrigine().y, getWidth(), getHeight() );
-		//Component [] Components = this.getComponents();
-		//for(int i = 0; i < Components.length; i++){
-		//	Components[i].repaint();
-		//}
-		lIn.setLocation( this.getOrigine().x, this.getOrigine().y );
-		lIn.repaint();
-	}
 	
-	public void paintComponent(Graphics g){
-		//ici, mon code de surcharge
-		super.paintComponent( g );
-		lIn.setLocation( this.getOrigine().x, this.getOrigine().y );
-		lIn.repaint();
-		//Component [] Components = this.getComponents();
-		//for(int i = 0; i < Components.length; i++){
-		//	Components[i].repaint();
-		//}
-	}
 	
-	private COUT cOut;
-	private JLabel lBaffle;
-	private JLabel lIn;
+	public static void main (String args []) {
+		JFrame f = new JFrame ("Test Affichage OUT");
+		f.getContentPane ().add (new presentationOUTImpl()) ;
+		f.setBackground(Color.black);
+		f.addWindowListener (new WindowAdapter () {
+			public void windowClosing (WindowEvent e) {
+				System.exit (0) ;
+			}
+		}) ;
+		f.pack () ;
+		f.setVisible (true) ;
+	}
+
 }

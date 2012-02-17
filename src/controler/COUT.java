@@ -1,13 +1,14 @@
 package controler;
 
+import kernel.impl.Out;
 import gui.presentationOUTImpl;
 
 
-public class COUT {
+public class COUT extends Out{
 	
 	public COUT(){
 		presentation = new presentationOUTImpl();
-		presentation.setControl( this );
+		presentation.setControle( this );
 	}
 	
 	public presentationOUTImpl getPresentation() {

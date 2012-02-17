@@ -29,8 +29,6 @@ import listener.ModuleMotionListener;
 import listener.ModuleZoneDropTargetListener;
 //import listener.ModuleZoneTropListener;
 //import listener.ZoneDeDessinDropTargetListener;
-
-import gui.presentationOUTImpl;
 //import shape.Dessin;
 import controler.CModuleZone;
 
