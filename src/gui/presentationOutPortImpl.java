@@ -1,5 +1,7 @@
 package gui;
 
+//package port;
+
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -25,20 +27,23 @@ public class presentationOutPortImpl extends JPanel implements iPresentationOutP
 	protected JLabel face ;
 
 	public presentationOutPortImpl(){
-		this.setBackground(Color.black);
+		this.setBackground(Color.gray);
+	
 		icone = new ImageIcon ("images/port.png") ;
 		face = new JLabel(icone);
 		largeur = icone.getIconWidth ();
 		hauteur = icone.getIconHeight ();
 		face.setSize (largeur, hauteur) ;
-		add(face);
+		this.setLayout(new BorderLayout());
+		//add(,face);
+		add(face,BorderLayout.CENTER);
 		face.setVisible (true) ;
 		setOpaque (false) ;
 		setSize (face.getSize ()) ;
 		setPreferredSize (getSize ()) ;
 		
 	}
-	public static void main (String args []) {
+/*	public static void main (String args []) {
 
 		JFrame f = new JFrame ("Test Affichage Port");
 		f.getContentPane ().add (new presentationInPortImpl()) ;
@@ -49,6 +54,6 @@ public class presentationOutPortImpl extends JPanel implements iPresentationOutP
 		}) ;
 		f.pack () ;
 		f.setVisible (true) ;
-	}
+	} */
 
 }
