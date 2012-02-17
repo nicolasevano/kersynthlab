@@ -33,27 +33,33 @@ public class presentationOUTImpl extends Module implements iPresentationOUT{
 
 	public presentationOUTImpl(){	
 		portIn = new presentationInPortImpl();
-		icone = new ImageIcon ( "images/port.png" ) ;
+		icone = new ImageIcon ( "images/baffle.png" ) ;
 		face = new JLabel(icone);
 		//face.setLocation (0, 0) ;
-		this.setBackground(Color.gray);
-		setSize( 240,200 );
+		this.setBackground( Color.gray );
+		this.setLayout( null );
+		
 		setPreferredSize(this.getSize());
-		largeur = icone.getIconWidth ();
-		hauteur = icone.getIconHeight ();
+		largeur = icone.getIconWidth () + 2;
+		hauteur = icone.getIconHeight () + 2;
+		
 		//face.setSize (largeur, hauteur) ;
 		face.setVisible ( true ) ;
-		JPanel faceContainer = new JPanel();
-		faceContainer.setLayout( new BorderLayout() );
-		faceContainer.add( BorderLayout.CENTER, face );
-		faceContainer.setBackground( Color.red );
-		faceContainer.setSize( icone.getIconWidth(), icone.getIconHeight() );
-		faceContainer.setPreferredSize( faceContainer.getSize() );
-		faceContainer.setOpaque( false );
+		face.setSize( icone.getIconWidth(), icone.getIconHeight() );
+		//JPanel faceContainer = new JPanel();
+		//faceContainer.setLayout( new BorderLayout() );
+		//faceContainer.add( BorderLayout.CENTER, face );
+		//faceContainer.setBackground( Color.red );
+		//faceContainer.setSize( icone.getIconWidth(), icone.getIconHeight() );
+		//faceContainer.setPreferredSize( faceContainer.getSize() );
+		//faceContainer.setOpaque( false );
 		//setOpaque(false);
-		setLayout(new BorderLayout());
-		add(BorderLayout.WEST,faceContainer);
-		add(BorderLayout.WEST,portIn);		
+		//setLayout(new BorderLayout());
+		add( face );
+		face.setLocation( portIn.getWidth() + 3,1 );
+		add( portIn );
+		portIn.setLocation(0, (hauteur / 2) - (portIn.getHeight() / 2) );
+		setSize( largeur + portIn.getWidth() + 2 , hauteur );
 		//controle.setPresentation(this);
 	}
 	
