@@ -2,14 +2,13 @@ package controler;
 
 import java.io.IOException;
 
-import gui.SynthEditor;
+import gui.impl.SynthEditor;
 
 public class CSynthEditor {
 
 	public CSynthEditor() throws IOException{
 		presentation = new SynthEditor();
 		presentation.setControl( this );
-		
 		cUserOption = new CUserOption();
 		presentation.setUserOption( cUserOption.getPresentation() );
 		cToolBoxes = new CToolBoxes();

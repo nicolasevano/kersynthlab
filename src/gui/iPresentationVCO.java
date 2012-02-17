@@ -3,7 +3,7 @@ package gui;
 import kernel.impl.VCO.WaveForm;
 
 
-public interface iPresentationVCO {
+public interface IPresentationVCO {
 
 	//bouton radio
 	void setFormeOnde(WaveForm wf);

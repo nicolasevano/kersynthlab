@@ -1,6 +1,6 @@
 package gui;
 
-public interface iPresentationOUT {
+public interface IPresentationOUT {
 
 	//verify if a wire is connected
 	boolean isConnectedCable();

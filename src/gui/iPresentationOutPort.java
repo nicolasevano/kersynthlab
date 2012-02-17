@@ -2,6 +2,6 @@ package gui;
 
 //package port;
 
-public interface iPresentationOutPort {
+public interface IPresentationOutPort {
 
 }

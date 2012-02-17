@@ -1,6 +1,6 @@
 package controler;
 
-import gui.Poubelle;
+import gui.impl.Poubelle;
 
 
 public class CPoubelle {

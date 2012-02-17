@@ -1,7 +1,7 @@
 package controler;
 
 import kernel.HorlogeSubject;
-import gui.UserOption;
+import gui.impl.UserOption;
 import kernel.impl.HorlogeImpl;
 
 public class CUserOption {

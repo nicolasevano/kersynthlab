@@ -1,6 +1,6 @@
 package controler;
 
-import gui.ModuleZone;
+import gui.impl.ModuleZone;
 
 public class CModuleZone {
 	

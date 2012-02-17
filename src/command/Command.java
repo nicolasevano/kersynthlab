@@ -1,12 +1,10 @@
 package command;
 
 import java.awt.Point;
-import java.awt.event.MouseWheelEvent; 
 
 import javax.swing.JPanel;
 
 import gui.Module;
-import gui.ModuleZone;
 
 public abstract class Command {
 	

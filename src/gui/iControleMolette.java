@@ -1,5 +1,5 @@
 package gui;
 
-public interface iControleMolette {
+public interface IControleMolette {
 
 }

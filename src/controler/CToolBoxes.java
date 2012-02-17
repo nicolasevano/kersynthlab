@@ -2,7 +2,7 @@ package controler;
 
 import java.io.IOException;
 
-import gui.ToolBoxes;
+import gui.impl.ToolBoxes;
 
 public class CToolBoxes {
 	
