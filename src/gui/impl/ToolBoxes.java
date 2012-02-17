@@ -38,7 +38,8 @@ public class ToolBoxes extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
 	
-	public ToolBoxes() throws IOException{	
+	public ToolBoxes() throws IOException{
+		
 		vcoSelectedModule = new JButton();
 		builtButton( vcoSelectedModule, 0 );		
 		vcaSelectedModule = new JButton();
@@ -59,6 +60,7 @@ public class ToolBoxes extends JPanel{
 		add( outSelectedModule );
 		add( adsrSelectedModule );
 		add( repliSelectedModule );
+		
 	}
 
 	private void builtButton(final JButton toBuild,final int index){
@@ -67,7 +69,7 @@ public class ToolBoxes extends JPanel{
 		toBuild.addActionListener( new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if(toBuild.getBackground() == Color.white)
+				if( toBuild.getBackground() == Color.white )
 				{
 					setButtonImages( vcoSelectedModule,   ( index == 0 )?Color.black:Color.white, new File( ( index == 0 )? imageSelected.get( 0 ) : imageUnselected.get( 0 ) ) );
 					setButtonImages( vcaSelectedModule,   ( index == 1 )?Color.black:Color.white, new File( ( index == 1 )? imageSelected.get( 1 ) : imageUnselected.get( 1 ) ) );

@@ -1,4 +1,7 @@
 package gui.impl;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+
 import gui.Module;
 import gui.impl.PresentationInPortImpl;
 
@@ -59,13 +62,17 @@ public class PresentationVCO extends Module {
         p.add(parametre, BorderLayout.CENTER);
         p.add(jLabel4, BorderLayout.NORTH);*/
         add( forme );
+        forme.setSize( 600, 400 );
+        forme.setLocation( (getWidth() / 2) - (forme.getWidth() / 2), 
+        				  ( getHeight() / 2 ) - ( parametre.getHeight() / 2 ) + parametre.getHeight() + 60  );
+        forme.setLocation();
         add( inPort );
         inPort.setLocation(0, ( getHeight() / 2 ) - ( inPort.getHeight() / 2 ) );
         add( outPort );
         outPort.setLocation( getWidth() - outPort.getWidth(), 
         					 ( getHeight() / 2 ) - ( outPort.getHeight() / 2 ) );
         add( parametre );
-        parametre.setSize(400,250);
+        parametre.setSize( 360, 250 );
         parametre.setLocation( ( getWidth() / 2 ) - ( parametre.getWidth() / 2 ),
         					   ( getHeight() / 2 ) - ( parametre.getHeight() / 2 ) );
         parametre.setLocation();
@@ -74,9 +81,42 @@ public class PresentationVCO extends Module {
         jLabel4.setLocation( ( getWidth() / 2 ) - ( jLabel4.getWidth() / 2 ), 0 );
         //setSize( 800, 400 ); 
 		//setLocationRelativeTo(null); //On centre la fenêtre sur l'écran
-        //add( p );		
+        //add( p );
+        parametre.getAtt().getTs().addChangeListener(new ChangeListener(){
+			@Override
+			public void stateChanged(ChangeEvent e) {
+					control.setAtt(
+							parametre.getAtt().choisirAffichageValeur(
+																	  parametre.getAtt().signeAff, 
+																	  parametre.getAtt().getTs()
+																	  )
+																	  );
+			}
+        });
+        
+        parametre.getPitch().getTs().addChangeListener(new ChangeListener(){
+			@Override
+			public void stateChanged(ChangeEvent e) {
+					control.setPitch(
+							parametre.getAtt().choisirAffichageValeur(parametre.getPitch().signeAff, 
+																	  parametre.getPitch().getTs()
+																	  )
+																	  );
+			}
+        });
+        
+        parametre.getBase().getTs().addChangeListener(new ChangeListener(){
+			@Override
+			public void stateChanged(ChangeEvent e) {
+					control.setBase(
+							parametre.getAtt().choisirAffichageValeur(parametre.getBase().signeAff, 
+																	  parametre.getBase().getTs()
+																	  )
+																	  );
+			}
+        });
 	}
-
+	
 	public CVCO getControl() {
 		return control;
 	}
@@ -88,9 +128,7 @@ public class PresentationVCO extends Module {
 	private CVCO control;
 	
 	public static void main(String[] args){
-		
 		java.awt.EventQueue.invokeLater(new Runnable() {
-
             public void run() {
                 new PresentationVCO().setVisible(true);
             }

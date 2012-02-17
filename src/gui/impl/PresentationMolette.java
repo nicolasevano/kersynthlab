@@ -79,7 +79,7 @@ public class PresentationMolette extends JPanel implements ChangeListener,IPrese
 		jla=jl;
 		System.out.println(getCursor().toString());
 
-		ts.addChangeListener( this);
+		ts.addChangeListener( this );
 		
 	}
 
