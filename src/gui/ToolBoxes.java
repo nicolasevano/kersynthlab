@@ -1,27 +1,31 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
 
-import presentation.presentationOUTImpl;
+import listener.ModuleListener;
+
+import command.Command;
+import command.CreateADSR;
+import command.CreateOut;
+import command.CreateReplicator;
+import command.CreateVCA;
+import command.CreateVCF;
+import command.CreateVCO;
 
 import controler.CModuleZone;
 import controler.COUT;
@@ -35,494 +39,65 @@ public class ToolBoxes extends JPanel{
 	private static final long serialVersionUID = 1L;
 	
 	
-	public ToolBoxes() throws IOException{{
-
-		BufferedImage buttonVCOIcon = ImageIO.read(new File("images/bouVCO.jpg"));
-		
-		//button = new JButton(new ImageIcon(buttonIcon));
-		//vcoSelectedModule = new JButton( "VCO" );
+	public ToolBoxes() throws IOException{	
 		vcoSelectedModule = new JButton();
-		vcoSelectedModule.setIcon(new ImageIcon(buttonVCOIcon));
-		vcoSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-		vcoSelectedModule.setContentAreaFilled(false);
-		vcoSelectedModule.setBackground(Color.white);
-		
-		vcoSelectedModule.setMnemonic(KeyEvent.VK_O);
-		vcoSelectedModule.addActionListener( new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				//if(UIManager.getColor( "Button.background" ) == Color.white)
-					//vcoSelectedModule.setBackground(Color.blue);
-					//((JButton)arg0.getSource()).getParent().setBackground(Color.red);
-				//Color buttonColor = vcoSelectedModule.getBackground();
-				
-				//vcoSelectedModule.setBackground(Color.blue);
-				 if(vcoSelectedModule.getBackground() == Color.white)
-				 {
-					// ((JButton)arg0.getSource()).setBackground(Color.red);
-					 try {
-						BufferedImage buttonVCOIcon = ImageIO.read(new File("images/bouVCOp.jpg"));
-						vcoSelectedModule.setIcon(new ImageIcon(buttonVCOIcon));
-						vcoSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						vcoSelectedModule.setContentAreaFilled(false);
-						vcoSelectedModule.setBackground(Color.black);
-						
-						BufferedImage buttonVCAIcon = ImageIO.read(new File("images/bouVCA.jpg"));
-						vcaSelectedModule.setIcon(new ImageIcon(buttonVCAIcon));
-						vcaSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						vcaSelectedModule.setContentAreaFilled(false);
-						vcaSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonVCFIcon = ImageIO.read(new File("images/bouVCF.jpg"));
-						vcfSelectedModule.setIcon(new ImageIcon(buttonVCFIcon));
-						vcfSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						vcfSelectedModule.setContentAreaFilled(false);
-						vcfSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonOUTIcon = ImageIO.read(new File("images/bouOUT.jpg"));
-						outSelectedModule.setIcon(new ImageIcon(buttonOUTIcon));
-						outSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						outSelectedModule.setContentAreaFilled(false);
-						outSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonADSRIcon = ImageIO.read(new File("images/bouADSR.jpg"));
-						adsrSelectedModule.setIcon(new ImageIcon(buttonADSRIcon));
-						adsrSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						adsrSelectedModule.setContentAreaFilled(false);
-						adsrSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonRepliIcon = ImageIO.read(new File("images/bouRepli.jpg"));
-						repliSelectedModule.setIcon(new ImageIcon(buttonRepliIcon));
-						repliSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						repliSelectedModule.setContentAreaFilled(false);
-						repliSelectedModule.setBackground(Color.white);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				 }
-				/* else
-				 {
-					 try {
-							BufferedImage buttonVCOIcon = ImageIO.read(new File("images/bouVCO.jpg"));
-							vcoSelectedModule.setIcon(new ImageIcon(buttonVCOIcon));
-							vcoSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-							vcoSelectedModule.setContentAreaFilled(false);
-							vcoSelectedModule.setBackground(Color.white);
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-				 }*/
-				//vcoSelectedModule.setBackground(Color.red);
-			}
-			
-			
-
-		});
-		
-		
-		BufferedImage buttonVCAIcon = ImageIO.read(new File("images/bouVCA.jpg"));
+		builtButton( vcoSelectedModule, 0 );		
 		vcaSelectedModule = new JButton();
-		vcaSelectedModule.setIcon(new ImageIcon(buttonVCAIcon));
-		vcaSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-		vcaSelectedModule.setContentAreaFilled(false);
-		vcaSelectedModule.setBackground(Color.white);
-		//vcaSelectedModule = new JButton( "VCA" );
-		vcaSelectedModule.setMnemonic(/*KeyEvent.VK_D*/ KeyEvent.VK_A );
-
-		vcaSelectedModule.addActionListener( new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				 if(vcaSelectedModule.getBackground() == Color.white)
-				 {
-					// ((JButton)arg0.getSource()).setBackground(Color.red);
-					 try {
-						BufferedImage buttonVCAIcon = ImageIO.read(new File("images/bouVCAp.jpg"));
-						vcaSelectedModule.setIcon(new ImageIcon(buttonVCAIcon));
-						vcaSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						vcaSelectedModule.setContentAreaFilled(false);
-						vcaSelectedModule.setBackground(Color.black);
-						
-						BufferedImage buttonVCOIcon = ImageIO.read(new File("images/bouVCO.jpg"));
-						vcoSelectedModule.setIcon(new ImageIcon(buttonVCOIcon));
-						vcoSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						vcoSelectedModule.setContentAreaFilled(false);
-						vcoSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonVCFIcon = ImageIO.read(new File("images/bouVCF.jpg"));
-						vcfSelectedModule.setIcon(new ImageIcon(buttonVCFIcon));
-						vcfSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						vcfSelectedModule.setContentAreaFilled(false);
-						vcfSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonOUTIcon = ImageIO.read(new File("images/bouOUT.jpg"));
-						outSelectedModule.setIcon(new ImageIcon(buttonOUTIcon));
-						outSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						outSelectedModule.setContentAreaFilled(false);
-						outSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonADSRIcon = ImageIO.read(new File("images/bouADSR.jpg"));
-						adsrSelectedModule.setIcon(new ImageIcon(buttonADSRIcon));
-						adsrSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						adsrSelectedModule.setContentAreaFilled(false);
-						adsrSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonRepliIcon = ImageIO.read(new File("images/bouRepli.jpg"));
-						repliSelectedModule.setIcon(new ImageIcon(buttonRepliIcon));
-						repliSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						repliSelectedModule.setContentAreaFilled(false);
-						repliSelectedModule.setBackground(Color.white);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				 }
-				/* else
-				 {
-					 try {
-							BufferedImage buttonVCAIcon = ImageIO.read(new File("images/bouVCA.jpg"));
-							vcaSelectedModule.setIcon(new ImageIcon(buttonVCAIcon));
-							vcaSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-							vcaSelectedModule.setContentAreaFilled(false);
-							vcaSelectedModule.setBackground(Color.white);
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-				 }*/
-			}
-
-		} );
-		
-		BufferedImage buttonVCFIcon = ImageIO.read(new File("images/bouVCF.jpg"));
+		builtButton( vcaSelectedModule, 1 );
 		vcfSelectedModule = new JButton();
-		vcfSelectedModule.setIcon(new ImageIcon(buttonVCFIcon));
-		vcfSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-		vcfSelectedModule.setContentAreaFilled(false);
-		vcfSelectedModule.setBackground(Color.white);
-		//vcfSelectedModule = new JButton( "VCF" );
-		vcfSelectedModule.setMnemonic(/*KeyEvent.VK_D*/ KeyEvent.VK_F );
-
-		vcfSelectedModule.addActionListener( new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				 if(vcfSelectedModule.getBackground() == Color.white)
-				 {
-					// ((JButton)arg0.getSource()).setBackground(Color.red);
-					 try {
-						BufferedImage buttonVCFIcon = ImageIO.read(new File("images/bouVCFp.jpg"));
-						vcfSelectedModule.setIcon(new ImageIcon(buttonVCFIcon));
-						vcfSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						vcfSelectedModule.setContentAreaFilled(false);
-						vcfSelectedModule.setBackground(Color.black);
-						
-						BufferedImage buttonVCOIcon = ImageIO.read(new File("images/bouVCO.jpg"));
-						vcoSelectedModule.setIcon(new ImageIcon(buttonVCOIcon));
-						vcoSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						vcoSelectedModule.setContentAreaFilled(false);
-						vcoSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonVCAIcon = ImageIO.read(new File("images/bouVCA.jpg"));
-						vcaSelectedModule.setIcon(new ImageIcon(buttonVCAIcon));
-						vcaSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						vcaSelectedModule.setContentAreaFilled(false);
-						vcaSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonOUTIcon = ImageIO.read(new File("images/bouOUT.jpg"));
-						outSelectedModule.setIcon(new ImageIcon(buttonOUTIcon));
-						outSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						outSelectedModule.setContentAreaFilled(false);
-						outSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonADSRIcon = ImageIO.read(new File("images/bouADSR.jpg"));
-						adsrSelectedModule.setIcon(new ImageIcon(buttonADSRIcon));
-						adsrSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						adsrSelectedModule.setContentAreaFilled(false);
-						adsrSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonRepliIcon = ImageIO.read(new File("images/bouRepli.jpg"));
-						repliSelectedModule.setIcon(new ImageIcon(buttonRepliIcon));
-						repliSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						repliSelectedModule.setContentAreaFilled(false);
-						repliSelectedModule.setBackground(Color.white);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				 }
-				 /*else
-				 {
-					 try {
-							BufferedImage buttonVCFIcon = ImageIO.read(new File("images/bouVCF.jpg"));
-							vcfSelectedModule.setIcon(new ImageIcon(buttonVCFIcon));
-							vcfSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-							vcfSelectedModule.setContentAreaFilled(false);
-							vcfSelectedModule.setBackground(Color.white);
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-				 }*/
-			}
-
-		} );
-
-		BufferedImage buttonOUTIcon = ImageIO.read(new File("images/bouOUT.jpg"));
+		builtButton( vcfSelectedModule, 2 );
 		outSelectedModule = new JButton();
-		outSelectedModule.setIcon(new ImageIcon(buttonOUTIcon));
-		outSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-		outSelectedModule.setContentAreaFilled(false);
-		outSelectedModule.setBackground(Color.white);
-		//outSelectedModule = new JButton( "OUT" );
-		outSelectedModule.setMnemonic(/*KeyEvent.VK_D*/ KeyEvent.VK_U );
-
-		outSelectedModule.addActionListener( new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				
-				//JPanel pOUT = new presentationOUTImpl();
-				//add();
-				//pOUT.setBackground(Color.black);
-				//pOUT.setSize(30, 40);
-				/*moduleZone.add(pOUT);
-				pOUT.setVisible (true);
-				moduleZone.repaint();*/
-				
-				//cOUT = new COUT();
-				//presentation.setPoubelle( cOUT.getPresentation() );
-				
-				 if(outSelectedModule.getBackground() == Color.white)
-				 {
-					 
-					 // ((JButton)arg0.getSource()).setBackground(Color.red);
-					 try {
-						BufferedImage buttonOUTIcon = ImageIO.read(new File("images/bouOUTp.jpg"));
-						outSelectedModule.setIcon(new ImageIcon(buttonOUTIcon));
-						outSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						outSelectedModule.setContentAreaFilled(false);
-						outSelectedModule.setBackground(Color.black);
-						
-						BufferedImage buttonVCOIcon = ImageIO.read(new File("images/bouVCO.jpg"));
-						vcoSelectedModule.setIcon(new ImageIcon(buttonVCOIcon));
-						vcoSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						vcoSelectedModule.setContentAreaFilled(false);
-						vcoSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonVCAIcon = ImageIO.read(new File("images/bouVCA.jpg"));
-						vcaSelectedModule.setIcon(new ImageIcon(buttonVCAIcon));
-						vcaSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						vcaSelectedModule.setContentAreaFilled(false);
-						vcaSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonVCFIcon = ImageIO.read(new File("images/bouVCF.jpg"));
-						vcfSelectedModule.setIcon(new ImageIcon(buttonVCFIcon));
-						vcfSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						vcfSelectedModule.setContentAreaFilled(false);
-						vcfSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonADSRIcon = ImageIO.read(new File("images/bouADSR.jpg"));
-						adsrSelectedModule.setIcon(new ImageIcon(buttonADSRIcon));
-						adsrSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						adsrSelectedModule.setContentAreaFilled(false);
-						adsrSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonRepliIcon = ImageIO.read(new File("images/bouRepli.jpg"));
-						repliSelectedModule.setIcon(new ImageIcon(buttonRepliIcon));
-						repliSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						repliSelectedModule.setContentAreaFilled(false);
-						repliSelectedModule.setBackground(Color.white);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				 }
-				 /*else
-				 {
-					 try {
-							BufferedImage buttonOUTIcon = ImageIO.read(new File("images/bouOUT.jpg"));
-							outSelectedModule.setIcon(new ImageIcon(buttonOUTIcon));
-							outSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-							outSelectedModule.setContentAreaFilled(false);
-							outSelectedModule.setBackground(Color.white);
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-				 }*/
-			}
-
-		} );
-		
-		BufferedImage buttonADSRIcon = ImageIO.read(new File("images/bouADSR.jpg"));
+		builtButton( outSelectedModule, 3 );
 		adsrSelectedModule = new JButton();
-		adsrSelectedModule.setIcon(new ImageIcon(buttonADSRIcon));
-		adsrSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-		adsrSelectedModule.setContentAreaFilled(false);
-		adsrSelectedModule.setBackground(Color.white);
-		//adsrSelectedModule = new JButton( "ADSR" );
-		adsrSelectedModule.setMnemonic(/*KeyEvent.VK_D*/ KeyEvent.VK_D );
-
-		adsrSelectedModule.addActionListener( new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				 if(adsrSelectedModule.getBackground() == Color.white)
-				 {
-					// ((JButton)arg0.getSource()).setBackground(Color.red);
-					 try {
-						BufferedImage buttonADSRIcon = ImageIO.read(new File("images/bouADSRp.jpg"));
-						adsrSelectedModule.setIcon(new ImageIcon(buttonADSRIcon));
-						adsrSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						adsrSelectedModule.setContentAreaFilled(false);
-						adsrSelectedModule.setBackground(Color.black);
-						
-						BufferedImage buttonVCOIcon = ImageIO.read(new File("images/bouVCO.jpg"));
-						vcoSelectedModule.setIcon(new ImageIcon(buttonVCOIcon));
-						vcoSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						vcoSelectedModule.setContentAreaFilled(false);
-						vcoSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonVCAIcon = ImageIO.read(new File("images/bouVCA.jpg"));
-						vcaSelectedModule.setIcon(new ImageIcon(buttonVCAIcon));
-						vcaSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						vcaSelectedModule.setContentAreaFilled(false);
-						vcaSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonVCFIcon = ImageIO.read(new File("images/bouVCF.jpg"));
-						vcfSelectedModule.setIcon(new ImageIcon(buttonVCFIcon));
-						vcfSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						vcfSelectedModule.setContentAreaFilled(false);
-						vcfSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonOUTIcon = ImageIO.read(new File("images/bouOUT.jpg"));
-						outSelectedModule.setIcon(new ImageIcon(buttonOUTIcon));
-						outSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						outSelectedModule.setContentAreaFilled(false);
-						outSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonRepliIcon = ImageIO.read(new File("images/bouRepli.jpg"));
-						repliSelectedModule.setIcon(new ImageIcon(buttonRepliIcon));
-						repliSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						repliSelectedModule.setContentAreaFilled(false);
-						repliSelectedModule.setBackground(Color.white);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				 }
-				 /*else
-				 {
-					 try {
-							BufferedImage buttonADSRIcon = ImageIO.read(new File("images/bouADSR.jpg"));
-							adsrSelectedModule.setIcon(new ImageIcon(buttonADSRIcon));
-							adsrSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-							adsrSelectedModule.setContentAreaFilled(false);
-							adsrSelectedModule.setBackground(Color.white);
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-				 }*/
-			}
-
-		} );
-		
-		BufferedImage buttonRepliIcon = ImageIO.read(new File("images/bouRepli.jpg"));
+		builtButton( adsrSelectedModule, 4 );		
 		repliSelectedModule = new JButton();
-		repliSelectedModule.setIcon(new ImageIcon(buttonRepliIcon));
-		repliSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-		repliSelectedModule.setContentAreaFilled(false);
-		repliSelectedModule.setBackground(Color.white);
-		//repliSelectedModule = new JButton( "Replicator" );
-		repliSelectedModule.setMnemonic(/*KeyEvent.VK_D*/ KeyEvent.VK_R );
-
-		repliSelectedModule.addActionListener( new ActionListener(){
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				 if(repliSelectedModule.getBackground() == Color.white)
-				 {
-					// ((JButton)arg0.getSource()).setBackground(Color.red);
-					 try {
-						BufferedImage buttonRepliIcon = ImageIO.read(new File("images/bouReplip.jpg"));
-						repliSelectedModule.setIcon(new ImageIcon(buttonRepliIcon));
-						repliSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						repliSelectedModule.setContentAreaFilled(false);
-						repliSelectedModule.setBackground(Color.black);
-						
-						BufferedImage buttonVCOIcon = ImageIO.read(new File("images/bouVCO.jpg"));
-						vcoSelectedModule.setIcon(new ImageIcon(buttonVCOIcon));
-						vcoSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						vcoSelectedModule.setContentAreaFilled(false);
-						vcoSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonVCAIcon = ImageIO.read(new File("images/bouVCA.jpg"));
-						vcaSelectedModule.setIcon(new ImageIcon(buttonVCAIcon));
-						vcaSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						vcaSelectedModule.setContentAreaFilled(false);
-						vcaSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonVCFIcon = ImageIO.read(new File("images/bouVCF.jpg"));
-						vcfSelectedModule.setIcon(new ImageIcon(buttonVCFIcon));
-						vcfSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						vcfSelectedModule.setContentAreaFilled(false);
-						vcfSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonOUTIcon = ImageIO.read(new File("images/bouOUT.jpg"));
-						outSelectedModule.setIcon(new ImageIcon(buttonOUTIcon));
-						outSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						outSelectedModule.setContentAreaFilled(false);
-						outSelectedModule.setBackground(Color.white);
-						
-						BufferedImage buttonADSRIcon = ImageIO.read(new File("images/bouADSR.jpg"));
-						adsrSelectedModule.setIcon(new ImageIcon(buttonADSRIcon));
-						adsrSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-						adsrSelectedModule.setContentAreaFilled(false);
-						adsrSelectedModule.setBackground(Color.white);
-						
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				 }
-				 /*else
-				 {
-					 try {
-							BufferedImage buttonRepliIcon = ImageIO.read(new File("images/bouRepli.jpg"));
-							repliSelectedModule.setIcon(new ImageIcon(buttonRepliIcon));
-							repliSelectedModule.setBorder(BorderFactory.createEmptyBorder());
-							repliSelectedModule.setContentAreaFilled(false);
-							repliSelectedModule.setBackground(Color.white);
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-				 }*/
-			}
-
-		} );
-		
+		builtButton( repliSelectedModule, 5 );
 		setLayout( new GridLayout( 6,1 ) );
 		setBackground(Color.white);
-		 add( vcoSelectedModule );
-		 add( vcaSelectedModule );
-		 add( vcfSelectedModule );
-		 add( outSelectedModule );
-		 add( adsrSelectedModule );
-		 add( repliSelectedModule );
-	}}
+		add( vcoSelectedModule );
+		add( vcaSelectedModule );
+		add( vcfSelectedModule );
+		add( outSelectedModule );
+		add( adsrSelectedModule );
+		add( repliSelectedModule );
+	}
 
+	private void builtButton(final JButton toBuild,final int index){
+		toBuild.setMnemonic( keyEvents.get(index) );
+		setButtonImages( toBuild, Color.white, new File(imageUnselected.get(index) ) );
+		toBuild.addActionListener( new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if(toBuild.getBackground() == Color.white)
+				{
+					setButtonImages( vcoSelectedModule,   ( index == 0 )?Color.black:Color.white, new File( ( index == 0 )? imageSelected.get( 0 ) : imageUnselected.get( 0 ) ) );
+					setButtonImages( vcaSelectedModule,   ( index == 1 )?Color.black:Color.white, new File( ( index == 1 )? imageSelected.get( 1 ) : imageUnselected.get( 1 ) ) );
+					setButtonImages( vcfSelectedModule,   ( index == 2 )?Color.black:Color.white, new File( ( index == 2 )? imageSelected.get( 2 ) : imageUnselected.get( 2 ) ) );
+					setButtonImages( outSelectedModule,   ( index == 3 )?Color.black:Color.white, new File( ( index == 3 )? imageSelected.get( 3 ) : imageUnselected.get( 3 ) ) );
+					setButtonImages( adsrSelectedModule,  ( index == 4 )?Color.black:Color.white, new File( ( index == 4 )? imageSelected.get( 4 ) : imageUnselected.get( 4 ) ) );
+					setButtonImages( repliSelectedModule, ( index == 5 )?Color.black:Color.white, new File( ( index == 5 )? imageSelected.get( 5 ) : imageUnselected.get( 5 ) ) );
+				}
+				commands.get( index ).setPlan( control.getcModuleZone().getPresentation() );
+				( ( ModuleListener ) control.getcModuleZone().getPresentation().getaDL() ).setCommand( commands.get( index ) );
+			}
+
+		} );
+	}
+	
+	private void setButtonImages( JButton buttonToSet, Color colorToSet, File image ){
+		// ((JButton)arg0.getSource()).setBackground(Color.red);
+		try {
+			BufferedImage buttonRepliIcon = ImageIO.read( image );
+			buttonToSet.setIcon( new ImageIcon( buttonRepliIcon ) );
+			buttonToSet.setBorder( BorderFactory.createEmptyBorder() );
+			buttonToSet.setContentAreaFilled( false );
+			buttonToSet.setBackground( colorToSet );
+
+		} catch ( IOException e ) {
+			e.printStackTrace();
+		}
+	}
+	
 	public CModuleZone getcModuleZone() {
 		return cModuleZone;
 	}
@@ -547,6 +122,58 @@ public class ToolBoxes extends JPanel{
 	private CModuleZone cModuleZone;
 	private CToolBoxes control;
 	private ModuleZone presentation;
-	private COUT cOUT;
+	//private COUT cOUT;
+	private List<Integer> keyEvents = new ArrayList<Integer>(){
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 
+	{
+		add( KeyEvent.VK_O );
+		add( KeyEvent.VK_A );
+		add( KeyEvent.VK_F );
+		add( KeyEvent.VK_U );
+		add( KeyEvent.VK_D );
+		add( KeyEvent.VK_R );
+	}};
+	
+	private List<String> imageUnselected = new ArrayList<String>(){
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+	{
+		add( "images/bouVCO.jpg" );
+		add( "images/bouVCA.jpg" );
+		add( "images/bouVCF.jpg" );
+		add( "images/bouOUT.jpg" );
+		add( "images/bouADSR.jpg" );
+		add( "images/bouRepli.jpg" );
+	}};
+	
+	private List<String> imageSelected = new ArrayList<String>(){
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+	{
+		add( "images/bouVCOp.jpg" );
+		add( "images/bouVCAp.jpg" );
+		add( "images/bouVCFp.jpg" );
+		add( "images/bouOUTp.jpg" );
+		add( "images/bouADSRp.jpg" );
+		add( "images/bouReplip.jpg" );
+	}};
+	
+	private List<Command> commands = new ArrayList<Command>(){{
+		add( new CreateVCO() );
+		add( new CreateVCA() );
+		add( new CreateVCF() );
+		add( new CreateOut() );
+		add( new CreateADSR() );
+		add( new CreateReplicator() );
+	}};
 }

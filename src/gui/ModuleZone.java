@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.dnd.DnDConstants;
@@ -29,7 +30,7 @@ import listener.ModuleZoneDropTargetListener;
 //import listener.ModuleZoneTropListener;
 //import listener.ZoneDeDessinDropTargetListener;
 
-import presentation.presentationOUTImpl;
+import gui.presentationOUTImpl;
 //import shape.Dessin;
 import controler.CModuleZone;
 
@@ -49,6 +50,7 @@ public class ModuleZone extends JPanel{
 		dropTarget = new DropTarget( this, mzdtl );
 		//TODO One listener can done each of this both instantiation.
 		aDL = new ModuleListener();
+		( ( ModuleListener ) aDL).setCurrentPlan(this);
 		aDML = new ModuleMotionListener();
 		
 		addMouseListener( aDL );
@@ -72,6 +74,14 @@ public class ModuleZone extends JPanel{
 		this.repaint();
 	}
 	
+	public void addElement(Object o){
+		
+		add( ( Module ) o);
+		validate();
+		repaint();
+		
+	}
+	
 	/*public void setOUT(presentationOUTImpl out){
 		this.out = out;
 		this.add(this.out, 0);
@@ -81,8 +91,11 @@ public class ModuleZone extends JPanel{
 	
 	public void paint(Graphics gra){
 		super.paint(gra);
-		if(this.getComponent(0) != null)
+		if(this.getComponent(0) != null && this.getComponentCount() == 1)
 			this.getComponent(0).setLocation(0,this.getHeight() - poubelle.getHeight());
+		else{
+			Component [] Components = this.getComponents();
+		}
 	}
 	
 	public CModuleZone getControl() {
@@ -101,6 +114,13 @@ public class ModuleZone extends JPanel{
 		return loweredbevel;
 	}
 	
+	public MouseListener getaDL() {
+		return aDL;
+	}
+
+	public void setaDL(MouseListener aDL) {
+		this.aDL = aDL;
+	}
 	
 	/**mouse listener used to defined origin point of current shape*/
 	protected MouseListener aDL;

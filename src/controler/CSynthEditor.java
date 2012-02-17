@@ -16,7 +16,7 @@ public class CSynthEditor {
 		presentation.setToolBoxes( cToolBoxes.getPresentation() );
 		cModuleZone = new CModuleZone();
 		presentation.setModuleZone( cModuleZone.getPresentation() );
-		
+		cToolBoxes.setcModuleZone( cModuleZone );
 		presentation.pack();
 	}
 	

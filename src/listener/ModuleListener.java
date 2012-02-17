@@ -8,6 +8,8 @@ import java.awt.event.MouseWheelEvent;
 import javax.swing.JPanel;
 //import command.Command;
 
+import command.Command;
+
 public class ModuleListener extends MouseAdapter{
 	
 	public void mousePressed(MouseEvent e){
@@ -51,19 +53,45 @@ public class ModuleListener extends MouseAdapter{
 	
 //	private Command currentCommand;
 
-	public void mouseClicked(MouseEvent arg0) {
-		
+	public void mouseClicked( MouseEvent arg0 ) {
+		if( command != null ){
+			
+			command.execute( arg0.getPoint() );
+			currentPlan.add( command.getModule(), 0 );
+			command.getModule().repaint();
+			currentPlan.repaint();
+		}
 		
 	}
 
-	public void mouseEntered(MouseEvent arg0) {
+	public void mouseEntered( MouseEvent arg0 ) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	public void mouseExited(MouseEvent arg0) {
+	public void mouseExited( MouseEvent arg0 ) {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void setCommand( Command command ){
+		this.command = command;
+	}
+	
+	public Command getCommand(){
+		return this.command;
+	}
+	
+	public JPanel getCurrentPlan() {
+		return currentPlan;
+	}
+
+	public void setCurrentPlan( JPanel currentPlan ) {
+		this.currentPlan = currentPlan;
+	}
+
+	private Command command;
+	
+	private JPanel currentPlan;
 
 }
