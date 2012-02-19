@@ -1,8 +1,7 @@
 package gui.impl;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.GridLayout;
+import java.awt.Color;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -11,32 +10,24 @@ import javax.swing.JPanel;
 
 public class Onde extends JPanel {
 	
-	/**
-	 * 29007655
-	 */
-	private static final long serialVersionUID = 1L;
-	private JCheckBox triangle;
-	private JCheckBox carre;
-	private JCheckBox scie;
-	ImageIcon icone1;
-	ImageIcon icone2;
-	ImageIcon icone3;
-	JLabel signalcarre;
-	JLabel signaltriangle;
-	JLabel signalscie;
-	static int largeur;
-	static int hauteur;
-	static int largeur2;
-	static int hauteur2;
-
 	public Onde() {		
 		setLayout(null);
+		waveGroup = new ButtonGroup(); 
 		carre = new JCheckBox("Carrée");
+		waveGroup.add(carre);
 		carre.setSize( 80,20 );
+		carre.setBackground( Color.gray );
+		carre.setForeground( Color.white );
 		triangle = new JCheckBox("Triangle");
+		waveGroup.add(triangle);
 		triangle.setSize( 80,20 );
+		triangle.setBackground( Color.gray );
+		triangle.setForeground( Color.white );
 		scie = new JCheckBox("Scie");
+		waveGroup.add(scie);
 		scie.setSize( 80,20 );
+		scie.setBackground( Color.gray );
+		scie.setForeground( Color.white );
 		
 		icone1 = new ImageIcon ( "images/signal-carre.jpg" ) ;
 		signalcarre = new JLabel( icone1 );
@@ -49,13 +40,6 @@ public class Onde extends JPanel {
 		signalscie = new JLabel( icone3 );
 		signalscie.setSize( icone3.getIconWidth(), icone3.getIconHeight() );
 			
-		/*setLayout(new GridLayout(2, 3));*/
-		/*add(carre,BorderLayout.CENTER);
-		add(triangle,BorderLayout.CENTER);
-        add(scie,BorderLayout.CENTER);
-        add(signalcarre,BorderLayout.CENTER);
-        add(signaltriangle,BorderLayout.CENTER);
-        add(signalscie,BorderLayout.CENTER);*/
 		add( carre );
 		add( triangle );
         add( scie );
@@ -74,4 +58,46 @@ public class Onde extends JPanel {
 		signaltriangle.setLocation( ( getWidth() / 2 ) - ( triangle.getWidth() / 2 ), 20);
 		signalscie.setLocation( getWidth() - signalscie.getWidth(), 20 );
 	}
+	
+	public JCheckBox getTriangle() {
+		return triangle;
+	}
+
+	public void setTriangle(JCheckBox triangle) {
+		this.triangle = triangle;
+	}
+	
+	public JCheckBox getCarre() {
+		return carre;
+	}
+
+	public void setCarre(JCheckBox carre) {
+		this.carre = carre;
+	}
+	
+	public JCheckBox getScie() {
+		return scie;
+	}
+
+	public void setScie(JCheckBox scie) {
+		this.scie = scie;
+	}
+	/**
+	 * 29007655
+	 */
+	private static final long serialVersionUID = 1L;
+	private JCheckBox triangle;
+	private JCheckBox carre;
+	private JCheckBox scie;
+	private ButtonGroup waveGroup;
+	ImageIcon icone1;
+	ImageIcon icone2;
+	ImageIcon icone3;
+	JLabel signalcarre;
+	JLabel signaltriangle;
+	JLabel signalscie;
+	static int largeur;
+	static int hauteur;
+	static int largeur2;
+	static int hauteur2;
 }

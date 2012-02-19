@@ -64,7 +64,7 @@ public class PresentationMolette extends JPanel implements ChangeListener,IPrese
 		setSize(120,120);
 		/**/
 		//on choisit de le mettre au nord du panel
-		add(jl = new JLabel(ts.getNomMolette()+": "+ts.getEntInter()), BorderLayout.NORTH);
+		add(jl = new JLabel(ts.getNomMolette()+": "+( (signeAff == SigneAffichage.puissance)?(int)Math.pow(2, entier):entier) ), BorderLayout.NORTH);
 		/**/
 		jl.setSize(120,20);
 		jl.setLocation(0,0);

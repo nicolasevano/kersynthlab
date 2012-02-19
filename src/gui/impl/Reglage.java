@@ -1,6 +1,4 @@
 package gui.impl;
-import java.awt.GridLayout;
-import java.awt.Panel;
 
 import javax.swing.JPanel;
 
@@ -12,11 +10,6 @@ public class Reglage extends JPanel{
 		att = new PresentationMolette(SigneAffichage.negatif, 7, "Att");
 		pitch = new PresentationMolette(SigneAffichage.positif, 100, "Pitch");
 		base = new PresentationMolette(SigneAffichage.puissance, 7, "Base");
-		
-		//Panel pane = new Panel();
-		//getPreferredSize();
-		//setSize(140, 14);
-		//setLayout(new GridLayout(1, 3));
 		setLayout( null );
 		add( att );
 		add( pitch );

@@ -3,13 +3,8 @@ package gui.impl;
 import gui.Module;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.dnd.DnDConstants;
-import java.awt.dnd.DragGestureEvent;
-import java.awt.dnd.DragSource;
-import java.awt.dnd.DropTarget;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
@@ -17,21 +12,12 @@ import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-//import command.Command;
+import command.Command;
+import command.DeleteModule;
 
-//import listener.DessinListener;
-//import listener.DessinMotionListener;
-import listener.DragModuleZoneGestureListener;
-import listener.DragModuleZoneListener;
-//import listener.DragZoneDessinGestureListener;
-//import listener.DragZoneDessinListener;
+
 import listener.ModuleListener;
 import listener.ModuleMotionListener;
-//import listener.ModuleZoneClickListener;
-import listener.ModuleZoneDropTargetListener;
-//import listener.ModuleZoneTropListener;
-//import listener.ZoneDeDessinDropTargetListener;
-//import shape.Dessin;
 import controler.CModuleZone;
 
 public class ModuleZone extends JPanel{
@@ -45,31 +31,22 @@ public class ModuleZone extends JPanel{
 		//mandatory!!!
 		setLayout( null );
 		
-		mzdtl = new ModuleZoneDropTargetListener();
-		//mzdtl.setZoneDessin(this);
-		dropTarget = new DropTarget( this, mzdtl );
-		//TODO One listener can done each of this both instantiation.
 		aDL = new ModuleListener();
-		( ( ModuleListener ) aDL).setCurrentPlan(this);
+		( ( ModuleListener ) aDL ).setCurrentPlan( this );
 		aDML = new ModuleMotionListener();
-		
+		( ( ModuleMotionListener ) aDML ).setCurrentPlan( this );
 		addMouseListener( aDL );
 		addMouseMotionListener( aDML );
-		dmzl = new DragModuleZoneListener();
-		//dmzl.setZoneDessin( this );
-		dragSource = new DragSource();
-		dmzgl = new DragModuleZoneGestureListener();
-		//dmzgl.setZoneDessin(this);
-		dragSource.createDefaultDragGestureRecognizer(this, 
-													  DnDConstants.ACTION_MOVE, 
-													  dmzgl
-													  );
 		
 	}
 	
 	public void setPoubelle(Poubelle poubelle) {
 		this.poubelle = poubelle;
 		this.add(this.poubelle,0);
+		Command deleteCommand = new DeleteModule();
+		( ( DeleteModule ) deleteCommand).setPoubelle(this.poubelle);
+		deleteCommand.setPlan(this);
+		( ( ModuleListener ) aDL ).setDeleteCommand( deleteCommand );
 		this.getComponent(0).setLocation(0,this.getHeight() - poubelle.getHeight());
 		this.repaint();
 	}
@@ -82,20 +59,9 @@ public class ModuleZone extends JPanel{
 		
 	}
 	
-	/*public void setOUT(presentationOUTImpl out){
-		this.out = out;
-		this.add(this.out, 0);
-		this.getComponent(0).setLocation(10, 10);
-		this.repaint();
-	}*/
-	
 	public void paint(Graphics gra){
 		super.paint(gra);
-		if(this.getComponent(0) != null && this.getComponentCount() == 1)
-			this.getComponent(0).setLocation(0,this.getHeight() - poubelle.getHeight());
-		else{
-			Component [] Components = this.getComponents();
-		}
+		poubelle.setLocation(0,this.getHeight() - poubelle.getHeight());
 	}
 	
 	public CModuleZone getControl() {
@@ -118,31 +84,24 @@ public class ModuleZone extends JPanel{
 		return aDL;
 	}
 
-	public void setaDL(MouseListener aDL) {
+	public void setaDL( MouseListener aDL ) {
 		this.aDL = aDL;
 	}
 	
+	public Module getSelected(){
+		return selected;
+	}
+	
+	public void setSelected( Module selected ){
+		this.selected = selected;
+	}
 	/**mouse listener used to defined origin point of current shape*/
 	protected MouseListener aDL;
 	
 	/**mouse dragged listener used to compute motion of the current shape */
 	protected MouseMotionListener aDML;
 	
-	protected DragModuleZoneListener dmzl;
-	
-	protected DragModuleZoneGestureListener dmzgl;
-	
-	//protected Command currentCommand;
-	
-	protected ModuleZoneDropTargetListener mzdtl;
-	
-	protected DropTarget dropTarget;
-	
 	private Module selected;
-	
-	private DragGestureEvent initialEvent;
-	
-	private DragSource dragSource;
 	
 	private Border raisedbevel = BorderFactory.createRaisedBevelBorder();
 	
@@ -150,12 +109,8 @@ public class ModuleZone extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private Color currentColor = Color.BLUE;
-	
-	
-	
 	private CModuleZone control;
+	
 	private Poubelle poubelle;
-	//private presentationOUTImpl out;
 	
 }

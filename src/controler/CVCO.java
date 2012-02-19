@@ -8,6 +8,7 @@ public class CVCO extends VCO {
 	public CVCO(){
 		presentation = new PresentationVCO();
 		presentation.setControl( this );
+		presentation.initListener();
 	}
 	
 	public PresentationVCO getPresentation() {

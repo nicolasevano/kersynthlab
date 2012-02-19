@@ -60,7 +60,7 @@ public class VCO implements Module {
 		return this.base;
 	}
 
-	public void setAtt(int att) {
+	public void setAtt( int att ) {
 		this.att = att;
 	}
 

@@ -122,7 +122,6 @@ public class ToolBoxes extends JPanel{
 	private JButton repliSelectedModule;
 	private CModuleZone cModuleZone;
 	private CToolBoxes control;
-	private ModuleZone presentation;
 	//private COUT cOUT;
 	private List<Integer> keyEvents = new ArrayList<Integer>(){
 		/**
@@ -169,7 +168,12 @@ public class ToolBoxes extends JPanel{
 		add( "images/bouReplip.jpg" );
 	}};
 	
-	private List<Command> commands = new ArrayList<Command>(){{
+	private List<Command> commands = new ArrayList<Command>(){/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+	{
 		add( new CreateVCO() );
 		add( new CreateVCA() );
 		add( new CreateVCF() );
