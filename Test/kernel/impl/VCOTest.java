@@ -5,7 +5,8 @@ import kernel.InPort;
 import kernel.Observer;
 import kernel.Subject;
 import kernel.Module;
-import kernel.impl.VCO.WaveForm;
+import kernel.impl.vco.VCO;
+import kernel.impl.vco.VCO.WaveForm;
 
 import org.junit.After;
 import org.junit.Before;

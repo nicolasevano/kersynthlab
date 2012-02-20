@@ -23,11 +23,11 @@ public class PresentationMolette extends JPanel implements ChangeListener,IPrese
 	//on met un label pour afficher les valeurs permises du slider
 	JLabel jl;
 	JLabel jla;
-	SigneAffichage signeAff;
+	private SigneAffichage signeAff;
 
 	public PresentationMolette( SigneAffichage signeAff, int entier,String nomDeLamolette ){
 
-		this.signeAff=signeAff;
+		this.setSigneAff(signeAff);
 
 		//on met le type de layout utilisé
 		setLayout(new BorderLayout());
@@ -73,7 +73,7 @@ public class PresentationMolette extends JPanel implements ChangeListener,IPrese
 
 	@Override
 	public void stateChanged(ChangeEvent e) {
-		int vol = choisirAffichageValeur(signeAff, ts);
+		int vol = choisirAffichageValeur(getSigneAff(), ts);
 		jla.setText(ts.getNomMolette()+": " + vol);
 		ts.setTempoValeurChangeListener(vol);
 	}
@@ -83,7 +83,7 @@ public class PresentationMolette extends JPanel implements ChangeListener,IPrese
  * 
  * **/	
 
-	int choisirAffichageValeur(SigneAffichage sa, DKnob sld){
+	public int choisirAffichageValeur(SigneAffichage sa, DKnob sld){
 		int val;
 		int pas=ts.getEntInter();
 		if(sa.equals(SigneAffichage.negatif)){			
@@ -107,6 +107,14 @@ public class PresentationMolette extends JPanel implements ChangeListener,IPrese
 
 	public void setTs(DKnob ts) {
 		this.ts = ts;
+	}
+
+	public void setSigneAff(SigneAffichage signeAff) {
+		this.signeAff = signeAff;
+	}
+
+	public SigneAffichage getSigneAff() {
+		return signeAff;
 	}
 
 

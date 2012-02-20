@@ -1,6 +1,6 @@
 package controler;
 
-import kernel.impl.VCO;
+import kernel.impl.vco.VCO;
 import gui.impl.PresentationVCO;
 
 public class CVCO extends VCO {
