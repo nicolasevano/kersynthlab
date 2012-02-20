@@ -2,8 +2,9 @@ package gui.impl;
 //package molette;
 
 
-import gui.IControleMolette;
 import gui.IPresentationMolette;
+import gui.impl.subpresentation.DKnob;
+import gui.impl.subpresentation.SigneAffichage;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -19,17 +20,6 @@ public class PresentationMolette extends JPanel implements ChangeListener,IPrese
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	//on a mis controle molette mais le controle sera le VCO
-	private IControleMolette controle;
-
-	public IControleMolette getControle() {
-		return controle;
-	}
-
-	public void setControle(IControleMolette controle) {
-		this.controle = controle;
-	}
 
 	private DKnob ts=new DKnob();
 	//on met un label pour afficher les valeurs permises du slider

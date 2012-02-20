@@ -1,22 +1,22 @@
 package controler;
 
 import kernel.HorlogeSubject;
-import gui.impl.UserOption;
+import gui.impl.PresentationUserOption;
 import kernel.impl.HorlogeImpl;
 
 public class CUserOption {
 
 	public CUserOption(){
-		presentation = new UserOption();
+		presentation = new PresentationUserOption();
 		presentation.setControl( this );
 		horloge = new HorlogeImpl();
 	}
 	
-	public UserOption getPresentation() {
+	public PresentationUserOption getPresentation() {
 		return presentation;
 	}
 
-	public void setPresentation( UserOption presentation ) {
+	public void setPresentation( PresentationUserOption presentation ) {
 		this.presentation = presentation;
 	}
 	
@@ -54,7 +54,7 @@ public class CUserOption {
 		
 	}
 	
-	private UserOption presentation;
+	private PresentationUserOption presentation;
 	private HorlogeSubject horloge;
 	
 	

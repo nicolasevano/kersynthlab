@@ -2,20 +2,20 @@ package controler;
 
 import java.io.IOException;
 
-import gui.impl.ToolBoxes;
+import gui.impl.PresentationToolBoxes;
 
 public class CToolBoxes {
 	
 	public CToolBoxes() throws IOException{
-		presentation = new ToolBoxes();
+		presentation = new PresentationToolBoxes();
 		presentation.setControl( this );
 	}
 	
-	public ToolBoxes getPresentation() {
+	public PresentationToolBoxes getPresentation() {
 		return presentation;
 	}
 
-	public void setPresentation( ToolBoxes presentation ) {
+	public void setPresentation( PresentationToolBoxes presentation ) {
 		this.presentation = presentation;
 	}
 	
@@ -27,7 +27,7 @@ public class CToolBoxes {
 		this.cModuleZone = cModuleZone;
 	}
 	
-	private ToolBoxes presentation;
+	private PresentationToolBoxes presentation;
 	
 	private CModuleZone cModuleZone;
 

@@ -1,7 +1,7 @@
 package command;
 
-import gui.impl.ModuleZone;
-import gui.impl.Poubelle;
+import gui.impl.PresentationModuleZone;
+import gui.impl.subpresentation.Poubelle;
 
 import java.awt.Point;
 
@@ -10,13 +10,13 @@ public class DeleteModule extends Command{
 	@Override
 	public void execute(Point p) {
 		// TODO Auto-generated method stub
-		if( ( ( ModuleZone ) getPlan() ).getSelected() != null ) {
+		if( ( ( PresentationModuleZone ) getPlan() ).getSelected() != null ) {
 			Point poubelleOrigine = poubelle.getLocation();
-			Point pSelectedOrigine = ( ( ModuleZone ) getPlan() ).getSelected().getLocation();
+			Point pSelectedOrigine = ( ( PresentationModuleZone ) getPlan() ).getSelected().getLocation();
 			int dxRemoveZone = poubelleOrigine.x + poubelle.getWidth();
 			int dyRemoveZone = poubelleOrigine.y + poubelle.getHeight();
-			int xSelectedZone = pSelectedOrigine.x + ( ( ModuleZone ) getPlan() ).getSelected().getWidth();
-			int ySelectedZone = pSelectedOrigine.y + ( ( ModuleZone ) getPlan() ).getSelected().getHeight();
+			int xSelectedZone = pSelectedOrigine.x + ( ( PresentationModuleZone ) getPlan() ).getSelected().getWidth();
+			int ySelectedZone = pSelectedOrigine.y + ( ( PresentationModuleZone ) getPlan() ).getSelected().getHeight();
 			System.out.println("dxRemoveZone = " + dxRemoveZone);
 			System.out.println("dyRemoveZone = " + dyRemoveZone);
 			System.out.println("xSelectedZone = " + xSelectedZone);
@@ -46,9 +46,9 @@ public class DeleteModule extends Command{
 	
 	private void deleteModule(){
 		System.out.println( "Remove a module!" );
-		( ( ModuleZone ) getPlan() ).remove( ( ( ModuleZone ) getPlan() ).getSelected() );
+		( ( PresentationModuleZone ) getPlan() ).remove( ( ( PresentationModuleZone ) getPlan() ).getSelected() );
 		//TODO remove each wire at this moment
-		( ( ModuleZone ) getPlan() ).repaint();
+		( ( PresentationModuleZone ) getPlan() ).repaint();
 	}
 	
 	private Poubelle poubelle;

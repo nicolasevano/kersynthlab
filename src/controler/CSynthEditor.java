@@ -2,12 +2,12 @@ package controler;
 
 import java.io.IOException;
 
-import gui.impl.SynthEditor;
+import gui.impl.PresentationSynthEditor;
 
 public class CSynthEditor {
 
 	public CSynthEditor() throws IOException{
-		presentation = new SynthEditor();
+		presentation = new PresentationSynthEditor();
 		presentation.setControl( this );
 		cUserOption = new CUserOption();
 		presentation.setUserOption( cUserOption.getPresentation() );
@@ -23,15 +23,15 @@ public class CSynthEditor {
 		new CSynthEditor();
 	}
 	
-	public SynthEditor getPresentation() {
+	public PresentationSynthEditor getPresentation() {
 		return presentation;
 	}
 
-	public void setPresentation( SynthEditor presentation ) {
+	public void setPresentation( PresentationSynthEditor presentation ) {
 		this.presentation = presentation;
 	}
 	
-	private SynthEditor presentation;
+	private PresentationSynthEditor presentation;
 	private CModuleZone cModuleZone;
 	private CToolBoxes cToolBoxes;
 	private CUserOption cUserOption;

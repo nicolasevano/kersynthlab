@@ -1,11 +1,11 @@
 package controler;
 
-import gui.impl.ModuleZone;
+import gui.impl.PresentationModuleZone;
 
 public class CModuleZone {
 	
 	public CModuleZone(){
-		presentation = new ModuleZone();
+		presentation = new PresentationModuleZone();
 		presentation.setControl( this );
 		
 		cPoubelle = new CPoubelle();
@@ -15,15 +15,15 @@ public class CModuleZone {
 		//presentation.setOUT( cOUT.getPresentation() );
 	}
 	
-	public ModuleZone getPresentation() {
+	public PresentationModuleZone getPresentation() {
 		return presentation;
 	}
 
-	public void setPresentation(ModuleZone presentation) {
+	public void setPresentation(PresentationModuleZone presentation) {
 		this.presentation = presentation;
 	}
 	
-	private ModuleZone presentation;
+	private PresentationModuleZone presentation;
 	private CPoubelle cPoubelle;
 	//private COUT cOUT;
 }

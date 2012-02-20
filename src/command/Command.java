@@ -4,7 +4,7 @@ import java.awt.Point;
 
 import javax.swing.JPanel;
 
-import gui.Module;
+import gui.APresentationModule;
 
 public abstract class Command {
 	
@@ -18,15 +18,15 @@ public abstract class Command {
 		return currentPlan;
 	}
 	
-	public void setModule(Module module) {
+	public void setModule(APresentationModule module) {
 		this.module = module;
 	}
 
-	public Module getModule() {
+	public APresentationModule getModule() {
 		return this.module;
 	}
 	
-	private Module module;
+	private APresentationModule module;
 	
 	private JPanel currentPlan;
 }

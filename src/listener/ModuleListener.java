@@ -1,6 +1,6 @@
 package listener;
 
-import gui.impl.ModuleZone;
+import gui.impl.PresentationModuleZone;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -18,7 +18,7 @@ public class ModuleListener extends MouseAdapter{
 	
 	public void mouseReleased(MouseEvent e){
 		deleteCommand.execute( e.getPoint() );
-		( ( ModuleZone ) currentPlan ).setSelected( null );
+		( ( PresentationModuleZone ) currentPlan ).setSelected( null );
 	}
 	
 	public void mouseWheelMoved (MouseWheelEvent e) {

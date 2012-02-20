@@ -11,10 +11,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import controler.COUT;
 import gui.IPresentationOUT;
-import gui.Module;
-import gui.impl.PresentationInPortImpl;
+import gui.APresentationModule;
+import gui.impl.subpresentation.PresentationInPortImpl;
 
-public class PresentationOUTImpl extends Module implements IPresentationOUT{
+public class PresentationOUTImpl extends APresentationModule implements IPresentationOUT{
 
 	/**
 	 * 

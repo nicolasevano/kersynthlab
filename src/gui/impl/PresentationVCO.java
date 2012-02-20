@@ -8,15 +8,18 @@ import javax.swing.event.ChangeListener;
 
 import kernel.impl.VCO.WaveForm;
 
-import gui.Module;
-import gui.impl.PresentationInPortImpl;
+import gui.APresentationModule;
+import gui.impl.subpresentation.Onde;
+import gui.impl.subpresentation.PresentationInPortImpl;
+import gui.impl.subpresentation.PresentationOutPortImpl;
+import gui.impl.subpresentation.Reglage;
 
 
 import controler.CVCO;
 
 
 
-public class PresentationVCO extends Module {
+public class PresentationVCO extends APresentationModule {
 	
 	
     // End of variables declaration  

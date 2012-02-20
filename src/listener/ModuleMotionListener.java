@@ -1,7 +1,7 @@
 package listener;
 
-import gui.Module;
-import gui.impl.ModuleZone;
+import gui.APresentationModule;
+import gui.impl.PresentationModuleZone;
 
 import java.awt.Point;
 import java.awt.event.MouseEvent;
@@ -13,14 +13,14 @@ public class ModuleMotionListener extends MouseMotionAdapter {
 	
 	public void mouseDragged(MouseEvent e){
 		Point p = e.getPoint();
-		if( currentPlan.getComponentAt( p ) instanceof Module && 
-				((ModuleZone) currentPlan).getSelected() == null){
-			Module toMove = (Module)currentPlan.getComponentAt( p );
-			((ModuleZone) currentPlan).setSelected( toMove );
+		if( currentPlan.getComponentAt( p ) instanceof APresentationModule && 
+				((PresentationModuleZone) currentPlan).getSelected() == null){
+			APresentationModule toMove = (APresentationModule)currentPlan.getComponentAt( p );
+			((PresentationModuleZone) currentPlan).setSelected( toMove );
 			setTranslationRatioX( p.x - toMove.getLocation().x );
 			setTranslationRatioY( p.y - toMove.getLocation().y );
-		}else if ( ( ( ModuleZone ) currentPlan).getSelected() != null){
-			( ( ModuleZone ) currentPlan).getSelected().setLocation( 
+		}else if ( ( ( PresentationModuleZone ) currentPlan).getSelected() != null){
+			( ( PresentationModuleZone ) currentPlan).getSelected().setLocation( 
 					p.x - getTranslationRatioX(),
 					p.y - getTranslationRatioY());
 		}
