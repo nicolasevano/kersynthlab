@@ -8,4 +8,8 @@ public interface HorlogeSubject {
 
   void removeModuleObserver(HorlogeObserver toRemove) ;
 
+  void start();
+  
+  void stop();
+  
 }

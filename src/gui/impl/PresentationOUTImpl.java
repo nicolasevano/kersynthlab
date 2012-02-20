@@ -9,7 +9,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import controler.COUT;
 import gui.IPresentationOUT;
 import gui.APresentationModule;
 import gui.impl.subpresentation.PresentationInPortImpl;
@@ -26,10 +25,6 @@ public class PresentationOUTImpl extends APresentationModule implements IPresent
 	protected JLabel face ;
 	protected JPanel portIn;
 	protected GridLayout myGridLay;
-
-	
-	private COUT controle; 
-
 
 	public PresentationOUTImpl(){	
 		portIn = new PresentationInPortImpl();
@@ -62,15 +57,6 @@ public class PresentationOUTImpl extends APresentationModule implements IPresent
 		setSize( largeur + portIn.getWidth() + 2 , hauteur );
 		//controle.setPresentation(this);
 	}
-	
-	public COUT getControle() {
-		return controle;
-	}
-
-	public void setControle(COUT controle) {
-		this.controle = controle;
-	}
-	
 	
 	@Override
 	public boolean isConnectedCable() {

@@ -8,15 +8,26 @@ import java.io.IOException;
 
 import javax.swing.JPanel;
 
+import kernel.Module;
+
 
 
 public abstract class APresentationModule extends JPanel implements Transferable{
+	
 	public Point getOrigine() {
 		return origine;
 	}
 
 	public void setOrigine(Point origine) {
 		this.origine = origine;
+	}
+	
+	public Module getControl(){
+		return this.control;
+	}
+	
+	public void setControl(Module module){
+		this.control = module;
 	}
 	
 	@Override
@@ -50,4 +61,6 @@ public abstract class APresentationModule extends JPanel implements Transferable
 	private Point origine;
 	
 	private static final long serialVersionUID = 1L;
+	
+	private Module control;
 }

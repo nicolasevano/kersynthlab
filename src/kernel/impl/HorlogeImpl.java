@@ -58,6 +58,7 @@ public class HorlogeImpl implements HorlogeSubject{
 	/**
 	 * Start function launch clock synchronization of each clock module observer.
 	 */
+	@Override
 	public void start(){
 		for(final HorlogeObserver observer : observers){
 			if( observer instanceof Out ){
@@ -83,6 +84,7 @@ public class HorlogeImpl implements HorlogeSubject{
 	/**
 	 * Stop function break clock synchronization of each module observer.
 	 */
+	@Override
 	public void stop(){
 		isALive = false;
 		timerScheduler.shutdown();
@@ -106,12 +108,12 @@ public class HorlogeImpl implements HorlogeSubject{
 	}
 	
 	/**
-	 * @param sampleRate: sample rate production on sound card
+	 * sampleRate: sample rate production on sound card
 	 */
 	protected static int sampleRate;
 	
 	/**
-	 * Clock observer list
+	 * Clock observer list.
 	 */
 	private List<HorlogeObserver> observers;
 	
@@ -121,7 +123,7 @@ public class HorlogeImpl implements HorlogeSubject{
 	private ExecutorService timerScheduler;
 	
 	/**
-	 * When horloge is started this boolean is set to true, otherwise false.
+	 * When clock is started this boolean is set to true, otherwise false.
 	 */
 	private boolean isALive = false;
 

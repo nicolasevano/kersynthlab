@@ -15,7 +15,8 @@ public class CToolBoxes {
 	 * Public contructor
 	 * @throws IOException
 	 */
-	public CToolBoxes() throws IOException{
+	public CToolBoxes( CUserOption cmenu ) throws IOException{
+		this.cmenu = cmenu;
 		presentation = new PresentationToolBoxes();
 		presentation.setControl( this );
 	}
@@ -36,9 +37,19 @@ public class CToolBoxes {
 		this.cModuleZone = cModuleZone;
 	}
 	
+	public CUserOption getCmenu() {
+		return cmenu;
+	}
+
+	public void setCmenu(CUserOption cmenu) {
+		this.cmenu = cmenu;
+	}
+	
 	/** current tool box presentation */
 	private PresentationToolBoxes presentation;
 	/** current module zone control */
 	private CModuleZone cModuleZone;
+	
+	private CUserOption cmenu;
 
 }

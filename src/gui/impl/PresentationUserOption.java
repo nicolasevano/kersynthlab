@@ -10,7 +10,6 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 import controler.CUserOption;
-import kernel.impl.HorlogeImpl;
 
 public class PresentationUserOption extends JMenuBar{
 
@@ -144,5 +143,9 @@ public class PresentationUserOption extends JMenuBar{
 	private JMenuItem stop;
 	private JMenuItem bufferSize;
 	private JMenuItem sampleRate;
-
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 }

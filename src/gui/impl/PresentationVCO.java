@@ -3,6 +3,7 @@ import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
+import javax.swing.JLabel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
@@ -29,14 +30,14 @@ public class PresentationVCO extends APresentationModule {
 	}
 
 	private void initComponents() {
-        jLabel4 = new javax.swing.JLabel();
+        jLabel4 = new JLabel();
         //instanciation des composants
         parametre = new Reglage();
         forme = new Onde();
 		inPort = new PresentationInPortImpl();
 		outPort = new PresentationOutPortImpl();
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("MODULE VCO");
+        jLabel4.setHorizontalAlignment( javax.swing.SwingConstants.CENTER );
+        jLabel4.setText( "MODULE VCO" );
         jLabel4.setBorder(new javax.swing.border.MatteBorder(null));
         setLayout( null );
         setBackground( Color.gray );
@@ -59,14 +60,6 @@ public class PresentationVCO extends APresentationModule {
 		 setParameterListener();
 	     setFormeListener();
 	     setDefaultValue();
-	}
-	
-	public CVCO getControl() {
-		return control;
-	}
-
-	public void setControl(CVCO control) {
-		this.control = control;
 	}
 	
 	public PresentationInPortImpl getInPort() {
@@ -96,7 +89,7 @@ public class PresentationVCO extends APresentationModule {
 		parametre.getAtt().getTs().addChangeListener(new ChangeListener(){
 			@Override
 			public void stateChanged(ChangeEvent e) {
-					control.setAtt(
+					( ( CVCO ) getControl() ).setAtt(
 							parametre.getAtt().choisirAffichageValeur(
 																	  parametre.getAtt().getSigneAff(), 
 																	  parametre.getAtt().getTs()
@@ -107,7 +100,7 @@ public class PresentationVCO extends APresentationModule {
         parametre.getPitch().getTs().addChangeListener(new ChangeListener(){
 			@Override
 			public void stateChanged(ChangeEvent e) {
-					control.setPitch(
+				( ( CVCO ) getControl() ).setPitch(
 							parametre.getPitch().choisirAffichageValeur(parametre.getPitch().getSigneAff(), 
 																	    parametre.getPitch().getTs()
 																	   )
@@ -117,7 +110,7 @@ public class PresentationVCO extends APresentationModule {
         parametre.getBase().getTs().addChangeListener(new ChangeListener(){
 			@Override
 			public void stateChanged(ChangeEvent e) {
-					control.setBase(
+				( ( CVCO ) getControl() ).setBase(
 							parametre.getBase().choisirAffichageValeur(parametre.getBase().getSigneAff(), 
 																	   parametre.getBase().getTs()
 																	  )
@@ -127,19 +120,19 @@ public class PresentationVCO extends APresentationModule {
 	}
 	
 	private void setDefaultValue(){
-        control.setAtt(
+		( ( CVCO ) getControl() ).setAtt(
         		parametre.getAtt().choisirAffichageValeur( parametre.getAtt().getSigneAff(), 
         												   parametre.getAtt().getTs() )
         );
-        control.setPitch(
+		( ( CVCO ) getControl() ).setPitch(
         		parametre.getPitch().choisirAffichageValeur( parametre.getPitch().getSigneAff(), 
         													 parametre.getPitch().getTs() )
 				        );
-        control.setBase(
+		( ( CVCO ) getControl() ).setBase(
 				parametre.getBase().choisirAffichageValeur( parametre.getBase().getSigneAff(), 
 														    parametre.getBase().getTs() )
 						);
-        control.setWaveForm(WaveForm.SQUARE);
+		( ( CVCO ) getControl() ).setWaveForm(WaveForm.SQUARE);
 	}
 	
 	private void setFormePosition(){
@@ -155,7 +148,7 @@ public class PresentationVCO extends APresentationModule {
 			public void itemStateChanged(ItemEvent arg0) {
 				// TODO Auto-generated method stub
 				if( forme.getCarre().isSelected() ){
-					control.setWaveForm( WaveForm.SQUARE );
+					( ( CVCO ) getControl() ).setWaveForm( WaveForm.SQUARE );
 				}
 			}
 		});
@@ -164,7 +157,7 @@ public class PresentationVCO extends APresentationModule {
 			public void itemStateChanged(ItemEvent arg0) {
 				// TODO Auto-generated method stub
 				if( forme.getScie().isSelected() ){
-					control.setWaveForm( WaveForm.SAW );
+					( ( CVCO ) getControl() ).setWaveForm( WaveForm.SAW );
 				}
 			}
 		});
@@ -173,7 +166,7 @@ public class PresentationVCO extends APresentationModule {
 			public void itemStateChanged(ItemEvent arg0) {
 				// TODO Auto-generated method stub
 				if( forme.getTriangle().isSelected() ){
-					control.setWaveForm( WaveForm.TRIANGLE );
+					( ( CVCO ) getControl() ).setWaveForm( WaveForm.TRIANGLE );
 				}
 			}
 		});
@@ -186,13 +179,12 @@ public class PresentationVCO extends APresentationModule {
         jLabel4.setForeground(Color.white);
 	}
 	
-	private CVCO control;
 	/**
 	 * 29007655
 	 */
 	private static final long serialVersionUID = 1L;
 	// Variables declaration                     
-    private javax.swing.JLabel jLabel4;
+    private JLabel jLabel4;
     private Reglage parametre;
     private Onde forme;
 	

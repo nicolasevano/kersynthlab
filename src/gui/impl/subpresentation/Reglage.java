@@ -8,9 +8,9 @@ public class Reglage extends JPanel{
 
 	public Reglage(){
 		
-		att = new PresentationMolette(SigneAffichage.negatif, 7, "Att");
-		pitch = new PresentationMolette(SigneAffichage.positif, 100, "Pitch");
-		base = new PresentationMolette(SigneAffichage.puissance, 7, "Base");
+		att = new PresentationMolette( SigneAffichage.negatif, 7, "Att" );
+		pitch = new PresentationMolette( SigneAffichage.positif, 100, "Pitch" );
+		base = new PresentationMolette( SigneAffichage.puissance, 7, "Base" );
 		setLayout( null );
 		add( att );
 		add( pitch );

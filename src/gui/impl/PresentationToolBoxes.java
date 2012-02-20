@@ -79,7 +79,9 @@ public class PresentationToolBoxes extends JPanel{
 					setButtonImages( repliSelectedModule, ( index == 5 )?Color.black:Color.white, new File( ( index == 5 )? imageSelected.get( 5 ) : imageUnselected.get( 5 ) ) );
 				}
 				commands.get( index ).setPlan( control.getcModuleZone().getPresentation() );
+				commands.get( index ).setHorloge( control.getCmenu().getHorloge() );
 				( ( ModuleListener ) control.getcModuleZone().getPresentation().getaDL() ).setCommand( commands.get( index ) );
+				
 			}
 
 		} );

@@ -187,7 +187,7 @@ public class ADSR implements Module {
 	/** 
 	 * Number of sample compute by moduleFunction when it call 
 	 */
-	private int sampleComputer = 1;
+	//private int sampleComputer = 1;
 	
 	/**
 	 * current sample value 

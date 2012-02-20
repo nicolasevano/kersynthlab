@@ -7,17 +7,15 @@ import controler.CVCO;
 public class CreateVCO extends Command {
 
 	@Override
-	public void execute(Point p) {
+	public void execute( Point p ) {
 		// TODO Auto-generated method stub
 		CVCO result = new CVCO();
+		super.getHorloge().addModuleObserver( result );
 		result.getPresentation().setOrigine( p );
-		/*result.getPresentation().setBounds(p.x,
-				  						   p.y,
-				  						   result.getPresentation().getWidth(), 
-				  						   result.getPresentation().getHeight() );*/
 		result.getPresentation().setLocation( p.x, p.y );
 		result.getPresentation().repaint();
 		super.setModule( result.getPresentation() );
+		
 	}
 
 }

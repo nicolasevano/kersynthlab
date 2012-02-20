@@ -9,7 +9,16 @@ import javax.swing.JFrame;
 
 import controler.CSynthEditor;
 
+/**
+ * 
+ * @author nicolas
+ *
+ */
 public class PresentationSynthEditor extends JFrame{
+	
+	/**
+	 * Public constructor.
+	 */
 	public PresentationSynthEditor(){
 		super( "KerSynthSound synthetisor editor:" );
 		this.addWindowListener( new Finisher() );
@@ -20,6 +29,11 @@ public class PresentationSynthEditor extends JFrame{
 		this.pack();
 	}
 	
+	/**
+	 * 
+	 * @author nicolas
+	 * close properly application
+	 */
 	class Finisher extends WindowAdapter {
 
 		public void windowClosing(WindowEvent e){
@@ -56,10 +70,27 @@ public class PresentationSynthEditor extends JFrame{
 		this.repaint();
 	}
 	
-	
+	/**
+	 * Current control on this presentation layer.
+	 */
 	private CSynthEditor control;
+	/**
+	 * Current module zone presentation.
+	 */
 	private PresentationModuleZone moduleZone;
+	
+	/**
+	 * Current tool boxes presentation.
+	 */
 	private PresentationToolBoxes toolBoxes;
+	
+	/**
+	 * Current user option.
+	 */
 	private PresentationUserOption userOption;
-
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 }

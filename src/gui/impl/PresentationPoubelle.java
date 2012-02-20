@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+
 import controler.CModuleZone;
 import controler.CPoubelle;
 
@@ -21,13 +22,13 @@ public class PresentationPoubelle extends JPanel{
 		
 		setPreferredSize( new Dimension( 88,120 ) );
 		setBackground(Color.white);
-		
+		//setBorder(BorderFactory.createLineBorder(Color.black));
 		ImageIcon imaPou = new ImageIcon("images/poubelle2.jpg");
 		JLabel poubelle = new JLabel(imaPou);
-		setSize(88,120);
+		setSize( 88, 120 );
 		add(poubelle);
-		poubelle.setVisible(true);
-		this.setVisible(true);
+		poubelle.setVisible( true );
+		this.setVisible( true );
 		this.repaint();
 	}
 	

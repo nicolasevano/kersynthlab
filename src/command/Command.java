@@ -4,6 +4,8 @@ import java.awt.Point;
 
 import javax.swing.JPanel;
 
+import kernel.HorlogeSubject;
+
 import gui.APresentationModule;
 
 public abstract class Command {
@@ -26,7 +28,17 @@ public abstract class Command {
 		return this.module;
 	}
 	
+	public HorlogeSubject getHorloge() {
+		return horloge;
+	}
+
+	public void setHorloge( HorlogeSubject horloge ) {
+		this.horloge = horloge;
+	}
+	
 	private APresentationModule module;
 	
 	private JPanel currentPlan;
+	
+	private HorlogeSubject horloge;
 }

@@ -14,7 +14,6 @@ import kernel.Observer;
 import kernel.OutPort;
 import kernel.VCOStrategie;
 import kernel.impl.HorlogeImpl;
-import kernel.impl.HorlogeImpl3;
 import kernel.impl.InPortImpl;
 import kernel.impl.Out;
 import kernel.impl.OutPortImpl;

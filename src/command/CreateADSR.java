@@ -2,12 +2,19 @@ package command;
 
 import java.awt.Point;
 
+import controler.CADSR;
+
 public class CreateADSR extends Command {
 
 	@Override
 	public void execute(Point p) {
 		// TODO Auto-generated method stub
-
+		CADSR result = new CADSR();
+		super.getHorloge().addModuleObserver( result );
+		result.getPresentation().setOrigine( p );
+		result.getPresentation().setLocation( p.x, p.y );
+		result.getPresentation().repaint();
+		super.setModule( result.getPresentation() );
 	}
 
 }

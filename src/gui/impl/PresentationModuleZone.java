@@ -44,10 +44,11 @@ public class PresentationModuleZone extends JPanel{
 		this.poubelle = poubelle;
 		this.add(this.poubelle,0);
 		Command deleteCommand = new DeleteModule();
-		( ( DeleteModule ) deleteCommand).setPoubelle(this.poubelle);
-		deleteCommand.setPlan(this);
+		( ( DeleteModule ) deleteCommand ).setPoubelle( this.poubelle );
+		deleteCommand.setPlan( this );
+		deleteCommand.setHorloge( control.getCmenu().getHorloge() );
 		( ( ModuleListener ) aDL ).setDeleteCommand( deleteCommand );
-		this.getComponent(0).setLocation(0,this.getHeight() - poubelle.getHeight());
+		this.getComponent( 0 ).setLocation( 0, this.getHeight() - poubelle.getHeight() );
 		this.repaint();
 	}
 	

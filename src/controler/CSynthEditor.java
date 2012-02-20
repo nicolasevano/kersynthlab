@@ -20,9 +20,9 @@ public class CSynthEditor {
 		presentation.setControl( this );
 		cUserOption = new CUserOption();
 		presentation.setUserOption( cUserOption.getPresentation() );
-		cToolBoxes = new CToolBoxes();
+		cToolBoxes = new CToolBoxes( cUserOption );
 		presentation.setToolBoxes( cToolBoxes.getPresentation() );
-		cModuleZone = new CModuleZone();
+		cModuleZone = new CModuleZone( cUserOption );
 		presentation.setModuleZone( cModuleZone.getPresentation() );
 		cToolBoxes.setcModuleZone( cModuleZone );
 		presentation.pack();

@@ -11,11 +11,8 @@ public class CreateOut extends Command {
 		
 		// TODO Auto-generated method stub
 		COUT result = new COUT();
+		super.getHorloge().addModuleObserver( result );
 		result.getPresentation().setOrigine( p );
-		/*result.getPresentation().setBounds(p.x,
-				  						   p.y,
-				  						   result.getPresentation().getWidth(), 
-				  						   result.getPresentation().getHeight() );*/
 		result.getPresentation().setLocation( p.x, p.y );
 		result.getPresentation().repaint();
 		super.setModule( result.getPresentation() );
