@@ -1,4 +1,4 @@
-package gui.impl.subpresentation;
+package gui.impl;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,13 +11,13 @@ import controler.CModuleZone;
 import controler.CPoubelle;
 
 
-public class Poubelle extends JPanel{
+public class PresentationPoubelle extends JPanel{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public Poubelle(){
+	public PresentationPoubelle(){
 		
 		setPreferredSize( new Dimension( 88,120 ) );
 		setBackground(Color.white);

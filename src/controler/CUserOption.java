@@ -6,6 +6,7 @@ import kernel.impl.HorlogeImpl;
 
 public class CUserOption {
 
+	/** Public constructor */
 	public CUserOption(){
 		presentation = new PresentationUserOption();
 		presentation.setControl( this );
@@ -53,8 +54,9 @@ public class CUserOption {
 	public void changeBufferSize(){
 		
 	}
-	
+	/** current menu presentation */
 	private PresentationUserOption presentation;
+	/** current horloge presentation */
 	private HorlogeSubject horloge;
 	
 	

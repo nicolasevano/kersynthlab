@@ -1,23 +1,31 @@
 package controler;
 
-import gui.impl.subpresentation.Poubelle;
+import gui.impl.PresentationPoubelle;
 
-
+/**
+ * 
+ * @author nicolas
+ *
+ */
 public class CPoubelle {
+	
+	/**
+	 * Public constructor
+	 */
 	public CPoubelle(){
-		presentation = new Poubelle();
+		presentation = new PresentationPoubelle();
 		presentation.setControl( this );
 	}
 	
-	public Poubelle getPresentation() {
+	public PresentationPoubelle getPresentation() {
 		return presentation;
 	}
 
-	public void setPresentation( Poubelle presentation ) {
+	public void setPresentation( PresentationPoubelle presentation ) {
 		this.presentation = presentation;
 	}
 	
-	
-	private Poubelle presentation;
+	/** current garbage presentation */
+	private PresentationPoubelle presentation;
 	
 }

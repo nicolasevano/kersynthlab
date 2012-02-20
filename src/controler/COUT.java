@@ -3,9 +3,16 @@ package controler;
 import kernel.impl.Out;
 import gui.impl.PresentationOUTImpl;
 
-
+/**
+ * 
+ * @author nicolas
+ *
+ */
 public class COUT extends Out{
 	
+	/**
+	 * public constructor
+	 */
 	public COUT(){
 		presentation = new PresentationOUTImpl();
 		presentation.setControle( this );
@@ -19,5 +26,6 @@ public class COUT extends Out{
 		this.presentation = presentation;
 	}
 	
+	/** current sound card presentation */
 	private PresentationOUTImpl presentation;
 }

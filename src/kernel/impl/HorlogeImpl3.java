@@ -24,7 +24,7 @@ public class HorlogeImpl3 implements HorlogeSubject {
 	public HorlogeImpl3(){
 		observers = new ArrayList<HorlogeObserver>();
 		outs = new ArrayList<Out3>();
-		toCalls = new ArrayList<Callable>();
+		toCalls = new ArrayList<Callable<Integer>>();
 		sampleRate = 44100;
 		timerScheduler = /*Executors.newScheduledThreadPool( 1 )*/Executors.newCachedThreadPool();
 	}
@@ -56,7 +56,7 @@ public class HorlogeImpl3 implements HorlogeSubject {
 	@Override
 	public synchronized void tick() {
 		// TODO Auto-generated method stub
-		for(final Callable toCall : toCalls){
+		for(final Callable<Integer> toCall : toCalls){
 			//( ( ScheduledExecutorService ) timerScheduler ).submit(toCall);
 			timerScheduler.submit( toCall );
 			//( ( ScheduledExecutorService ) timerScheduler ).schedule( toCall,0,TimeUnit.MILLISECONDS);
@@ -162,14 +162,14 @@ public class HorlogeImpl3 implements HorlogeSubject {
 	 */
 	private Timer timer;
 	
-	private boolean isRunning;
+	//private boolean isRunning;
 	
 	/**
 	 * clock observer list
 	 */
 	private List<HorlogeObserver> observers;
 	
-	private List<Callable> toCalls;
+	private List<Callable<Integer>> toCalls;
 	/**
 	 * module function clock observer launcher 
 	 */

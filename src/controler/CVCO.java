@@ -5,6 +5,9 @@ import gui.impl.PresentationVCO;
 
 public class CVCO extends VCO {
 	
+	/**
+	 * Public constructor.
+	 */
 	public CVCO(){
 		presentation = new PresentationVCO();
 		presentation.setControl( this );
@@ -19,6 +22,7 @@ public class CVCO extends VCO {
 		this.presentation = presentation;
 	}
 	
+	/** Current VCO presentation. */
 	private PresentationVCO presentation;
 	
 }

@@ -4,8 +4,17 @@ import java.io.IOException;
 
 import gui.impl.PresentationToolBoxes;
 
+/**
+ * 
+ * @author nicolas
+ *
+ */
 public class CToolBoxes {
 	
+	/**
+	 * Public contructor
+	 * @throws IOException
+	 */
 	public CToolBoxes() throws IOException{
 		presentation = new PresentationToolBoxes();
 		presentation.setControl( this );
@@ -27,8 +36,9 @@ public class CToolBoxes {
 		this.cModuleZone = cModuleZone;
 	}
 	
+	/** current tool box presentation */
 	private PresentationToolBoxes presentation;
-	
+	/** current module zone control */
 	private CModuleZone cModuleZone;
 
 }

@@ -1,7 +1,6 @@
 package gui.impl;
 
 import gui.APresentationModule;
-import gui.impl.subpresentation.Poubelle;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -41,7 +40,7 @@ public class PresentationModuleZone extends JPanel{
 		
 	}
 	
-	public void setPoubelle(Poubelle poubelle) {
+	public void setPoubelle(PresentationPoubelle poubelle) {
 		this.poubelle = poubelle;
 		this.add(this.poubelle,0);
 		Command deleteCommand = new DeleteModule();
@@ -112,6 +111,6 @@ public class PresentationModuleZone extends JPanel{
 	
 	private CModuleZone control;
 	
-	private Poubelle poubelle;
+	private PresentationPoubelle poubelle;
 	
 }

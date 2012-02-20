@@ -1,6 +1,5 @@
 package gui.impl.subpresentation;
 
-import gui.impl.PresentationMolette;
 
 import javax.swing.JPanel;
 

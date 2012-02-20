@@ -1,7 +1,7 @@
 package command;
 
+import gui.impl.PresentationPoubelle;
 import gui.impl.PresentationModuleZone;
-import gui.impl.subpresentation.Poubelle;
 
 import java.awt.Point;
 
@@ -36,11 +36,11 @@ public class DeleteModule extends Command{
 		}
 	}
 	
-	public void setPoubelle(Poubelle poubelle){
+	public void setPoubelle(PresentationPoubelle poubelle){
 		this.poubelle = poubelle;
 	}
 	
-	public Poubelle getPoubelle(){
+	public PresentationPoubelle getPoubelle(){
 		return this.poubelle;
 	}
 	
@@ -51,5 +51,5 @@ public class DeleteModule extends Command{
 		( ( PresentationModuleZone ) getPlan() ).repaint();
 	}
 	
-	private Poubelle poubelle;
+	private PresentationPoubelle poubelle;
 }

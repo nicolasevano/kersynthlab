@@ -1,10 +1,8 @@
-package gui.impl;
+package gui.impl.subpresentation;
 //package molette;
 
 
 import gui.IPresentationMolette;
-import gui.impl.subpresentation.DKnob;
-import gui.impl.subpresentation.SigneAffichage;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
