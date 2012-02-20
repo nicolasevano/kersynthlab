@@ -2,7 +2,8 @@ package kernel.impl;
 
 import static org.junit.Assert.*;
 import kernel.InPort;
-import kernel.impl.VCO.WaveForm;
+import kernel.impl.vco.VCO;
+import kernel.impl.vco.VCO.WaveForm;
 
 import org.junit.After;
 import org.junit.Before;

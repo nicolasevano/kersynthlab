@@ -6,7 +6,7 @@ import java.awt.event.ItemListener;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import kernel.impl.VCO.WaveForm;
+import kernel.impl.vco.VCO.WaveForm;
 
 import gui.APresentationModule;
 import gui.impl.subpresentation.Onde;
@@ -98,7 +98,7 @@ public class PresentationVCO extends APresentationModule {
 			public void stateChanged(ChangeEvent e) {
 					control.setAtt(
 							parametre.getAtt().choisirAffichageValeur(
-																	  parametre.getAtt().signeAff, 
+																	  parametre.getAtt().getSigneAff(), 
 																	  parametre.getAtt().getTs()
 																	  )
 																	  );
@@ -108,7 +108,7 @@ public class PresentationVCO extends APresentationModule {
 			@Override
 			public void stateChanged(ChangeEvent e) {
 					control.setPitch(
-							parametre.getPitch().choisirAffichageValeur(parametre.getPitch().signeAff, 
+							parametre.getPitch().choisirAffichageValeur(parametre.getPitch().getSigneAff(), 
 																	    parametre.getPitch().getTs()
 																	   )
 																	   );
@@ -118,7 +118,7 @@ public class PresentationVCO extends APresentationModule {
 			@Override
 			public void stateChanged(ChangeEvent e) {
 					control.setBase(
-							parametre.getBase().choisirAffichageValeur(parametre.getBase().signeAff, 
+							parametre.getBase().choisirAffichageValeur(parametre.getBase().getSigneAff(), 
 																	   parametre.getBase().getTs()
 																	  )
 																	  );
@@ -128,15 +128,15 @@ public class PresentationVCO extends APresentationModule {
 	
 	private void setDefaultValue(){
         control.setAtt(
-        		parametre.getAtt().choisirAffichageValeur( parametre.getAtt().signeAff, 
+        		parametre.getAtt().choisirAffichageValeur( parametre.getAtt().getSigneAff(), 
         												   parametre.getAtt().getTs() )
         );
         control.setPitch(
-        		parametre.getPitch().choisirAffichageValeur( parametre.getPitch().signeAff, 
+        		parametre.getPitch().choisirAffichageValeur( parametre.getPitch().getSigneAff(), 
         													 parametre.getPitch().getTs() )
 				        );
         control.setBase(
-				parametre.getBase().choisirAffichageValeur( parametre.getBase().signeAff, 
+				parametre.getBase().choisirAffichageValeur( parametre.getBase().getSigneAff(), 
 														    parametre.getBase().getTs() )
 						);
         control.setWaveForm(WaveForm.SQUARE);

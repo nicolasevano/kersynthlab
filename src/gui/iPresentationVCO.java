@@ -1,6 +1,6 @@
 package gui;
 
-import kernel.impl.VCO.WaveForm;
+import kernel.impl.vco.VCO.WaveForm;
 
 
 public interface IPresentationVCO {

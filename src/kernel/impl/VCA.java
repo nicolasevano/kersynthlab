@@ -10,7 +10,8 @@ import kernel.InPort;
 import kernel.Module;
 import kernel.Observer;
 import kernel.OutPort;
-import kernel.impl.VCO.WaveForm;
+import kernel.impl.vco.VCO;
+import kernel.impl.vco.VCO.WaveForm;
 
 
 
@@ -153,14 +154,14 @@ public class VCA implements Module {
 		timeBase.addModuleObserver( out );
 		HorlogeImpl.setSampleRate( 44100 );
 		( ( HorlogeImpl ) timeBase ).start();
-		//try {
-		//	Thread.sleep( 60000 );
-		//} catch ( InterruptedException e ) {
+		try {
+			Thread.sleep( 60000 );
+		} catch ( InterruptedException e ) {
 			// TODO Auto-generated catch block
-		//	e.printStackTrace();
-		//}
-		//( ( HorlogeImpl ) timeBase ).stop();
-		//System.exit(0);
+			e.printStackTrace();
+		}
+		( ( HorlogeImpl ) timeBase ).stop();
+		System.exit(0);
 	}
 	
 	public void setSampleComputer(int sampleComputer) {

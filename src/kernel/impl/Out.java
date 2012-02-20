@@ -54,7 +54,7 @@ public class Out implements Module{
 	public void start(){
 		try {
 			
-			af = new AudioFormat( HorlogeImpl3.sampleRate, 16, 1, true, false );
+			af = new AudioFormat( HorlogeImpl.getSampleRate(), 16, 1, true, false );
 			sdl = AudioSystem.getSourceDataLine( af );
 			/*sdl.open( af, 10000 );*/
 			sdl.open( af );
