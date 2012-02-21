@@ -50,17 +50,22 @@ public class PresentationToolBoxes extends JPanel{
 		builtButton( outSelectedModule, 3 );
 		adsrSelectedModule = new JButton();
 		builtButton( adsrSelectedModule, 4 );		
-		repliSelectedModule = new JButton();
-		builtButton( repliSelectedModule, 5 );
-		setLayout( new GridLayout( 6,1 ) );
+		//repliSelectedModule = new JButton();
+		//builtButton( repliSelectedModule, 5 );
+		//setLayout( new GridLayout( 6,1 ) );
+		setLayout( new GridLayout( 5,1 ) );
 		setBackground(Color.white);
 		add( vcoSelectedModule );
 		add( vcaSelectedModule );
 		add( vcfSelectedModule );
 		add( outSelectedModule );
 		add( adsrSelectedModule );
+<<<<<<< HEAD:src/gui/impl/ToolBoxes.java
+		//add( repliSelectedModule );
+=======
 		add( repliSelectedModule );
 		
+>>>>>>> a13ea5514588e47ffc83b55ccffbd43218c20a35:src/gui/impl/PresentationToolBoxes.java
 	}
 
 	private void builtButton(final JButton toBuild,final int index){
@@ -76,7 +81,7 @@ public class PresentationToolBoxes extends JPanel{
 					setButtonImages( vcfSelectedModule,   ( index == 2 )?Color.black:Color.white, new File( ( index == 2 )? imageSelected.get( 2 ) : imageUnselected.get( 2 ) ) );
 					setButtonImages( outSelectedModule,   ( index == 3 )?Color.black:Color.white, new File( ( index == 3 )? imageSelected.get( 3 ) : imageUnselected.get( 3 ) ) );
 					setButtonImages( adsrSelectedModule,  ( index == 4 )?Color.black:Color.white, new File( ( index == 4 )? imageSelected.get( 4 ) : imageUnselected.get( 4 ) ) );
-					setButtonImages( repliSelectedModule, ( index == 5 )?Color.black:Color.white, new File( ( index == 5 )? imageSelected.get( 5 ) : imageUnselected.get( 5 ) ) );
+					//setButtonImages( repliSelectedModule, ( index == 5 )?Color.black:Color.white, new File( ( index == 5 )? imageSelected.get( 5 ) : imageUnselected.get( 5 ) ) );
 				}
 				commands.get( index ).setPlan( control.getcModuleZone().getPresentation() );
 				commands.get( index ).setHorloge( control.getCmenu().getHorloge() );
@@ -121,7 +126,7 @@ public class PresentationToolBoxes extends JPanel{
 	private JButton vcfSelectedModule;
 	private JButton outSelectedModule;
 	private JButton adsrSelectedModule;
-	private JButton repliSelectedModule;
+	//private JButton repliSelectedModule;
 	private CModuleZone cModuleZone;
 	private CToolBoxes control;
 	//private COUT cOUT;
@@ -137,7 +142,7 @@ public class PresentationToolBoxes extends JPanel{
 		add( KeyEvent.VK_F );
 		add( KeyEvent.VK_U );
 		add( KeyEvent.VK_D );
-		add( KeyEvent.VK_R );
+		//add( KeyEvent.VK_R );
 	}};
 	
 	private List<String> imageUnselected = new ArrayList<String>(){
@@ -152,7 +157,7 @@ public class PresentationToolBoxes extends JPanel{
 		add( "images/bouVCF.jpg" );
 		add( "images/bouOUT.jpg" );
 		add( "images/bouADSR.jpg" );
-		add( "images/bouRepli.jpg" );
+		//add( "images/bouRepli.jpg" );
 	}};
 	
 	private List<String> imageSelected = new ArrayList<String>(){
@@ -167,7 +172,7 @@ public class PresentationToolBoxes extends JPanel{
 		add( "images/bouVCFp.jpg" );
 		add( "images/bouOUTp.jpg" );
 		add( "images/bouADSRp.jpg" );
-		add( "images/bouReplip.jpg" );
+		//add( "images/bouReplip.jpg" );
 	}};
 	
 	private List<Command> commands = new ArrayList<Command>(){/**
@@ -181,6 +186,6 @@ public class PresentationToolBoxes extends JPanel{
 		add( new CreateVCF() );
 		add( new CreateOut() );
 		add( new CreateADSR() );
-		add( new CreateReplicator() );
+		//add( new CreateReplicator() );
 	}};
 }
