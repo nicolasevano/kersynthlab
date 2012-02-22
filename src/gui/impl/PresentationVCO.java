@@ -13,7 +13,7 @@ import gui.APresentationModule;
 import gui.impl.subpresentation.Onde;
 import gui.impl.subpresentation.PresentationInPortImpl;
 import gui.impl.subpresentation.PresentationOutPortImpl;
-import gui.impl.subpresentation.Reglage;
+import gui.impl.subpresentation.ReglageVCO;
 
 
 import controler.CVCO;
@@ -32,7 +32,7 @@ public class PresentationVCO extends APresentationModule {
 	private void initComponents() {
         jLabel4 = new JLabel();
         //instanciation des composants
-        parametre = new Reglage();
+        parametre = new ReglageVCO();
         forme = new Onde();
 		inPort = new PresentationInPortImpl();
 		outPort = new PresentationOutPortImpl();
@@ -42,6 +42,9 @@ public class PresentationVCO extends APresentationModule {
         setLayout( null );
         setBackground( Color.gray );
         setSize( 500, 250 );//On donne une taille à notre fenêtre
+//        JLabel nameInPort = new JLabel("in");
+//        add(nameInPort);
+//        nameInPort.setLocation(0, ( getHeight() / 2 ) - ( inPort.getHeight() / 2 ) - 100 );
         add( inPort );
         inPort.setLocation(0, ( getHeight() / 2 ) - ( inPort.getHeight() / 2 ) );
         add( outPort );
@@ -185,7 +188,7 @@ public class PresentationVCO extends APresentationModule {
 	private static final long serialVersionUID = 1L;
 	// Variables declaration                     
     private JLabel jLabel4;
-    private Reglage parametre;
+    private ReglageVCO parametre;
     private Onde forme;
 	
 	private PresentationOutPortImpl outPort;

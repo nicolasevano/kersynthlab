@@ -127,6 +127,7 @@ public class PresentationUserOption extends JMenuBar{
 		aboutK.getAccessibleContext().setAccessibleDescription(
 				"notre produit et notre groupe");
 		aboutK.addActionListener(new ActionListener(){
+			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent arg0) {	//TODO
 					new AboutBox(new javax.swing.JFrame(), true).show();
@@ -157,14 +158,14 @@ public class PresentationUserOption extends JMenuBar{
 	private JMenuItem stop;
 	private JMenuItem bufferSize;
 	private JMenuItem sampleRate;
-<<<<<<< HEAD:src/gui/impl/UserOption.java
+//<<<<<<< HEAD:src/gui/impl/UserOption.java
 	private JMenuItem aboutK;
-
-=======
-	
-	/**
-	 * 
-	 */
+//
+//=======
+//	
+//	/**
+//	 * 
+//	 */
 	private static final long serialVersionUID = 1L;
->>>>>>> a13ea5514588e47ffc83b55ccffbd43218c20a35:src/gui/impl/PresentationUserOption.java
+//>>>>>>> a13ea5514588e47ffc83b55ccffbd43218c20a35:src/gui/impl/PresentationUserOption.java
 }

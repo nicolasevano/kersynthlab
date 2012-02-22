@@ -83,8 +83,8 @@ public class VCA implements Module {
 				sample = inPorts.get( "in" ).getValue();
 				//TODO deal with minus att
 				if( !inPorts.get( "am" ).isEmpty())
-					sample = (att>0)? sample*att*inPorts.get( "am" ).getValue():
-						sample*inPorts.get( "am" ).getValue()/Math.abs(att);
+					sample = (att>0)? sample*(int)Math.pow(2,att*inPorts.get( "am" ).getValue() + base ):
+						sample* ( int ) Math.pow(2,inPorts.get( "am" ).getValue()/Math.abs(att));
 				else 
 					sample = (att>0)? sample*att:sample/Math.abs(att);
 				if (sample>32768) sample = 32768;
@@ -113,6 +113,16 @@ public class VCA implements Module {
 	public int getAttVCA(){
 		return this.att;
 	}
+	
+
+	public int getBase() {
+		return base;
+	}
+
+	public void setBase(int base) {
+		this.base = base;
+	}
+	
 	
 	/**
 	 * GetInPorts function return current map in port module of VCA instance.
@@ -188,6 +198,8 @@ public class VCA implements Module {
 	 */
 	private int att;
 	
+	private int base;
+
 	private int sampleComputer = 1;
 
 }
