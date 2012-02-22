@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import stringloader.IConfigurationLoader;
+
 import kernel.impl.vco.VCO.WaveForm;
 
 import gui.APresentationModule;
@@ -25,26 +27,38 @@ public class PresentationVCO extends APresentationModule {
 	
     // End of variables declaration  
 	
-	public PresentationVCO(){
-		initComponents();
+	public PresentationVCO(IConfigurationLoader configuration){
+		this.configuration = configuration;
+		initComponents(this.configuration);
 	}
 
-	private void initComponents() {
-        jLabel4 = new JLabel();
+	private void initComponents(IConfigurationLoader configuration) {
+		this.configuration = configuration;
+		jLabel4 = new JLabel();
         //instanciation des composants
+<<<<<<< HEAD
         parametre = new ReglageVCO();
         forme = new Onde();
+=======
+        parametre = new Reglage(configuration);
+        forme = new Onde(configuration);
+>>>>>>> 264e54a7baa4bde5f84abb0d82be7689e7030380
 		inPort = new PresentationInPortImpl();
 		outPort = new PresentationOutPortImpl();
         jLabel4.setHorizontalAlignment( javax.swing.SwingConstants.CENTER );
-        jLabel4.setText( "MODULE VCO" );
+        //jLabel4.setText( "MODULE VCO" );
+        jLabel4.setText(configuration.getProperties().getProperty("module.VCO.title"));
         jLabel4.setBorder(new javax.swing.border.MatteBorder(null));
         setLayout( null );
         setBackground( Color.gray );
+<<<<<<< HEAD
         setSize( 500, 250 );//On donne une taille à notre fenêtre
 //        JLabel nameInPort = new JLabel("in");
 //        add(nameInPort);
 //        nameInPort.setLocation(0, ( getHeight() / 2 ) - ( inPort.getHeight() / 2 ) - 100 );
+=======
+        setSize( 500, 250 );//On donne une taille ï¿½notre fené˜¾re
+>>>>>>> 264e54a7baa4bde5f84abb0d82be7689e7030380
         add( inPort );
         inPort.setLocation(0, ( getHeight() / 2 ) - ( inPort.getHeight() / 2 ) );
         add( outPort );
@@ -195,11 +209,13 @@ public class PresentationVCO extends APresentationModule {
 
 	private PresentationInPortImpl inPort;
 	
-	public static void main(String[] args){
+	/*public static void main(String[] args){
 		java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PresentationVCO().setVisible(true);
+                new PresentationVCO(IConfigurationLoader configuration).setVisible(true);
             }
         });	
-	}
+	}*/
+	
+	private IConfigurationLoader configuration;
 }

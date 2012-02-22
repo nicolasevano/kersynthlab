@@ -4,8 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Properties;
 
 import javax.swing.JFrame;
+
+import stringloader.IConfigurationLoader;
 
 import controler.CSynthEditor;
 
@@ -19,8 +22,9 @@ public class PresentationSynthEditor extends JFrame{
 	/**
 	 * Public constructor.
 	 */
-	public PresentationSynthEditor(){
-		super( "KerSynthSound synthetisor editor:" );
+	public PresentationSynthEditor(IConfigurationLoader configuration){
+		super(configuration.getProperties().getProperty( "title"));
+		
 		this.addWindowListener( new Finisher() );
 		this.getContentPane().setLayout( new BorderLayout() );
 		this.setPreferredSize( new Dimension( 1024, 800 ) );

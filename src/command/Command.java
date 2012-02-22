@@ -4,6 +4,8 @@ import java.awt.Point;
 
 import javax.swing.JPanel;
 
+import stringloader.IConfigurationLoader;
+
 import kernel.HorlogeSubject;
 
 import gui.APresentationModule;
@@ -36,9 +38,21 @@ public abstract class Command {
 		this.horloge = horloge;
 	}
 	
+	public IConfigurationLoader getConfiguration() {
+		return configuration;
+	}
+
+	public void setConfiguration(IConfigurationLoader configuration) {
+		this.configuration = configuration;
+	}
+	
 	private APresentationModule module;
 	
 	private JPanel currentPlan;
 	
 	private HorlogeSubject horloge;
+	
+	private IConfigurationLoader configuration;
+
+	
 }

@@ -1,5 +1,11 @@
 package controler;
 
+import java.io.FileNotFoundException;
+
+import listener.ConfigurationListener;
+import listener.IFileChangeListener;
+import stringloader.ConfigurationLoader;
+import stringloader.IConfigurationLoader;
 import kernel.HorlogeSubject;
 import gui.impl.PresentationUserOption;
 import kernel.impl.HorlogeImpl;
@@ -7,8 +13,8 @@ import kernel.impl.HorlogeImpl;
 public class CUserOption {
 
 	/** Public constructor */
-	public CUserOption(){
-		presentation = new PresentationUserOption();
+	public CUserOption(IConfigurationLoader configuration){
+		presentation = new PresentationUserOption(configuration);
 		presentation.setControl( this );
 		horloge = new HorlogeImpl();
 	}
@@ -60,4 +66,6 @@ public class CUserOption {
 	private HorlogeSubject horloge;
 	
 	
+	//private IConfigurationLoader configuration;
+	private ConfigurationLoader configuration;
 }
