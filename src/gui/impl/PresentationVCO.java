@@ -7,6 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import stringloader.IConfigurationLoader;
+
 import kernel.impl.vco.VCO.WaveForm;
 
 import gui.APresentationModule;
@@ -25,23 +27,26 @@ public class PresentationVCO extends APresentationModule {
 	
     // End of variables declaration  
 	
-	public PresentationVCO(){
-		initComponents();
+	public PresentationVCO(IConfigurationLoader configuration){
+		this.configuration = configuration;
+		initComponents(this.configuration);
 	}
 
-	private void initComponents() {
-        jLabel4 = new JLabel();
+	private void initComponents(IConfigurationLoader configuration) {
+		this.configuration = configuration;
+		jLabel4 = new JLabel();
         //instanciation des composants
-        parametre = new Reglage();
-        forme = new Onde();
+        parametre = new Reglage(configuration);
+        forme = new Onde(configuration);
 		inPort = new PresentationInPortImpl();
 		outPort = new PresentationOutPortImpl();
         jLabel4.setHorizontalAlignment( javax.swing.SwingConstants.CENTER );
-        jLabel4.setText( "MODULE VCO" );
+        //jLabel4.setText( "MODULE VCO" );
+        jLabel4.setText(configuration.getProperties().getProperty("module.VCO.title"));
         jLabel4.setBorder(new javax.swing.border.MatteBorder(null));
         setLayout( null );
         setBackground( Color.gray );
-        setSize( 500, 250 );//On donne une taille à notre fenêtre
+        setSize( 500, 250 );//On donne une taille ï¿½notre fené˜¾re
         add( inPort );
         inPort.setLocation(0, ( getHeight() / 2 ) - ( inPort.getHeight() / 2 ) );
         add( outPort );
@@ -192,11 +197,13 @@ public class PresentationVCO extends APresentationModule {
 
 	private PresentationInPortImpl inPort;
 	
-	public static void main(String[] args){
+	/*public static void main(String[] args){
 		java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PresentationVCO().setVisible(true);
+                new PresentationVCO(IConfigurationLoader configuration).setVisible(true);
             }
         });	
-	}
+	}*/
+	
+	private IConfigurationLoader configuration;
 }

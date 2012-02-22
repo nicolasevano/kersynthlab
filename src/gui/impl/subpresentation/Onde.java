@@ -7,23 +7,31 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import stringloader.IConfigurationLoader;
+
 
 public class Onde extends JPanel {
 	
-	public Onde() {		
+	public Onde(IConfigurationLoader configuration) {		
+		
+		this.configuration = configuration;
+		
 		setLayout(null);
-		waveGroup = new ButtonGroup(); 
-		carre = new JCheckBox("Carrée");
+		waveGroup = new ButtonGroup();
+		carre = new JCheckBox(configuration.getProperties().getProperty("module.VCO.onde.carre"));
+		//carre = new JCheckBox("Carre");
 		waveGroup.add(carre);
 		carre.setSize( 80,20 );
 		carre.setBackground( Color.gray );
 		carre.setForeground( Color.white );
-		triangle = new JCheckBox("Triangle");
+		triangle = new JCheckBox(configuration.getProperties().getProperty("module.VCO.onde.triangle"));
+		//triangle = new JCheckBox("Triangle");
 		waveGroup.add(triangle);
 		triangle.setSize( 80,20 );
 		triangle.setBackground( Color.gray );
 		triangle.setForeground( Color.white );
-		scie = new JCheckBox("Scie");
+		scie = new JCheckBox(configuration.getProperties().getProperty("module.VCO.onde.scie"));
+		//scie = new JCheckBox("Scie");
 		waveGroup.add(scie);
 		scie.setSize( 80,20 );
 		scie.setBackground( Color.gray );
@@ -90,6 +98,10 @@ public class Onde extends JPanel {
 	private JCheckBox carre;
 	private JCheckBox scie;
 	private ButtonGroup waveGroup;
+	
+	private IConfigurationLoader configuration;
+	
+	
 	ImageIcon icone1;
 	ImageIcon icone2;
 	ImageIcon icone3;

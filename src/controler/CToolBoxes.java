@@ -2,6 +2,8 @@ package controler;
 
 import java.io.IOException;
 
+import stringloader.IConfigurationLoader;
+
 import gui.impl.PresentationToolBoxes;
 
 /**
@@ -15,9 +17,10 @@ public class CToolBoxes {
 	 * Public contructor
 	 * @throws IOException
 	 */
-	public CToolBoxes( CUserOption cmenu ) throws IOException{
+	public CToolBoxes( CUserOption cmenu, IConfigurationLoader configuration ) throws IOException{
 		this.cmenu = cmenu;
-		presentation = new PresentationToolBoxes();
+		this.configuration = configuration;
+		presentation = new PresentationToolBoxes(configuration);
 		presentation.setControl( this );
 	}
 	
@@ -51,5 +54,7 @@ public class CToolBoxes {
 	private CModuleZone cModuleZone;
 	
 	private CUserOption cmenu;
+	
+	private IConfigurationLoader configuration;
 
 }

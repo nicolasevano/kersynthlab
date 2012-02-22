@@ -6,6 +6,8 @@ import javax.swing.JLabel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import stringloader.IConfigurationLoader;
+
 import gui.APresentationModule;
 import gui.impl.subpresentation.PresentationInPortImpl;
 import gui.impl.subpresentation.PresentationMolette;
@@ -23,17 +25,26 @@ public class PresentationADSR extends APresentationModule{
 	/**
 	 * Public constructor
 	 */
-	public PresentationADSR(){
+	public PresentationADSR(IConfigurationLoader configuration){
+		
+		this.configuration = configuration;
+		
 		setBackground( Color.gray );
-		attackTime = new PresentationMolette( SigneAffichage.positif, 1000, "Attack nb S" );
-		initialDelay = new PresentationMolette( SigneAffichage.positif, 1000, "Init dec nb S" );
-		sustainAmp = new PresentationMolette( SigneAffichage.positif, 32768, "Sustain amp" );
-		finalDelay = new PresentationMolette( SigneAffichage.positif, 1000, "Final dec nb S" );
+		
+		attackTime = new PresentationMolette( SigneAffichage.positif, 1000, configuration.getProperties().getProperty("module.ADSR.attackTime") );
+		initialDelay = new PresentationMolette( SigneAffichage.positif, 1000,configuration.getProperties().getProperty("module.ADSR.initialDelay"));
+		sustainAmp = new PresentationMolette( SigneAffichage.positif, 32768, configuration.getProperties().getProperty("module.ADSR.sustainAmp") );
+		finalDelay = new PresentationMolette( SigneAffichage.positif, 1000, configuration.getProperties().getProperty("module.ADSR.finalDelay"));
+		//attackTime = new PresentationMolette( SigneAffichage.positif, 1000,configuration.getProperties().getProperty("module.ADSR.title"));
+		//initialDelay = new PresentationMolette( SigneAffichage.positif, 1000, "Init dec nb S" );
+		//sustainAmp = new PresentationMolette( SigneAffichage.positif, 32768, "Sustain amp" );
+		//finalDelay = new PresentationMolette( SigneAffichage.positif, 1000, "Final dec nb S" );
 		inPort = new PresentationInPortImpl();
 		outPort = new PresentationOutPortImpl();
 		tittle = new JLabel();
 		tittle.setHorizontalAlignment( javax.swing.SwingConstants.CENTER );
-		tittle.setText( "MODULE ADSR" );
+		tittle.setText(configuration.getProperties().getProperty("module.ADSR.title"));
+		//tittle.setText( "MODULE ADSR" );
 		tittle.setBorder( new javax.swing.border.MatteBorder( null ) );
 		tittle.setForeground( Color.white );
 		//tittle.setVisible( true );
@@ -166,4 +177,6 @@ public class PresentationADSR extends APresentationModule{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private IConfigurationLoader configuration;
 }
