@@ -3,6 +3,7 @@ package command;
 import gui.APresentationModule;
 import gui.impl.PresentationPoubelle;
 import gui.impl.PresentationModuleZone;
+import gui.impl.subpresentation.PresentationWire;
 
 import java.awt.Point;
 
@@ -20,18 +21,6 @@ public class DeleteModule extends Command{
 			int dyRemoveZone = poubelleOrigine.y + poubelle.getHeight();
 			int xSelectedZone = pSelectedOrigine.x + ( ( PresentationModuleZone ) getPlan() ).getSelected().getWidth();
 			int ySelectedZone = pSelectedOrigine.y + ( ( PresentationModuleZone ) getPlan() ).getSelected().getHeight();
-			//System.out.println("dxRemoveZone = " + dxRemoveZone);
-			//System.out.println("dyRemoveZone = " + dyRemoveZone);
-			//System.out.println("xSelectedZone = " + xSelectedZone);
-			//System.out.println("ySelectedZone = " + ySelectedZone);
-			//System.out.println("first condition = " + ( ( pSelectedOrigine.x < poubelle.getWidth() ) && 
-			//		  ( ( dyRemoveZone - pSelectedOrigine.y ) < poubelle.getHeight() ) ));
-			//System.out.println("second condition = " + ( ( ( Math.abs( dxRemoveZone - xSelectedZone ) ) < poubelle.getWidth() ) &&
-			//		  ( ( Math.abs( dyRemoveZone - ySelectedZone ) ) < poubelle.getHeight() ) ));
-			//System.out.println("thrid condition = " + ( ( pSelectedOrigine.x < poubelle.getWidth() ) &&
-			//		  ( ( Math.abs( dyRemoveZone - ySelectedZone ) ) < poubelle.getHeight() ) ));
-			//System.out.println("fourth condition = " + ( ( ( Math.abs( dxRemoveZone - xSelectedZone ) ) < poubelle.getWidth() ) &&
-			//		  ( ( dyRemoveZone - pSelectedOrigine.y ) < poubelle.getHeight() ) ));
 			if( ( ( pSelectedOrigine.x < poubelle.getWidth() ) && 
 				  ( ( dyRemoveZone - pSelectedOrigine.y ) < poubelle.getHeight() ) ) ||
 				( ( ( Math.abs( dxRemoveZone - xSelectedZone ) ) < poubelle.getWidth() ) &&
@@ -56,12 +45,25 @@ public class DeleteModule extends Command{
 	}
 	
 	private void deleteModule(){
+		PresentationWire wire = null;
+		int wiresSize;
 		System.out.println( "Remove a module!" );
 		( ( PresentationModuleZone ) getPlan() ).remove( ( ( PresentationModuleZone ) getPlan() ).getSelected() );
-		Module toRemove = ( ( APresentationModule )( ( PresentationModuleZone ) getPlan() ).getSelected()).getControl();
+		Module toRemove = 
+			( ( APresentationModule )( ( PresentationModuleZone ) getPlan() ).getSelected() ).getControl();
+		APresentationModule presentationToRemove = 
+			( ( APresentationModule )( ( PresentationModuleZone ) getPlan() ).getSelected() );
 		super.getHorloge().removeModuleObserver( toRemove );
 		//TODO remove each wire at this moment
-		( ( PresentationModuleZone ) getPlan() ).repaint();
+		wiresSize = presentationToRemove.getWires().size();
+		for( int i = 0; i < wiresSize; i++ ){
+			wire = presentationToRemove.getWires().get( 0 );
+			wire.getControl().detachPorts();
+			( ( APresentationModule ) wire.getOutPort().getParent() ).getWires().remove( wire );
+			( ( APresentationModule ) wire.getInPort().getParent() ).getWires().remove( wire );
+			( ( PresentationModuleZone ) getPlan() ).remove( wire );
+			( ( PresentationModuleZone ) getPlan() ).repaint();
+		}
 	}
 	
 	private PresentationPoubelle poubelle;

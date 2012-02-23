@@ -11,6 +11,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.RenderingHints;
+import java.awt.event.MouseListener;
 import java.awt.geom.QuadCurve2D;
 
 import javax.swing.BorderFactory;
@@ -161,6 +162,17 @@ public class PresentationWire extends JPanel{
 		this.control = control;
 	}
 	
+	public MouseListener getWireListener() {
+		return wireListener;
+	}
+
+	public void setWireListener(MouseListener wireListener) {
+		
+		this.wireListener = wireListener;
+		this.addMouseListener( this.wireListener );
+		
+	}
+	
 	/**
 	 * private membre
 	 */
@@ -191,6 +203,8 @@ public class PresentationWire extends JPanel{
 	 * wire geometric shape
 	 */
 	private QuadCurve2D.Double forme;
+	
+	private MouseListener wireListener;
 	
 	private static final long serialVersionUID = 1L;
 

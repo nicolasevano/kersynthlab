@@ -18,6 +18,7 @@ public class CreateVCO extends Command {
 		result.getPresentation().setLocation( p.x, p.y );
 		result.getPresentation().repaint();
 		super.setModule( result.getPresentation() );
+		
 	}
 
 }

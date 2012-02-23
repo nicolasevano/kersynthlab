@@ -90,9 +90,16 @@ public class ModuleListener extends MouseAdapter{
 	private void attachWireToInport( Component comp ){
 		
 		if( comp instanceof PresentationInPortImpl ){
+			
 			PresentationInPortImpl inPort = ( PresentationInPortImpl ) comp;
 			( ( PresentationModuleZone ) currentPlan ).getCurrentWire().setInPort( inPort );
 			( ( PresentationModuleZone ) currentPlan ).getCurrentWire().getControl().attachPorts();
+			( ( APresentationModule ) comp.getParent() ).getWires().add( ( ( PresentationModuleZone ) currentPlan ).getCurrentWire() );
+			WireListener wireListener = new WireListener();
+			wireListener.setCurrentPlan( ( PresentationModuleZone ) currentPlan );
+			wireListener.setWire( ( ( PresentationModuleZone ) currentPlan ).getCurrentWire() );
+			( ( PresentationModuleZone ) currentPlan ).getCurrentWire().setWireListener( wireListener );
+			
 		}
 		
 	}
