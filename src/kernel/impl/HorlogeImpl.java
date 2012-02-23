@@ -87,7 +87,8 @@ public class HorlogeImpl implements HorlogeSubject{
 	@Override
 	public void stop(){
 		isALive = false;
-		timerScheduler.shutdown();
+		//timerScheduler.shutdown();
+		timerScheduler.shutdownNow();
 		for(final HorlogeObserver observer : observers){
 			
 			if( observer instanceof Out ){

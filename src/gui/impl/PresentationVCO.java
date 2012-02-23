@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import kernel.Module;
 import kernel.impl.vco.VCO.WaveForm;
 
 import gui.APresentationModule;
@@ -16,6 +17,8 @@ import gui.impl.subpresentation.PresentationOutPortImpl;
 import gui.impl.subpresentation.Reglage;
 
 
+import controler.CInPort;
+import controler.COutPort;
 import controler.CVCO;
 
 
@@ -34,8 +37,12 @@ public class PresentationVCO extends APresentationModule {
         //instanciation des composants
         parametre = new Reglage();
         forme = new Onde();
-		inPort = new PresentationInPortImpl();
-		outPort = new PresentationOutPortImpl();
+        CInPort cInport = new CInPort( super.getCurrentPortId() );
+        super.setCurrentPortId( super.getCurrentPortId() + 1 );
+		inPort = cInport.getPresentation();
+		COutPort cOutPort = new COutPort( super.getCurrentPortId() );
+		super.setCurrentPortId( super.getCurrentPortId() + 1 );
+		outPort = cOutPort.getPresentation();
         jLabel4.setHorizontalAlignment( javax.swing.SwingConstants.CENTER );
         jLabel4.setText( "MODULE VCO" );
         jLabel4.setBorder(new javax.swing.border.MatteBorder(null));
@@ -117,6 +124,13 @@ public class PresentationVCO extends APresentationModule {
 																	  );
 			}
         });
+	}
+	
+	public void setControl(Module module){
+		System.out.println( "setControl" );
+		super.control = module;
+		this.inPort.getControl().setInport( module.getInPorts().get( "fm" ) );
+		this.outPort.getControl().setModule( module );
 	}
 	
 	private void setDefaultValue(){

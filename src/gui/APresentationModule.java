@@ -1,10 +1,12 @@
 package gui;
 
+import gui.impl.subpresentation.PresentationInPortImpl;
+import gui.impl.subpresentation.PresentationOutPortImpl;
+import gui.impl.subpresentation.PresentationWire;
+
 import java.awt.Point;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.Transferable;
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JPanel;
 
@@ -12,7 +14,7 @@ import kernel.Module;
 
 
 
-public abstract class APresentationModule extends JPanel implements Transferable{
+public abstract class APresentationModule extends JPanel{
 	
 	public Point getOrigine() {
 		return origine;
@@ -26,41 +28,40 @@ public abstract class APresentationModule extends JPanel implements Transferable
 		return this.control;
 	}
 	
-	public void setControl(Module module){
-		this.control = module;
+	abstract public void setControl(Module module);
+	
+	public List<PresentationWire> getWires() {
+		return wires;
+	}
+
+	public void setWires(List<PresentationWire> wires) {
+		this.wires = wires;
 	}
 	
-	@Override
-	public Object getTransferData(DataFlavor flavor)
-			throws UnsupportedFlavorException, IOException {
-		Object result = null;
-		if(flavor.isMimeTypeEqual(DataFlavor.javaJVMLocalObjectMimeType)){
-			result = this;
-		} else {
-			result = null;
-		}
-		return result;
+	public synchronized static int getCurrentPortId(){
+		return currentPortId;
 	}
 	
-	@Override
-	public DataFlavor[] getTransferDataFlavors() {
-		DataFlavor []data = new DataFlavor[2];
-		try{
-			data[0] = new DataFlavor( DataFlavor.javaJVMLocalObjectMimeType );
-			data[1] = new DataFlavor( APresentationModule.class, null );
-		} catch(java.lang.ClassNotFoundException e){}
-		return data;
+	public synchronized static void setCurrentPortId( int currentPortId ){
+		APresentationModule.currentPortId = currentPortId;
 	}
 	
-	@Override
-	public boolean isDataFlavorSupported(DataFlavor arg0) {
-		return ((arg0.isMimeTypeEqual( DataFlavor.javaJVMLocalObjectMimeType ) ) ||
-				arg0.isMimeTypeEqual( new DataFlavor(APresentationModule.class, null)));
-	}
+	protected Module control;
+	
+	public abstract PresentationInPortImpl getInPort();
+
+	public abstract void setInPort( PresentationInPortImpl inPort );
+	
+	public abstract PresentationOutPortImpl getOutPort();
+
+	public abstract void setOutPort( PresentationOutPortImpl outPort );
 	
 	private Point origine;
 	
 	private static final long serialVersionUID = 1L;
 	
-	private Module control;
+	private static int currentPortId;
+	
+	private List<PresentationWire> wires = new ArrayList<PresentationWire>();
+
 }

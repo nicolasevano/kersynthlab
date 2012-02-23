@@ -60,12 +60,6 @@ public class PresentationToolBoxes extends JPanel{
 		add( vcfSelectedModule );
 		add( outSelectedModule );
 		add( adsrSelectedModule );
-<<<<<<< HEAD:src/gui/impl/ToolBoxes.java
-		//add( repliSelectedModule );
-=======
-		add( repliSelectedModule );
-		
->>>>>>> a13ea5514588e47ffc83b55ccffbd43218c20a35:src/gui/impl/PresentationToolBoxes.java
 	}
 
 	private void builtButton(final JButton toBuild,final int index){

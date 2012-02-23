@@ -1,6 +1,7 @@
 package gui.impl;
 
 import gui.APresentationModule;
+import gui.impl.subpresentation.PresentationWire;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -14,6 +15,7 @@ import javax.swing.border.Border;
 
 import command.Command;
 import command.DeleteModule;
+import command.MoveModule;
 
 
 import listener.ModuleListener;
@@ -36,6 +38,9 @@ public class PresentationModuleZone extends JPanel{
 		aDML = new ModuleMotionListener();
 		( ( ModuleMotionListener ) aDML ).setCurrentPlan( this );
 		addMouseListener( aDL );
+		MoveModule moveCmd = new MoveModule();
+		moveCmd.setPlan(this);
+		( ( ModuleMotionListener ) aDML ).setCurrentCommand(moveCmd);
 		addMouseMotionListener( aDML );
 		
 	}
@@ -96,6 +101,23 @@ public class PresentationModuleZone extends JPanel{
 	public void setSelected( APresentationModule selected ){
 		this.selected = selected;
 	}
+	
+	public PresentationWire getCurrentWire() {
+		return currentWire;
+	}
+
+	public void setCurrentWire(PresentationWire currentWire) {
+		this.currentWire = currentWire;
+	}
+	
+	public MouseMotionListener getaDML() {
+		return aDML;
+	}
+
+	public void setaDML(MouseMotionListener aDML) {
+		this.aDML = aDML;
+	}
+	
 	/**mouse listener used to defined origin point of current shape*/
 	protected MouseListener aDL;
 	
@@ -114,4 +136,6 @@ public class PresentationModuleZone extends JPanel{
 	
 	private PresentationPoubelle poubelle;
 	
+	private PresentationWire currentWire;
+
 }

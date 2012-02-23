@@ -71,7 +71,8 @@ public class PresentationUserOption extends JMenuBar{
 				"arrêt montage");
 		stop.addActionListener(new ActionListener(){
 			@Override
-			public void actionPerformed(ActionEvent arg0) {	//TODO
+			public void actionPerformed(ActionEvent arg0) {	
+				control.stopHorloge();
 				}
 		});
 		file.add( stop );
@@ -157,14 +158,10 @@ public class PresentationUserOption extends JMenuBar{
 	private JMenuItem stop;
 	private JMenuItem bufferSize;
 	private JMenuItem sampleRate;
-<<<<<<< HEAD:src/gui/impl/UserOption.java
 	private JMenuItem aboutK;
-
-=======
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
->>>>>>> a13ea5514588e47ffc83b55ccffbd43218c20a35:src/gui/impl/PresentationUserOption.java
 }

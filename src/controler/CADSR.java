@@ -6,7 +6,7 @@ import gui.impl.PresentationADSR;
 public class CADSR extends ADSR{
 	
 	public CADSR(){
-		
+		super();
 		presentation = new PresentationADSR();
 		presentation.setControl( this );
 		presentation.initListener();

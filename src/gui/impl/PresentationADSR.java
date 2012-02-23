@@ -1,10 +1,13 @@
 package gui.impl;
 
 import java.awt.Color;
+import java.awt.Graphics;
 
 import javax.swing.JLabel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import kernel.Module;
 
 import gui.APresentationModule;
 import gui.impl.subpresentation.PresentationInPortImpl;
@@ -12,6 +15,8 @@ import gui.impl.subpresentation.PresentationMolette;
 import gui.impl.subpresentation.PresentationOutPortImpl;
 import gui.impl.subpresentation.SigneAffichage;
 import controler.CADSR;
+import controler.CInPort;
+import controler.COutPort;
 
 /**
  * 
@@ -29,8 +34,12 @@ public class PresentationADSR extends APresentationModule{
 		initialDelay = new PresentationMolette( SigneAffichage.positif, 1000, "Init dec nb S" );
 		sustainAmp = new PresentationMolette( SigneAffichage.positif, 32768, "Sustain amp" );
 		finalDelay = new PresentationMolette( SigneAffichage.positif, 1000, "Final dec nb S" );
-		inPort = new PresentationInPortImpl();
-		outPort = new PresentationOutPortImpl();
+		CInPort cInport = new CInPort( super.getCurrentPortId() );
+		super.setCurrentPortId( super.getCurrentPortId() + 1 );
+		inPort = cInport.getPresentation();
+		COutPort cOutport = new COutPort( super.getCurrentPortId() );
+		super.setCurrentPortId( super.getCurrentPortId() + 1 );
+		outPort = cOutport.getPresentation();
 		tittle = new JLabel();
 		tittle.setHorizontalAlignment( javax.swing.SwingConstants.CENTER );
 		tittle.setText( "MODULE ADSR" );
@@ -127,6 +136,33 @@ public class PresentationADSR extends APresentationModule{
 						);
 	}
 	
+	public void paint(Graphics g){
+		super.paint(g);
+		validate();
+	}
+	
+	public void setControl(Module module){
+		super.control = module;
+		this.inPort.getControl().setInport(module.getInPorts().get( "gate" ) );
+		this.outPort.getControl().setModule( module );
+	}
+	
+	public PresentationInPortImpl getInPort() {
+		return inPort;
+	}
+
+	public void setInPort(PresentationInPortImpl inPort) {
+		this.inPort = inPort;
+	}
+	
+	public PresentationOutPortImpl getOutPort() {
+		return outPort;
+	}
+
+	public void setOutPort(PresentationOutPortImpl outPort) {
+		this.outPort = outPort;
+	}
+	
 	/**
 	 * attack time configuration slider
 	 */
@@ -166,4 +202,5 @@ public class PresentationADSR extends APresentationModule{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 }

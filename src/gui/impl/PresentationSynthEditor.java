@@ -57,6 +57,10 @@ public class PresentationSynthEditor extends JFrame{
 		this.repaint();
 	}
 	
+	public PresentationModuleZone getModuleZone(){
+		return this.moduleZone;
+	}
+	
 	public void setToolBoxes(PresentationToolBoxes toolBoxes) {
 		this.toolBoxes = toolBoxes;
 		this.getContentPane().add( this.toolBoxes, BorderLayout.EAST );

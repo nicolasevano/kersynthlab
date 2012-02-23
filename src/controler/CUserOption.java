@@ -11,6 +11,7 @@ public class CUserOption {
 		presentation = new PresentationUserOption();
 		presentation.setControl( this );
 		horloge = new HorlogeImpl();
+		HorlogeImpl.setSampleRate( 44100 );
 	}
 	
 	public PresentationUserOption getPresentation() {

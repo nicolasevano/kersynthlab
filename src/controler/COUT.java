@@ -14,6 +14,7 @@ public class COUT extends Out{
 	 * public constructor
 	 */
 	public COUT(){
+		super();
 		presentation = new PresentationOUTImpl();
 		presentation.setControl( this );
 	}

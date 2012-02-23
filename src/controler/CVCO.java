@@ -9,6 +9,7 @@ public class CVCO extends VCO {
 	 * Public constructor.
 	 */
 	public CVCO(){
+		super();
 		presentation = new PresentationVCO();
 		presentation.setControl( this );
 		presentation.initListener();

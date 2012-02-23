@@ -180,7 +180,7 @@ public class VCO implements Module {
 	 */
 	public int computeFrequency(){
 		return ( int )(
-				( 8 / base ) * 220 * pitch * 
+				( ( 8 * 220 ) / base ) * pitch * 
 				Math.pow( 2, ( ( !inPorts.get( "fm" ).isEmpty() )? 
 						att * inPorts.get( "fm" ).getValue() : 0  ) )
 				);

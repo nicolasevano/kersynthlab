@@ -1,29 +1,17 @@
 package listener;
 
-import gui.APresentationModule;
-import gui.impl.PresentationModuleZone;
-
-import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JPanel;
 
+import command.Command;
+
 public class ModuleMotionListener extends MouseMotionAdapter {
 	
 	public void mouseDragged(MouseEvent e){
-		Point p = e.getPoint();
-		if( currentPlan.getComponentAt( p ) instanceof APresentationModule && 
-				((PresentationModuleZone) currentPlan).getSelected() == null){
-			APresentationModule toMove = (APresentationModule)currentPlan.getComponentAt( p );
-			((PresentationModuleZone) currentPlan).setSelected( toMove );
-			setTranslationRatioX( p.x - toMove.getLocation().x );
-			setTranslationRatioY( p.y - toMove.getLocation().y );
-		}else if ( ( ( PresentationModuleZone ) currentPlan).getSelected() != null){
-			( ( PresentationModuleZone ) currentPlan).getSelected().setLocation( 
-					p.x - getTranslationRatioX(),
-					p.y - getTranslationRatioY());
-		}
+		System.out.println("motion listener call!");
+		currentCommand.execute( e.getPoint() );
 	}
 	
 	public int getTranslationRatioX() {
@@ -49,6 +37,16 @@ public class ModuleMotionListener extends MouseMotionAdapter {
 	public void setCurrentPlan(JPanel currentPlan) {
 		this.currentPlan = currentPlan;
 	}
+	
+	public Command getCurrentCommand() {
+		return currentCommand;
+	}
+
+	public void setCurrentCommand(Command currentCommand) {
+		this.currentCommand = currentCommand;
+	}
+	
+	private Command currentCommand;
 	
 	private JPanel currentPlan;
 	

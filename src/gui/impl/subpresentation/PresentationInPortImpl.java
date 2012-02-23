@@ -9,18 +9,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controler.CInPort;
+
 
 public class PresentationInPortImpl extends JPanel implements IPresentationInPort{
 
-	/**
-	 * 29007655
-	 */
-	private static final long serialVersionUID = 1L;
-	private static int largeur = 0;
-	private static int hauteur = 0;
-	protected ImageIcon icone ;
-	protected JLabel face ;
-	
 	public PresentationInPortImpl(){
 		
 		icone = new ImageIcon ("images/port.png") ;
@@ -38,5 +31,21 @@ public class PresentationInPortImpl extends JPanel implements IPresentationInPor
 		setPreferredSize (getSize ()) ;
 		
 	}	
-
+	
+	public CInPort getControl() {
+		return control;
+	}
+	public void setControl(CInPort control) {
+		this.control = control;
+	}
+	
+	/**
+	 * 29007655
+	 */
+	private CInPort control;
+	private static final long serialVersionUID = 1L;
+	private static int largeur = 0;
+	private static int hauteur = 0;
+	protected ImageIcon icone ;
+	protected JLabel face ;
 }
