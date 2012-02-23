@@ -1,7 +1,6 @@
 package gui.impl;
 
 import java.awt.GridLayout;
-import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
@@ -13,7 +12,7 @@ import javax.swing.JTabbedPane;
 public class AboutBox extends JDialog{
 
 	/**
-	 * 
+	 * Add "about KerSynthSound" in the menu "About"
 	 */
 	private static final long serialVersionUID = 1L;
 	
@@ -22,6 +21,12 @@ public class AboutBox extends JDialog{
 		initComponents();
 	}
 
+	/**
+	 * Define these components in about box:
+	 * 		JPanel jThanxPanel, jAffiliationsPanel
+	 * 		JTabbedPane jTabbedPane
+	 * 		JLabel jLabelLogo, jLabelInfo
+	 */
 	private void initComponents() {
 		
 		jTabbedPane = new javax.swing.JTabbedPane();
@@ -87,6 +92,9 @@ public class AboutBox extends JDialog{
         this.setResizable(false);
 	}
 	
+	/**
+	 * Close AboutBox
+	 */
 	private void closeDialog(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_closeDialog
         setVisible(false);
         dispose();

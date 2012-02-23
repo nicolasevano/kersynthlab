@@ -1,13 +1,14 @@
 package controler;
 
+import stringloader.IConfigurationLoader;
 import kernel.impl.adsr.ADSR;
 import gui.impl.PresentationADSR;
 
 public class CADSR extends ADSR{
 	
-	public CADSR(){
-		super();
-		presentation = new PresentationADSR();
+	public CADSR(IConfigurationLoader configuration){
+		this.configuration = configuration;		
+		presentation = new PresentationADSR(configuration);
 		presentation.setControl( this );
 		presentation.initListener();
 		
@@ -22,5 +23,7 @@ public class CADSR extends ADSR{
 	}
 	
 	private PresentationADSR presentation;
+	
+	private IConfigurationLoader configuration;
 
 }

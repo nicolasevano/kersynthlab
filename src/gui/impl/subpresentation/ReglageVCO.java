@@ -3,14 +3,21 @@ package gui.impl.subpresentation;
 
 import javax.swing.JPanel;
 
+import stringloader.IConfigurationLoader;
 
-public class Reglage extends JPanel{
 
-	public Reglage(){
+public class ReglageVCO extends JPanel{
+
+	public ReglageVCO(IConfigurationLoader configuration){
 		
-		att = new PresentationMolette( SigneAffichage.negatif, 7, "Att" );
-		pitch = new PresentationMolette( SigneAffichage.positif, 100, "Pitch" );
-		base = new PresentationMolette( SigneAffichage.puissance, 7, "Base" );
+		this.configuration = configuration;
+		
+		att = new PresentationMolette( SigneAffichage.negatif, 7, configuration.getProperties().getProperty("module.VCO.att") );
+		pitch = new PresentationMolette( SigneAffichage.positif, 100, configuration.getProperties().getProperty("module.VCO.pitch"));
+		base = new PresentationMolette( SigneAffichage.puissance, 7, configuration.getProperties().getProperty("module.VCO.base"));
+		//att = new PresentationMolette( SigneAffichage.negatif, 7, "Att" );
+		//pitch = new PresentationMolette( SigneAffichage.positif, 100, "Pitch" );
+		//base = new PresentationMolette( SigneAffichage.puissance, 7, "Base" );
 		setLayout( null );
 		add( att );
 		add( pitch );
@@ -59,5 +66,7 @@ public class Reglage extends JPanel{
 	 * 29007655
 	 */
 	private static final long serialVersionUID = 1L;
+	
+	private IConfigurationLoader configuration;
 	
 }

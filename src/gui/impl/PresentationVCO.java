@@ -8,13 +8,14 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import kernel.Module;
+import stringloader.IConfigurationLoader;
 import kernel.impl.vco.VCO.WaveForm;
 
 import gui.APresentationModule;
 import gui.impl.subpresentation.Onde;
 import gui.impl.subpresentation.PresentationInPortImpl;
 import gui.impl.subpresentation.PresentationOutPortImpl;
-import gui.impl.subpresentation.Reglage;
+import gui.impl.subpresentation.ReglageVCO;
 
 
 import controler.CInPort;
@@ -28,27 +29,30 @@ public class PresentationVCO extends APresentationModule {
 	
     // End of variables declaration  
 	
-	public PresentationVCO(){
-		initComponents();
+	public PresentationVCO(IConfigurationLoader configuration){
+		this.configuration = configuration;
+		initComponents(this.configuration);
 	}
 
-	private void initComponents() {
-        jLabel4 = new JLabel();
+	private void initComponents(IConfigurationLoader configuration) {
+		this.configuration = configuration;
+		jLabel4 = new JLabel();
         //instanciation des composants
-        parametre = new Reglage();
-        forme = new Onde();
         CInPort cInport = new CInPort( super.getCurrentPortId() );
         super.setCurrentPortId( super.getCurrentPortId() + 1 );
 		inPort = cInport.getPresentation();
 		COutPort cOutPort = new COutPort( super.getCurrentPortId() );
 		super.setCurrentPortId( super.getCurrentPortId() + 1 );
 		outPort = cOutPort.getPresentation();
+        parametre = new ReglageVCO( configuration );
+        forme = new Onde( configuration );
         jLabel4.setHorizontalAlignment( javax.swing.SwingConstants.CENTER );
-        jLabel4.setText( "MODULE VCO" );
+        //jLabel4.setText( "MODULE VCO" );
+        jLabel4.setText(configuration.getProperties().getProperty("module.VCO.title"));
         jLabel4.setBorder(new javax.swing.border.MatteBorder(null));
         setLayout( null );
         setBackground( Color.gray );
-        setSize( 500, 250 );//On donne une taille à notre fenêtre
+        setSize( 500, 250 );//On donne une taille ï¿½ notre fenï¿½tre
         add( inPort );
         inPort.setLocation(0, ( getHeight() / 2 ) - ( inPort.getHeight() / 2 ) );
         add( outPort );
@@ -199,18 +203,20 @@ public class PresentationVCO extends APresentationModule {
 	private static final long serialVersionUID = 1L;
 	// Variables declaration                     
     private JLabel jLabel4;
-    private Reglage parametre;
+    private ReglageVCO parametre;
     private Onde forme;
 	
 	private PresentationOutPortImpl outPort;
 
 	private PresentationInPortImpl inPort;
 	
-	public static void main(String[] args){
+	/*public static void main(String[] args){
 		java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PresentationVCO().setVisible(true);
+                new PresentationVCO(IConfigurationLoader configuration).setVisible(true);
             }
         });	
-	}
+	}*/
+	
+	private IConfigurationLoader configuration;
 }
