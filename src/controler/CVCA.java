@@ -9,7 +9,7 @@ public class CVCA extends VCA {
 
 	public CVCA() {
 		presentation = new PresentationVCA();
-		presentation.setControl(this);
+		presentation.setControl( this );
 		presentation.initListener();
 	}
 	
@@ -19,6 +19,11 @@ public class CVCA extends VCA {
 
 	public void setPresentation(PresentationVCA presentation) {
 		this.presentation = presentation;
+	}
+	
+	public void setAttVCA(int att){
+		
+		super.setAttVCA((att == 0)? 1 : att );
 	}
 
 }

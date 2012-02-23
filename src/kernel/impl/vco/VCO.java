@@ -179,11 +179,14 @@ public class VCO implements Module {
 	 * @return int VCO output signal frequency.
 	 */
 	public int computeFrequency(){
-		return ( int )(
+		//System.out.println("fm factor = " + Math.pow( 2, ( ( !inPorts.get( "fm" ).isEmpty() )? 
+		//				att + ( Math.abs(inPorts.get( "fm" ).getValue() ) / 32768. ) : 0  ) ) );
+		int result = ( int )(
 				( ( 8 * 220 ) / base ) * pitch * 
 				Math.pow( 2, ( ( !inPorts.get( "fm" ).isEmpty() )? 
-						att * inPorts.get( "fm" ).getValue() : 0  ) )
-				);
+						att + ( ( Math.abs( inPorts.get( "fm" ).getValue() ) + 32768 ) / 65536. )*5 : 0  ) )
+				); 
+		return (result == 0)?1:result;
 	}
 	
 	/**

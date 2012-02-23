@@ -65,6 +65,7 @@ public class HorlogeImpl implements HorlogeSubject{
 				( ( Out ) observer ).start();
 			}
 		}
+		timerScheduler = Executors.newCachedThreadPool();
 		Callable<Integer> ordonancer = new Callable<Integer>(){
 			@Override
 			public Integer call() throws Exception {
@@ -87,8 +88,8 @@ public class HorlogeImpl implements HorlogeSubject{
 	@Override
 	public void stop(){
 		isALive = false;
-		//timerScheduler.shutdown();
-		timerScheduler.shutdownNow();
+		timerScheduler.shutdown();
+		//timerScheduler.shutdownNow();
 		for(final HorlogeObserver observer : observers){
 			
 			if( observer instanceof Out ){
@@ -96,6 +97,7 @@ public class HorlogeImpl implements HorlogeSubject{
 			}
 			
 		}
+		timerScheduler = null;
 		System.out.println( "Horloge stopped!" );
 	}
 	

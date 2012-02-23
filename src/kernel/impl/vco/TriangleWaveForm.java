@@ -36,6 +36,7 @@ public class TriangleWaveForm implements VCOStrategie {
 			step *= toggle;
 			sampleValue = ( Math.abs( ( 32768 * toggle ) - sampleValue ) >= Math.abs( step ) )? 
 					sampleValue + step : ( toggle * 32768 );
+			//System.out.println("sample value = " + sampleValue );
 			vco.getOutPorts().get( "out" ).setValue( sampleValue );
 			vco.masterNotify();
 			( ( OutPortImpl ) vco.getOutPorts().get( "out" ) ).removeHead();

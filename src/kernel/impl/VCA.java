@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import controler.CInPort;
+import controler.COutPort;
+
 import kernel.HorlogeSubject;
 import kernel.InPort;
 import kernel.Module;
