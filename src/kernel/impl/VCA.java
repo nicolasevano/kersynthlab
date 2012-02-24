@@ -84,7 +84,7 @@ public class VCA implements Module {
 		for ( int i = 0; i < sampleComputer; i++ )/*while(true)*/ {
 			if( !inPorts.get( "in" ).isEmpty() ){
 				sample = inPorts.get( "in" ).getValue();
-				//TODO deal with minus att
+				//TODO deal with minus attf
 				if( !inPorts.get( "am" ).isEmpty())
 					sample = (att>0)? sample*(int)Math.pow(2,att*inPorts.get( "am" ).getValue() + base ):
 						sample* ( int ) Math.pow(2,inPorts.get( "am" ).getValue()/Math.abs(att));

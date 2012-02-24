@@ -55,11 +55,44 @@ public class PresentationVCA extends APresentationModule {
 		outPort = cOutPort.getPresentation();
 		
 		add( labelVCA );
+		
+		JLabel jLabelAm = new JLabel();
+        if(language == "Chinese")
+        	jLabelAm.setText(new String(configuration.getProperties().getProperty("module.VCA.am").getBytes("iso8859-1"), "utf-8"));
+        else
+        	jLabelAm.setText(configuration.getProperties().getProperty("module.VCA.am"));
+        jLabelAm.setSize(50,50);
+        jLabelAm.setLocation(0, ( ( getHeight()/3 ) - ( am.getHeight()/2 ) ) - 35);
+        jLabelAm.setForeground(Color.white);
+        add(jLabelAm);
+        
 		add( am );
 		am.setLocation(0, ( ( getHeight()/3 ) - ( am.getHeight()/2 ) ) );
 		add( inPort );
 		inPort.setLocation(0, ( (getHeight()/3) * 2 ) - ( inPort.getHeight()/2 ) );
 		System.out.println( ( getHeight() ) - ( inPort.getHeight() ) );
+		
+		JLabel jLabelIn = new JLabel();
+        if(language == "Chinese")
+        	jLabelIn.setText(new String(configuration.getProperties().getProperty("module.VCA.in").getBytes("iso8859-1"), "utf-8"));
+        else
+        	jLabelIn.setText(configuration.getProperties().getProperty("module.VCA.in"));
+        jLabelIn.setSize(50,50);
+        jLabelIn.setLocation(0, ( (getHeight()/3) * 2 ) - ( inPort.getHeight()/2 ) + 40);
+        jLabelIn.setForeground(Color.white);
+        add(jLabelIn);
+		
+        
+        JLabel jLabelOut = new JLabel();
+        if(language == "Chinese")
+        	jLabelOut.setText(new String(configuration.getProperties().getProperty("module.VCA.out").getBytes("iso8859-1"), "utf-8"));
+        else
+        	jLabelOut.setText(configuration.getProperties().getProperty("module.VCA.out"));
+        jLabelOut.setSize(50,50);
+        jLabelOut.setLocation(getWidth() - 20, ( getHeight() / 2 ) - ( outPort.getHeight() / 2 ) - 35);
+        jLabelOut.setForeground(Color.white);
+        add(jLabelOut);
+        
 		add( outPort );
 		outPort.setLocation( getWidth() - outPort.getWidth(), 
 				( getHeight() / 2 ) - ( outPort.getHeight() / 2 ) );

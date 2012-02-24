@@ -24,12 +24,12 @@ public class ReglageVCF extends JPanel {
 		if(language == "Chinese")
 		{
 			att = new PresentationMolette (SigneAffichage.negatif, 8, new String(configuration.getProperties().getProperty("module.VCF.att").getBytes("iso8859-1"), "utf-8"));
-			base = new PresentationMolette (SigneAffichage.puissance , 7 , new String(configuration.getProperties().getProperty("module.VCF.att").getBytes("iso8859-1"), "utf-8"));
+			base = new PresentationMolette (SigneAffichage.puissance , 7 , new String(configuration.getProperties().getProperty("module.VCF.base").getBytes("iso8859-1"), "utf-8"));
 		}
 		else
 		{
 			att = new PresentationMolette (SigneAffichage.negatif, 8, configuration.getProperties().getProperty("module.VCF.att"));
-			base = new PresentationMolette (SigneAffichage.puissance , 7 , configuration.getProperties().getProperty("module.VCF.att"));
+			base = new PresentationMolette (SigneAffichage.puissance , 7 , configuration.getProperties().getProperty("module.VCF.base"));
 		}
 		
 		add(att);

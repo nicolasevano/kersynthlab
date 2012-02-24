@@ -52,10 +52,23 @@ public class PresentationADSR extends APresentationModule{
                     sustainAmp = new PresentationMolette( SigneAffichage.positif, 32768, configuration.getProperties().getProperty("module.ADSR.sustainAmp") );
                     finalDelay = new PresentationMolette( SigneAffichage.positif, 1000, configuration.getProperties().getProperty("module.ADSR.finalDelay"));
                 }
+                
+                jLabelIn = new JLabel();
+                if(language == "Chinese")
+                	jLabelIn.setText(new String(configuration.getProperties().getProperty("module.ADSR.in").getBytes("iso8859-1"), "utf-8"));
+                else
+                	jLabelIn.setText(configuration.getProperties().getProperty("module.ADSR.in"));
                 	
                 CInPort cInport = new CInPort( super.getCurrentPortId() );
                 super.setCurrentPortId( super.getCurrentPortId() + 1 );
                 inPort = cInport.getPresentation();
+                
+                jLabelOut = new JLabel();
+                if(language == "Chinese")
+                	jLabelOut.setText(new String(configuration.getProperties().getProperty("module.ADSR.out").getBytes("iso8859-1"), "utf-8"));
+                else
+                	jLabelOut.setText(configuration.getProperties().getProperty("module.ADSR.out"));
+                
                 COutPort cOutport = new COutPort( super.getCurrentPortId() );
                 super.setCurrentPortId( super.getCurrentPortId() + 1 );
                 outPort = cOutport.getPresentation();
@@ -71,11 +84,13 @@ public class PresentationADSR extends APresentationModule{
                 //tittle.setVisible( true );
                 setLayout( null );
                 add( tittle );
+                add(jLabelIn);
                 add( inPort );
                 add( attackTime );
                 add( initialDelay );
         add( sustainAmp );
         add( finalDelay );
+        add(jLabelOut);
         add( outPort );
         setVisible( true );
         setPosition();
@@ -98,7 +113,16 @@ public class PresentationADSR extends APresentationModule{
         finalDelay.setSize( 120,120 );
         finalDelay.setLocation( ( getWidth() / 2 ),
                                                         30 + finalDelay.getHeight() );
+        jLabelIn.setSize(50,50);
+        jLabelIn.setLocation(0, ( getHeight() / 2 ) - ( inPort.getHeight() / 2) - 35);
+        jLabelIn.setForeground(Color.white);
+        
         inPort.setLocation(0, ( getHeight() / 2 ) - ( inPort.getHeight() / 2 ) );
+        
+        jLabelOut.setSize(50,50);
+        jLabelOut.setLocation(getWidth() - 20, ( getHeight() / 2 ) - ( outPort.getHeight() / 2) - 35);
+        jLabelOut.setForeground(Color.white);
+        
         outPort.setLocation( getWidth() - outPort.getWidth(),
                                                          ( getHeight() / 2 ) - ( outPort.getHeight() / 2 ) );
         }
@@ -226,5 +250,8 @@ public class PresentationADSR extends APresentationModule{
          */
         private static final long serialVersionUID = 1L;
         private IConfigurationLoader configuration;
+        
+        private JLabel jLabelIn;
+        private JLabel jLabelOut;
 }
 

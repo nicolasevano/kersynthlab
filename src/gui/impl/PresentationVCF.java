@@ -54,6 +54,17 @@ public class PresentationVCF extends APresentationModule {
 		add(labelVCF);
 		add(inPort);
 		inPort.setLocation(0,(getHeight()/2) - (inPort.getHeight()/2));
+		
+		JLabel jLabelOut = new JLabel();
+        if(language == "Chinese")
+        	jLabelOut.setText(new String(configuration.getProperties().getProperty("module.VCF.out").getBytes("iso8859-1"), "utf-8"));
+        else
+        	jLabelOut.setText(configuration.getProperties().getProperty("module.VCF.out"));
+        jLabelOut.setSize(50,50);
+        jLabelOut.setLocation(getWidth() - 20, ( getHeight() / 2 ) - ( outPort.getHeight() / 2 ) - 35);
+        jLabelOut.setForeground(Color.white);
+        add(jLabelOut);
+		
 		add( outPort );
 		outPort.setLocation( getWidth() - outPort.getWidth(), 
 				( getHeight() / 2 ) - ( outPort.getHeight() / 2 ) );
