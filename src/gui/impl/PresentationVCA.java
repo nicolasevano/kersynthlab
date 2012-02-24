@@ -1,10 +1,13 @@
 package gui.impl;
 
 import java.awt.Color;
+import java.io.UnsupportedEncodingException;
 
 import javax.swing.JLabel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import stringloader.IConfigurationLoader;
 
 import kernel.Module;
 import kernel.impl.vco.VCO.WaveForm;
@@ -20,19 +23,27 @@ import gui.impl.subpresentation.ReglageVCA;
 
 public class PresentationVCA extends APresentationModule {
 
-	public PresentationVCA() {
-		initComponentVCA();
+	public PresentationVCA(IConfigurationLoader configuration) throws UnsupportedEncodingException {
+		this.configuration = configuration;
+		initComponentVCA(configuration);
 	}
 
-	private void initComponentVCA() {
+	private void initComponentVCA(IConfigurationLoader configuration) throws UnsupportedEncodingException {
+		this.configuration = configuration;
+		String language  = this.configuration.getLanguage();
 		setLayout(null);
 		setBackground(Color.gray);
 		
-		labelVCA = new JLabel(nameModule);
+		labelVCA = new JLabel();
+		if(language == "Chinese")
+			labelVCA.setText(new String(configuration.getProperties().getProperty("module.VCA.title").getBytes("iso8859-1"), "utf-8"));
+        else
+        	labelVCA.setText(configuration.getProperties().getProperty("module.VCA.title"));
+		
 		labelVCA.setBorder(new javax.swing.border.MatteBorder(null));
 		labelVCA.setHorizontalAlignment( javax.swing.SwingConstants.CENTER );
 		setSize( 380, 200 );	
-		paramVCA = new ReglageVCA();
+		paramVCA = new ReglageVCA(configuration);
 		CInPort cAmPort = new CInPort( super.getCurrentPortId() );
         super.setCurrentPortId( super.getCurrentPortId() + 1 );
 		am = cAmPort.getPresentation();
@@ -141,13 +152,13 @@ public class PresentationVCA extends APresentationModule {
 		this.labelVCA = nameVCA;
 	}
 
-	public String getNameModule() {
+	/*public String getNameModule() {
 		return nameModule;
 	}
 
 	public void setNameModule(String nameModule) {
 		this.nameModule = nameModule;
-	}
+	}*/
 
 	@Override
 	public PresentationInPortImpl getInPort() {
@@ -192,6 +203,7 @@ public class PresentationVCA extends APresentationModule {
 	private PresentationInPortImpl inPort;
 	private PresentationOutPortImpl outPort;
 	private JLabel labelVCA;
-	private String nameModule = "MODULE VCA";
+	//private String nameModule = "MODULE VCA";
+	private IConfigurationLoader configuration;
 
 }

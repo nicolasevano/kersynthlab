@@ -74,6 +74,7 @@ public class PresentationToolBoxes extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				if( toBuild.getBackground() == Color.white )
 				{
+					
 					setButtonImages( vcoSelectedModule,   ( index == 0 )?Color.black:Color.white, new File( ( index == 0 )? imageSelected.get( 0 ) : imageUnselected.get( 0 ) ) );
 					setButtonImages( vcaSelectedModule,   ( index == 1 )?Color.black:Color.white, new File( ( index == 1 )? imageSelected.get( 1 ) : imageUnselected.get( 1 ) ) );
 					setButtonImages( vcfSelectedModule,   ( index == 2 )?Color.black:Color.white, new File( ( index == 2 )? imageSelected.get( 2 ) : imageUnselected.get( 2 ) ) );
@@ -81,6 +82,16 @@ public class PresentationToolBoxes extends JPanel{
 					setButtonImages( adsrSelectedModule,  ( index == 4 )?Color.black:Color.white, new File( ( index == 4 )? imageSelected.get( 4 ) : imageUnselected.get( 4 ) ) );
 					setButtonImages( repliSelectedModule, ( index == 5 )?Color.black:Color.white, new File( ( index == 5 )? imageSelected.get( 5 ) : imageUnselected.get( 5 ) ) );
 				}
+				else if(toBuild.getBackground() == Color.black)
+				{
+					setButtonImages( toBuild,   Color.white, new File( imageUnselected.get( index ) ) );
+				}
+				
+				
+				
+				
+				
+				
 				commands.get( index ).setPlan( control.getcModuleZone().getPresentation() );
 				commands.get( index ).setHorloge( control.getCmenu().getHorloge() );
 				commands.get( index ).setConfiguration(configuration);

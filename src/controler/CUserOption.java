@@ -1,6 +1,7 @@
 package controler;
 
 import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 
 import listener.ConfigurationListener;
 import listener.IFileChangeListener;
@@ -12,12 +13,12 @@ import kernel.impl.HorlogeImpl;
 
 public class CUserOption {
 
-	/** Public constructor */
-	public CUserOption(IConfigurationLoader configuration){
+	/** Public constructor 
+	 * @throws UnsupportedEncodingException */
+	public CUserOption(IConfigurationLoader configuration) throws UnsupportedEncodingException{
 		presentation = new PresentationUserOption(configuration);
 		presentation.setControl( this );
 		horloge = new HorlogeImpl();
-		HorlogeImpl.setSampleRate( 44100 );
 	}
 	
 	public PresentationUserOption getPresentation() {

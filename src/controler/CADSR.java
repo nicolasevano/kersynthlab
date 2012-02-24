@@ -1,13 +1,17 @@
 package controler;
 
+import java.io.UnsupportedEncodingException;
+
 import stringloader.IConfigurationLoader;
 import kernel.impl.adsr.ADSR;
 import gui.impl.PresentationADSR;
 
 public class CADSR extends ADSR{
 	
-	public CADSR(IConfigurationLoader configuration){
-		this.configuration = configuration;		
+	public CADSR(IConfigurationLoader configuration) throws UnsupportedEncodingException{
+		
+		this.configuration = configuration;
+		
 		presentation = new PresentationADSR(configuration);
 		presentation.setControl( this );
 		presentation.initListener();

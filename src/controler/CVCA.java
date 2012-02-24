@@ -1,5 +1,8 @@
 package controler;
 
+import java.io.UnsupportedEncodingException;
+
+import stringloader.IConfigurationLoader;
 import gui.impl.PresentationVCA;
 import kernel.impl.VCA;
 
@@ -7,8 +10,9 @@ public class CVCA extends VCA {
 	
 	private PresentationVCA presentation;
 
-	public CVCA() {
-		presentation = new PresentationVCA();
+	public CVCA(IConfigurationLoader configuration) throws UnsupportedEncodingException {
+		this.configuration = configuration;
+		presentation = new PresentationVCA(configuration);
 		presentation.setControl( this );
 		presentation.initListener();
 	}
@@ -25,5 +29,7 @@ public class CVCA extends VCA {
 		
 		super.setAttVCA((att == 0)? 1 : att );
 	}
+	
+	private IConfigurationLoader configuration;
 
 }
