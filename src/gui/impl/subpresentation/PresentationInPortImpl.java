@@ -4,6 +4,7 @@ package gui.impl.subpresentation;
 import gui.IPresentationInPort;
 
 import java.awt.BorderLayout;
+import java.awt.Point;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -39,6 +40,16 @@ public class PresentationInPortImpl extends JPanel implements IPresentationInPor
 		this.control = control;
 	}
 	
+//	public void setLocation(int x, int y){		
+//		super.setLocation( x, y );
+//		this.x = x;
+//		this.y = y;
+//	}
+//	
+//	public Point getLocation(){
+//		return new Point( x + getParent().getX(), y + getParent().getY() );
+//	}
+	
 	/**
 	 * 29007655
 	 */
@@ -46,6 +57,8 @@ public class PresentationInPortImpl extends JPanel implements IPresentationInPor
 	private static final long serialVersionUID = 1L;
 	private static int largeur = 0;
 	private static int hauteur = 0;
+	private int x;
+	private int y;
 	protected ImageIcon icone ;
 	protected JLabel face ;
 }

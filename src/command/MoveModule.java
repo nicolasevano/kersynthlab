@@ -6,21 +6,26 @@ import gui.impl.PresentationModuleZone;
 import java.awt.Point;
 
 public class MoveModule extends Command {
-
+	
+	public MoveModule(){
+		moveWire = new MoveWire();
+	}
 	@Override
 	public void execute(Point p) {
 		// TODO Auto-generated method stub
+		if( moveWire.getPlan() == null ) moveWire.setPlan( getPlan() ); 
 		if( getPlan().getComponentAt( p ) instanceof APresentationModule && 
 				((PresentationModuleZone) getPlan()).getSelected() == null){
 			APresentationModule toMove = (APresentationModule)getPlan().getComponentAt( p );
 			((PresentationModuleZone) getPlan()).setSelected( toMove );
 			setTranslationRatioX( p.x - toMove.getLocation().x );
 			setTranslationRatioY( p.y - toMove.getLocation().y );
-		}else if ( ( ( PresentationModuleZone ) getPlan()).getSelected() != null){
+		} else if ( ( ( PresentationModuleZone ) getPlan()).getSelected() != null){
 			( ( PresentationModuleZone ) getPlan()).getSelected().setLocation( 
 					p.x - getTranslationRatioX(),
 					p.y - getTranslationRatioY());
 		}
+		moveWire.execute( p );
 	}
 	
 	public int getTranslationRatioX() {
@@ -42,4 +47,6 @@ public class MoveModule extends Command {
 	private int translationRatioX;
 	
 	private int translationRatioY;
+	
+	private Command moveWire;
 }
