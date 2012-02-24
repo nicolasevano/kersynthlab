@@ -15,6 +15,18 @@ import gui.impl.subpresentation.ReglageVCF;
 
 public class PresentationVCF extends APresentationModule {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private ReglageVCF paramVCF;
+	private CVCF control;
+	private PresentationInPortImpl inPort;
+	private PresentationOutPortImpl outPort;
+	private JLabel labelVCF;
+	private String nameModule = "MODULE VCF";
+
 	public PresentationVCF() {
 //		control = new CVCF();
 //		control.setPresentation(this);
@@ -107,42 +119,14 @@ public class PresentationVCF extends APresentationModule {
 		
 	}
 
-	@Override
-	public PresentationOutPortImpl getOutPort() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	@Override
-	public void setControl(Module module) {
-		// TODO Auto-generated method stub
-		super.control = control;
-		super.control = module;
-		this.inPort.getControl().setInport( module.getInPorts().get( "in" ) );
-		//TODO find a wait to add fm inport
-		this.outPort.getControl().setModule( module );
-	}
 
-	@Override
-	public void setInPort(PresentationInPortImpl inPort) {
-		// TODO Auto-generated method stub
-		this.inPort = inPort;
-	}
-
-	@Override
-	public void setOutPort(PresentationOutPortImpl outPort) {
-		// TODO Auto-generated method stub
-		this.outPort = outPort;
-	}
-	
-	@Override
-	public PresentationInPortImpl getInPort() {
-		// TODO Auto-generated method stub
-		return this.inPort;
-	}
-	
 	public CVCF getControl() {
 		return control;
+	}
+
+	public void setControl(CVCF control) {
+		this.control = control;
 	}
 
 	/**
@@ -152,16 +136,45 @@ public class PresentationVCF extends APresentationModule {
 		// TODO Auto-generated method stub
 
 	}
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	private ReglageVCF paramVCF;
-	private CVCF control;
-	private PresentationInPortImpl inPort;
-	private PresentationOutPortImpl outPort;
-	private JLabel labelVCF;
-	private String nameModule = "MODULE VCF";
+
+
+
+	@Override
+	public void setControl(Module module) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public PresentationInPortImpl getInPort() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public void setInPort(PresentationInPortImpl inPort) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+	@Override
+	public PresentationOutPortImpl getOutPort() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+	@Override
+	public void setOutPort(PresentationOutPortImpl outPort) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

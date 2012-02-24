@@ -6,6 +6,10 @@ import gui.IPresentationMolette;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -19,14 +23,17 @@ public class PresentationMolette extends JPanel implements ChangeListener,IPrese
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private DKnob ts=new DKnob();
+	private DKnob ts;
 	//on met un label pour afficher les valeurs permises du slider
 	JLabel jl;
 	JLabel jla;
 	private SigneAffichage signeAff;
+	private int numeroTrait;
 
-	public PresentationMolette( SigneAffichage signeAff, int entier,String nomDeLamolette ){
 
+	public PresentationMolette( SigneAffichage signeAff, int entier,String nomDeLamolette){
+
+		ts = new DKnob();
 		this.setSigneAff(signeAff);
 
 		//on met le type de layout utilisé
@@ -44,10 +51,15 @@ public class PresentationMolette extends JPanel implements ChangeListener,IPrese
 
 		//on met le nombre qu'on voudrait afficher
 		ts.setEntInter(entier);
+		
+		ts.setValue(0);
+		
 		//on met le nombre de trait qu'on voudrait afficher
 		choisirAffichageValeur(signeAff, ts);
 		
 		ts.setOpaque(false);
+		
+		ts.validate();
 		/**/
 		setSize(120,120);
 		/**/
@@ -66,16 +78,115 @@ public class PresentationMolette extends JPanel implements ChangeListener,IPrese
 
 		jla=jl;
 		System.out.println(getCursor().toString());
+		
+		ts.setValeurAiguille(numeroTrait);
+	    ts.setValue(-1);
 
 		ts.addChangeListener( this );
 		
 	}
+	
+	/**
+	 * Constructor of PresentationMolette
+	 * 
+	 * @param signeAff: there are three values (negatif, positif and puissance)
+	 * @param entier: if signeAff is: - negatif, there are entier*2 "markers" in the displaying and values are between -entier to entier 
+	 * 								  @- positif, there are entier "markers" in the displaying and values are between entier to entier 
+	 * 								  - puissance,  there are entier "markers" in the displaying and values are between 2^0 to 2^entier
+	 * @param nomDeLamolette: name of value displaying
+	 * @param numeroTrait: place the default value of the number that indicated by numeroTrait (warning: this value is not negative)
+	 * 
+	 * */
+	
+	public PresentationMolette( SigneAffichage signeAff, int entier,String nomDeLamolette, int numeroTrait){
 
+		ts = new DKnob();
+		this.setSigneAff(signeAff);
+
+		//on met le type de layout utilisé
+		setLayout(new BorderLayout());
+		setBackground(new Color(200,200,255));
+		//on met le nom de la molette
+		ts.setNomMolette(nomDeLamolette);
+		/**/
+		ts.setSize(100, 100);
+		//signeAff=SigneAffichage.negatif;
+		
+		//on précise si c'est en affichage négatif ou positif en fonction de son utilité
+		//si b est le nombre, positif [0,b] et négatif [-b,b]
+		ts.setChoxSigne(signeAff);
+
+		//on met le nombre qu'on voudrait afficher
+		ts.setEntInter(entier);
+		
+		ts.setValue(0);
+		
+		//on met le nombre de trait qu'on voudrait afficher
+		choisirAffichageValeur(signeAff, ts);
+		
+		ts.setOpaque(false);
+		
+		ts.validate();
+		/**/
+		setSize(120,120);
+		/**/
+		//on choisit de le mettre au nord du panel
+		add(jl = new JLabel(ts.getNomMolette()+": "+( (signeAff == SigneAffichage.puissance)?(int)Math.pow(2, entier):entier) ), BorderLayout.NORTH);
+		/**/
+		jl.setSize(120,20);
+		jl.setLocation(0,0);
+		/**/
+		ts.setValue((float)1.0);
+
+		//on place le slider circulaire au milieu du panel
+		//add(ts, BorderLayout.CENTER);
+		add(ts);
+		ts.setLocation(0,20);
+
+		jla=jl;
+		System.out.println(getCursor().toString());
+		
+		ts.setValeurAiguille(numeroTrait);
+//	    ts.setValue(-1);
+
+		ts.addChangeListener( this );
+		
+		ts.validate();
+		
+	}
+
+	
+	public static void main(String[] args)
+	{
+	    JFrame win = new JFrame("DTest!");
+	    win.getContentPane().setLayout(new BorderLayout());
+	    win.setSize(120,140);
+
+//	    JPanel panel = new JPanel(new BorderLayout());
+//	    panel.setBackground(new Color(200,200,255));
+	    PresentationMolette viewMolette = new PresentationMolette(SigneAffichage.positif, 5, "toto",3);
+	    viewMolette.getTs().setValue(-1);
+//	    viewMolette.setNumeroTrait(3);
+	    win.getContentPane().add(viewMolette, BorderLayout.CENTER);
+	    
+	    win.addWindowListener(new WindowAdapter() {
+	    	  public void windowClosing(WindowEvent we) {
+	    	    System.exit(0);
+	    	  }
+	    	});
+	    
+	    win.setResizable(false);
+	    win.show(true);
+	    
+	}
+	
+	
 	@Override
 	public void stateChanged(ChangeEvent e) {
+//		ts.setValue(-1);
 		int vol = choisirAffichageValeur(getSigneAff(), ts);
 		jla.setText(ts.getNomMolette()+": " + vol);
-		ts.setTempoValeurChangeListener(vol);
+//		ts.setTempoValeurChangeListener(vol);
 	}
 
 /**
@@ -115,6 +226,15 @@ public class PresentationMolette extends JPanel implements ChangeListener,IPrese
 
 	public SigneAffichage getSigneAff() {
 		return signeAff;
+	}
+	
+	public int getNumeroTrait() {
+		return numeroTrait;
+	}
+
+
+	public void setNumeroTrait(int numeroTrait) {
+		this.numeroTrait = numeroTrait;
 	}
 
 

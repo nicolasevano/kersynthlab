@@ -1,6 +1,12 @@
 package gui.impl;
 
+import java.awt.Color;
+
+import javax.swing.JLabel;
+
 import kernel.Module;
+
+import controler.CReplicator;
 import gui.APresentationModule;
 import gui.impl.subpresentation.PresentationInPortImpl;
 import gui.impl.subpresentation.PresentationOutPortImpl;
@@ -12,9 +18,56 @@ public class PresentationReplicator extends APresentationModule {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private CReplicator control;
+	private PresentationInPortImpl inPort;
+	private PresentationOutPortImpl outPort1;
+	private PresentationOutPortImpl outPort2;
+	private PresentationOutPortImpl outPort3;
+	private JLabel labelReplicator;
+	private String nameRepliactor = "MODULE Replicator";
 
 	public PresentationReplicator() {
 		// TODO Auto-generated constructor stub
+		setLayout(null);
+		setBackground(Color.gray);
+		setSize( 140, 200 );
+		
+		labelReplicator = new JLabel(nameRepliactor);
+		labelReplicator.setBorder(new javax.swing.border.MatteBorder(null));
+		labelReplicator.setHorizontalAlignment( javax.swing.SwingConstants.CENTER );
+		
+		inPort = new PresentationInPortImpl();
+		outPort1 = new PresentationOutPortImpl();
+		outPort2 = new PresentationOutPortImpl();
+		outPort3 = new PresentationOutPortImpl();
+		
+		add(labelReplicator);
+		add(inPort);
+		inPort.setLocation(0,(getHeight()/2) - (inPort.getHeight()/2));
+		add( outPort1 );
+		outPort1.setLocation( getWidth() - outPort1.getWidth(), 
+				(getHeight()/6) - (outPort1.getHeight()/6));
+		
+//		System.out.println("Position outPort1: "+ ((getHeight()/6) - (outPort1.getHeight()/6)));
+		add( outPort2 );
+		outPort2.setLocation( getWidth() - outPort2.getWidth(), 
+				( getHeight() / 2) - ( outPort2.getHeight() / 2 ) );
+		
+//		System.out.println("Position outPort2: "+(( getHeight() / 2) - ( outPort2.getHeight() / 2 )));
+		add( outPort3 );
+		outPort3.setLocation( getWidth() - outPort3.getWidth(), 
+				 ((getHeight()/2) -  (outPort3.getHeight()/2))+51 );
+//		System.out.println("position outPort3: "+((((getHeight()))) -  (((outPort3.getHeight())))));
+		
+		setTitlePosition();
+		
+	}
+	
+	private void setTitlePosition() {
+		labelReplicator.setSize( 400, 30 );
+        labelReplicator.setLocation( ( getWidth() / 2 ) - ( labelReplicator.getWidth() / 2 ), 0 );
+        labelReplicator.setForeground(Color.white);
+
 	}
 
 	/**
@@ -24,17 +77,45 @@ public class PresentationReplicator extends APresentationModule {
 		// TODO Auto-generated method stub
 
 	}
-
-	@Override
-	public PresentationInPortImpl getInPort() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public CReplicator getControl() {
+		return control;
 	}
 
-	@Override
-	public PresentationOutPortImpl getOutPort() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setControl(CReplicator control) {
+		this.control = control;
+	}
+	
+	public PresentationInPortImpl getInPort() {
+		return inPort;
+	}
+
+	public void setInPort(PresentationInPortImpl inPort) {
+		this.inPort = inPort;
+	}
+
+	public PresentationOutPortImpl getOutPort1() {
+		return outPort1;
+	}
+
+	public void setOutPort1(PresentationOutPortImpl outPort1) {
+		this.outPort1 = outPort1;
+	}
+
+	public PresentationOutPortImpl getOutPort2() {
+		return outPort2;
+	}
+
+	public void setOutPort2(PresentationOutPortImpl outPort2) {
+		this.outPort2 = outPort2;
+	}
+
+	public PresentationOutPortImpl getOutPort3() {
+		return outPort3;
+	}
+	
+	public void setOutPort3(PresentationOutPortImpl outPort3) {
+		this.outPort3 = outPort3;
 	}
 
 	@Override
@@ -44,9 +125,9 @@ public class PresentationReplicator extends APresentationModule {
 	}
 
 	@Override
-	public void setInPort(PresentationInPortImpl inPort) {
+	public PresentationOutPortImpl getOutPort() {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 
 	@Override

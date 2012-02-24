@@ -176,25 +176,42 @@ public class DKnob extends JComponent
 		return val;
 	}
 
+	private float valeurAiguille;
+
+
+	public float getValeurAiguille() {
+		return valeurAiguille;
+	}
+
+	/***
+	 *Set value of hand.
+	 *
+	 *  @param valeurAiguille: we must count the number of "markers" and the value that you have given corresponding with number that you have counted  
+	 */
+
+	public void setValeurAiguille(float valeurAiguille) {
+		this.valeurAiguille = (float) valeurAiguille/((int) nombreDeTrait);
+	}
+
 	public void setValue(float val) {
-		if (val < 0) val = 0;//0
-		if (val > 1) val = 1;//1
+		if (val < 0 && valeurAiguille <= nombreDeTrait) val = valeurAiguille;//0
+		if (val > 1 && valeurAiguille > nombreDeTrait) val = 1;//1
 		this.val = val;
 		ang = START_ANG - (float) LENGTH_ANG * val;
 		repaint();
 		fireChangeEvent();
 	}
 
-	private double tempoValeurChangeListener;
-
-
-	public double getTempoValeurChangeListener() {
-		return tempoValeurChangeListener;
-	}
-
-	public void setTempoValeurChangeListener(double tempoValeurChangeListener) {
-		this.tempoValeurChangeListener = tempoValeurChangeListener;
-	}
+//	private double tempoValeurChangeListener;
+//
+//
+//	public double getTempoValeurChangeListener() {
+//		return tempoValeurChangeListener;
+//	}
+//
+//	public void setTempoValeurChangeListener(double tempoValeurChangeListener) {
+//		this.tempoValeurChangeListener = tempoValeurChangeListener;
+//	}
 
 	public void addChangeListener(ChangeListener cl) {
 		listenerList.add(ChangeListener.class, cl);
@@ -256,8 +273,8 @@ public class DKnob extends JComponent
 	public void setChoxSigne(SigneAffichage choxSigne) {
 		this.choxSigne = choxSigne;
 	}
-	
-	
+
+
 	//cette méthode nous sert à avoir l'affichage de la molette
 	void setValeurAffichageMolette(int val, SigneAffichage signe, Graphics g){
 		if(signe.equals(SigneAffichage.positif)){
