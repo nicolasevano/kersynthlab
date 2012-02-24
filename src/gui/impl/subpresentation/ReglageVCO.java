@@ -1,6 +1,8 @@
 package gui.impl.subpresentation;
 
 
+import java.io.UnsupportedEncodingException;
+
 import javax.swing.JPanel;
 
 import stringloader.IConfigurationLoader;
@@ -8,13 +10,23 @@ import stringloader.IConfigurationLoader;
 
 public class ReglageVCO extends JPanel{
 
-	public ReglageVCO(IConfigurationLoader configuration){
+	public ReglageVCO(IConfigurationLoader configuration) throws UnsupportedEncodingException{
 		
 		this.configuration = configuration;
+		String language = configuration.getLanguage();
 		
-		att = new PresentationMolette( SigneAffichage.negatif, 7, configuration.getProperties().getProperty("module.VCO.att") );
-		pitch = new PresentationMolette( SigneAffichage.positif, 100, configuration.getProperties().getProperty("module.VCO.pitch"));
-		base = new PresentationMolette( SigneAffichage.puissance, 7, configuration.getProperties().getProperty("module.VCO.base"));
+		if(language == "Chinese")
+		{
+			att = new PresentationMolette( SigneAffichage.negatif, 7, new String(configuration.getProperties().getProperty("module.VCO.att").getBytes("iso8859-1"), "utf-8"));
+			pitch = new PresentationMolette( SigneAffichage.positif, 100, new String(configuration.getProperties().getProperty( "module.VCO.pitch").getBytes("iso8859-1"), "utf-8"));
+			base = new PresentationMolette( SigneAffichage.puissance, 7, new String(configuration.getProperties().getProperty( "module.VCO.base").getBytes("iso8859-1"), "utf-8"));
+		}
+		else
+		{
+			att = new PresentationMolette( SigneAffichage.negatif, 7, configuration.getProperties().getProperty("module.VCO.att") );
+			pitch = new PresentationMolette( SigneAffichage.positif, 100, configuration.getProperties().getProperty("module.VCO.pitch"));
+			base = new PresentationMolette( SigneAffichage.puissance, 7, configuration.getProperties().getProperty("module.VCO.base"));
+		}
 		//att = new PresentationMolette( SigneAffichage.negatif, 7, "Att" );
 		//pitch = new PresentationMolette( SigneAffichage.positif, 100, "Pitch" );
 		//base = new PresentationMolette( SigneAffichage.puissance, 7, "Base" );

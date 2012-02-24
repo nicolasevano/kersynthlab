@@ -1,10 +1,13 @@
 package gui.impl;
 
 import java.awt.Color;
+import java.io.UnsupportedEncodingException;
 
 import javax.swing.JLabel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+
+import stringloader.IConfigurationLoader;
 
 import kernel.Module;
 import controler.CVCF;
@@ -25,20 +28,26 @@ public class PresentationVCF extends APresentationModule {
 	private PresentationInPortImpl inPort;
 	private PresentationOutPortImpl outPort;
 	private JLabel labelVCF;
-	private String nameModule = "MODULE VCF";
+	//private String nameModule = "MODULE VCF";
 
-	public PresentationVCF() {
+	public PresentationVCF(IConfigurationLoader configuration) throws UnsupportedEncodingException {
 //		control = new CVCF();
 //		control.setPresentation(this);
+		String language = configuration.getLanguage();
 		setLayout(null);
 		setBackground(Color.gray);
 		
-		labelVCF = new JLabel(nameModule);
+		//labelVCF = new JLabel(nameModule);
+		labelVCF = new JLabel();
+		if(language == "Chinese")
+			labelVCF.setText(new String(configuration.getProperties().getProperty("module.VCF.title").getBytes("iso8859-1"), "utf-8"));
+		else
+			labelVCF.setText(configuration.getProperties().getProperty("module.VCF.title"));
 		labelVCF.setBorder(new javax.swing.border.MatteBorder(null));
 		labelVCF.setHorizontalAlignment( javax.swing.SwingConstants.CENTER );
 		setSize( 380, 200 );
 		
-		paramVCF = new ReglageVCF();
+		paramVCF = new ReglageVCF(configuration);
 		inPort = new PresentationInPortImpl();
 		outPort = new PresentationOutPortImpl();
 		
@@ -176,5 +185,8 @@ public class PresentationVCF extends APresentationModule {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+	private IConfigurationLoader configuration;
 
 }

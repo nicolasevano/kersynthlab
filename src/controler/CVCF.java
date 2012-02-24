@@ -1,13 +1,16 @@
 package controler;
 
+import java.io.UnsupportedEncodingException;
+
+import stringloader.IConfigurationLoader;
 import gui.impl.PresentationVCF;
 import kernel.impl.vcf.VCF;
 
 public class CVCF extends VCF{
 	private PresentationVCF presentation;
 
-	public CVCF(){
-	presentation = new PresentationVCF();
+	public CVCF(IConfigurationLoader configuration) throws UnsupportedEncodingException{
+	presentation = new PresentationVCF(configuration);
 	presentation.setControl(this);
 	presentation.initListener();
 	}

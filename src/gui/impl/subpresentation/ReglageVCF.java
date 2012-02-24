@@ -1,6 +1,10 @@
 package gui.impl.subpresentation;
 
+import java.io.UnsupportedEncodingException;
+
 import javax.swing.JPanel;
+
+import stringloader.IConfigurationLoader;
 
 public class ReglageVCF extends JPanel {
 
@@ -11,14 +15,23 @@ public class ReglageVCF extends JPanel {
 	
 	private PresentationMolette att;
 	private PresentationMolette base;
-	private String nameAtt= "Att";
-	private String nameBase = "Base";
+	//private String nameAtt= "Att";
+	//private String nameBase = "Base";
 	
-	public ReglageVCF(){
-		
+	public ReglageVCF(IConfigurationLoader configuration) throws UnsupportedEncodingException{
+		String language = configuration.getLanguage();
 		setLayout(null);
-		att = new PresentationMolette (SigneAffichage.negatif, 8, nameAtt);
-		base = new PresentationMolette (SigneAffichage.puissance , 7 , nameBase);
+		if(language == "Chinese")
+		{
+			att = new PresentationMolette (SigneAffichage.negatif, 8, new String(configuration.getProperties().getProperty("module.VCF.att").getBytes("iso8859-1"), "utf-8"));
+			base = new PresentationMolette (SigneAffichage.puissance , 7 , new String(configuration.getProperties().getProperty("module.VCF.att").getBytes("iso8859-1"), "utf-8"));
+		}
+		else
+		{
+			att = new PresentationMolette (SigneAffichage.negatif, 8, configuration.getProperties().getProperty("module.VCF.att"));
+			base = new PresentationMolette (SigneAffichage.puissance , 7 , configuration.getProperties().getProperty("module.VCF.att"));
+		}
+		
 		add(att);
 		add(base);
 		setVisible(true);
@@ -53,7 +66,7 @@ public class ReglageVCF extends JPanel {
 		this.base = base;
 	}
 	
-	public String getNameAtt() {
+	/*public String getNameAtt() {
 		return nameAtt;
 	}
 
@@ -70,6 +83,6 @@ public class ReglageVCF extends JPanel {
 
 	public void setNameBase(String nameBase) {
 		this.nameBase = nameBase;
-	}
+	}*/
 
 }

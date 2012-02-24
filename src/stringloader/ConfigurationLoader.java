@@ -20,12 +20,25 @@ public class ConfigurationLoader implements IConfigurationLoader {
 	/* (non-Javadoc)
 	 * @see solitaire.stringloader.IConfigurationLoader#load()
 	 */
+	@SuppressWarnings("unused")
 	public void load(){
 		properties = new Properties();
 		FileInputStream input = null;
 		try{
 			//String fileName = "src/config/configuration.properties";
+			
+			//InputStreamReader in= new InputStreamReader(Parser.class.getResourceAsStream(dataFile),"UTF-8");
+			
+			//input = new FileInputStream(Parser.class.getResourceAsStream(configurationFileName), "GBK");
 			input = new FileInputStream(configurationFileName);
+			if(configurationFileName == "src/config/configurationcn.properties")
+			{
+				this.setLanguage("Chinese");
+			}
+			else
+			{
+				this.setLanguage("English or French");
+			}
 			properties.load( input );
 			
 		} catch ( IOException ioe ) {
@@ -40,6 +53,8 @@ public class ConfigurationLoader implements IConfigurationLoader {
 		}
 	}
 	
+	
+
 	/* (non-Javadoc)
 	 * @see solitaire.stringloader.IConfigurationLoader#addFileChangeListener(solitaire.listener.IFileChangeListener, java.lang.String, long)
 	 */
@@ -68,6 +83,17 @@ public class ConfigurationLoader implements IConfigurationLoader {
 	public Properties getProperties(){
 		return properties;
 	}
+	
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+	
+	public String getLanguage() {
+		return language;
+	}
+
+
+	private String language;
 	
 	private Properties properties;
 	

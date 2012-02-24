@@ -1,8 +1,11 @@
 package gui.impl;
 
 import java.awt.Color;
+import java.io.UnsupportedEncodingException;
 
 import javax.swing.JLabel;
+
+import stringloader.IConfigurationLoader;
 
 import kernel.Module;
 
@@ -24,15 +27,20 @@ public class PresentationReplicator extends APresentationModule {
 	private PresentationOutPortImpl outPort2;
 	private PresentationOutPortImpl outPort3;
 	private JLabel labelReplicator;
-	private String nameRepliactor = "MODULE Replicator";
+	//private String nameRepliactor = "MODULE Replicator";
 
-	public PresentationReplicator() {
+	public PresentationReplicator(IConfigurationLoader configuration) throws UnsupportedEncodingException {
 		// TODO Auto-generated constructor stub
+		String language = configuration.getLanguage();
 		setLayout(null);
 		setBackground(Color.gray);
 		setSize( 140, 200 );
 		
-		labelReplicator = new JLabel(nameRepliactor);
+		labelReplicator = new JLabel();
+		if(language == "Chinese")
+			labelReplicator.setText(new String(configuration.getProperties().getProperty("module.Replicator.title").getBytes("iso8859-1"), "utf-8"));
+        else
+        	labelReplicator.setText(configuration.getProperties().getProperty("module.Replicator.title"));
 		labelReplicator.setBorder(new javax.swing.border.MatteBorder(null));
 		labelReplicator.setHorizontalAlignment( javax.swing.SwingConstants.CENTER );
 		
@@ -135,5 +143,8 @@ public class PresentationReplicator extends APresentationModule {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
+	private IConfigurationLoader configuration;
 
 }

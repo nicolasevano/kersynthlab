@@ -1,5 +1,7 @@
 package controler;
 
+import java.io.UnsupportedEncodingException;
+
 import stringloader.IConfigurationLoader;
 import kernel.impl.vco.VCO;
 import gui.impl.PresentationVCO;
@@ -8,8 +10,9 @@ public class CVCO extends VCO {
 	
 	/**
 	 * Public constructor.
+	 * @throws UnsupportedEncodingException 
 	 */
-	public CVCO(IConfigurationLoader configuration){
+	public CVCO(IConfigurationLoader configuration) throws UnsupportedEncodingException{
 		this.configuration = configuration;
 		presentation = new PresentationVCO(configuration);
 		presentation.setControl( this );

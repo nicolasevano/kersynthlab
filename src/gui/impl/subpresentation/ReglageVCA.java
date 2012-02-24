@@ -2,7 +2,11 @@ package gui.impl.subpresentation;
 
 //import java.awt.LayoutManager;
 
+import java.io.UnsupportedEncodingException;
+
 import javax.swing.JPanel;
+
+import stringloader.IConfigurationLoader;
 
 public class ReglageVCA extends JPanel {
 
@@ -15,16 +19,25 @@ public class ReglageVCA extends JPanel {
 	private String nameAtt;
 	private String nameBase;
 
-	public ReglageVCA() {
+	public ReglageVCA(IConfigurationLoader configuration) throws UnsupportedEncodingException {
+		String language = configuration.getLanguage();
 		setLayout(null);
-		nameAtt = "Att";
-		nameBase = "Base";
-		att = new PresentationMolette (SigneAffichage.negatif, 8, nameAtt,4);
-		base = new PresentationMolette (SigneAffichage.puissance , 7 , nameBase,3);
-		att.getTs().setValue(-2);
-//		att.setNumeroTrait(6);
-		base.getTs().setValue(-1);
-//		base.setNumeroTrait(3);
+		//nameAtt = "Attr";
+		//nameBase = "Base";
+		if(language == "Chinese")
+		{
+			nameAtt = new String(configuration.getProperties().getProperty("module.VCA.att").getBytes("iso8859-1"), "utf-8");
+			nameBase = new String(configuration.getProperties().getProperty("module.VCA.base").getBytes("iso8859-1"), "utf-8");
+	    }
+		else
+		{
+			nameAtt = configuration.getProperties().getProperty("module.VCA.att");
+			nameBase = configuration.getProperties().getProperty("module.VCA.base");
+		}
+        	
+		
+		att = new PresentationMolette (SigneAffichage.negatif, 8, nameAtt);
+		base = new PresentationMolette (SigneAffichage.puissance , 7 , nameBase);
 		add(att);
 		add(base);
 		setVisible(true);
