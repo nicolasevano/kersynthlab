@@ -59,8 +59,26 @@ public class PresentationVCO extends APresentationModule {
                 setLayout( null );
                 setBackground( Color.gray );
                 setSize( 500, 250 );//On donne une taille � notre fen�tre
+                JLabel jLabelFm = new JLabel();
+                if(language == "Chinese")
+                	jLabelFm.setText(new String(configuration.getProperties().getProperty("module.VCO.fm").getBytes("iso8859-1"), "utf-8"));
+                else
+                	jLabelFm.setText(configuration.getProperties().getProperty("module.VCO.fm"));
+                jLabelFm.setSize(50,50);
+                jLabelFm.setLocation(0, ( getHeight() / 2 ) - ( inPort.getHeight() / 2 ) - 35);
+                jLabelFm.setForeground(Color.white);
+                add(jLabelFm);
                 add( inPort );
                 inPort.setLocation(0, ( getHeight() / 2 ) - ( inPort.getHeight() / 2 ) );
+                JLabel jLabelOut = new JLabel();
+                if(language == "Chinese")
+                	jLabelOut.setText(new String(configuration.getProperties().getProperty("module.VCO.out").getBytes("iso8859-1"), "utf-8"));
+                else
+                	jLabelOut.setText(configuration.getProperties().getProperty("module.VCO.out") );
+                jLabelOut.setSize(50,50);
+                jLabelOut.setLocation(getWidth() - 20, ( getHeight() / 2 ) - ( outPort.getHeight() / 2 ) - 35);
+                jLabelOut.setForeground(Color.white);
+                add(jLabelOut);
                 add( outPort );
                 outPort.setLocation( getWidth() - outPort.getWidth(),
                 		( getHeight() / 2 ) - ( outPort.getHeight() / 2 ) );

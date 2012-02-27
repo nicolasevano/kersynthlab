@@ -45,6 +45,17 @@ public class PresentationReplicator extends APresentationModule {
 		super.setCurrentPortId( super.getCurrentPortId() + 1 );
 		outPort3 = cOutPort3.getPresentation();
 		
+		jLabelIn = new JLabel();
+        if(language == "Chinese")
+        	jLabelIn.setText(new String(configuration.getProperties().getProperty("module.Replicator.in").getBytes("iso8859-1"), "utf-8"));
+        else
+        	jLabelIn.setText(configuration.getProperties().getProperty("module.Replicator.in"));
+        jLabelIn.setSize(50,50);
+        jLabelIn.setLocation(0, (getHeight()/2) - (inPort.getHeight()/2) - 35);
+        jLabelIn.setForeground(Color.white);
+        add(jLabelIn);
+		
+		
 		add(labelReplicator);
 		add( inPort );
 		inPort.setLocation(0,(getHeight()/2) - (inPort.getHeight()/2));
@@ -151,6 +162,7 @@ public class PresentationReplicator extends APresentationModule {
 	private PresentationOutPortImpl outPort2;
 	private PresentationOutPortImpl outPort3;
 	private JLabel labelReplicator;
+	private JLabel jLabelIn;
 	private IConfigurationLoader configuration;
 
 }
