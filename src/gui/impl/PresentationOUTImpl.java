@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import controler.CInPort;
 
 import kernel.Module;
+import kernel.impl.adsr.ADSR;
 import gui.IPresentationOUT;
 import gui.APresentationModule;
 import gui.impl.subpresentation.PresentationInPortImpl;
@@ -78,6 +79,23 @@ public class PresentationOUTImpl extends APresentationModule implements IPresent
 		} else {
 			System.out.println("port d'entrée null");
 		}
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		StringBuffer result = new StringBuffer();
+		result.append( "Out:|" );
+		result.append( "Inport:" );
+		result.append( "in," ).append( portIn.getControl().getId() ).append( "|" );
+		result.append( "Outport:" );
+		result.append( "|" );
+		result.append( "Parameter:" );
+		result.append( "|" );
+		result.append( "Position:" );
+		result.append( "x," ).append( this.getLocation().x ).append( ";" );
+		result.append( "y," ).append( this.getLocation().y ).append( "|" );
+		return result.toString();
 	}
 	
 	public static void main (String args []) {

@@ -10,6 +10,8 @@ import javax.swing.event.ChangeListener;
 import stringloader.IConfigurationLoader;
 
 import kernel.Module;
+import kernel.impl.VCA;
+import kernel.impl.vcf.VCF;
 import controler.CInPort;
 import controler.COutPort;
 import controler.CVCF;
@@ -193,6 +195,25 @@ public class PresentationVCF extends APresentationModule {
 	public void setOutPort(PresentationOutPortImpl outPort) {
 		// TODO Auto-generated method stub
 		this.outPort = outPort;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		StringBuffer result = new StringBuffer();
+		result.append( "VCF:|" );
+		result.append( "Inport:" );
+		result.append( "in," ).append( inPort.getControl().getId() ).append( "|" );
+		result.append( "fm," ).append( fmPort.getControl().getId() ).append( "|" );
+		result.append( "Outport:" );
+		result.append( "out," ).append( outPort.getControl().getId() ).append( "|" );
+		result.append( "Parameter:" );
+		result.append( "att," ).append( ( ( VCF )control ).getAttVCF() ).append( ";" );
+		result.append( "base," ).append( ( ( VCF )control ).getBaseVCF() ).append( "|" );
+		result.append( "Position:" );
+		result.append( "x," ).append( this.getLocation().x ).append( ";" );
+		result.append( "y," ).append( this.getLocation().y ).append( "|" );
+		return result.toString();
 	}
 	
 	/**

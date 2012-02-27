@@ -17,6 +17,8 @@ import java.awt.geom.QuadCurve2D;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import kernel.impl.vco.VCO;
+
 import controler.CWire;
 
 
@@ -45,6 +47,7 @@ public class PresentationWire extends JPanel{
 	 * Draw wire on panel.
 	 */
 	public void paint( Graphics g ){
+		
 		Graphics2D g2 = (Graphics2D)g;
 		// Antialiazing
 		g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
@@ -71,6 +74,7 @@ public class PresentationWire extends JPanel{
 		g2.setStroke( new BasicStroke(10,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND ) );
 		g2.setPaint( Color.BLACK );
 		g2.draw( forme );
+		
 	}
 	
 	/**
@@ -170,6 +174,29 @@ public class PresentationWire extends JPanel{
 		
 		this.wireListener = wireListener;
 		this.addMouseListener( this.wireListener );
+		
+	}
+	
+	@Override
+	public String toString() {
+		
+		// TODO Auto-generated method stub
+		StringBuffer result = new StringBuffer();
+		result.append( "Wire:|" );
+		result.append( "Inport:" );
+		result.append( "in," ).append( inPort.getControl().getId() ).append( "|" );
+		result.append( "Outport:" );
+		result.append( "out," ).append( outPort.getControl().getId() ).append( "|" );
+		result.append( "Pinit:" );
+		result.append( "xPinit," ).append( pInit.x ).append( ";" );
+		result.append( "yPinit," ).append( pInit.y ).append( "|" );
+		result.append( "Pdest:" );
+		result.append( "xPdest," ).append( pDest.x ).append( ";" );
+		result.append( "yPdest," ).append( pDest.y ).append( "|" );
+		result.append( "Position:" );
+		result.append( "x," ).append( this.getLocation().x ).append( ";" );
+		result.append( "y," ).append( this.getLocation().y ).append( "|" );
+		return result.toString();
 		
 	}
 	

@@ -9,6 +9,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import kernel.Module;
+import kernel.impl.adsr.ADSR;
 import stringloader.IConfigurationLoader;
 
 import gui.APresentationModule;
@@ -209,7 +210,27 @@ public class PresentationADSR extends APresentationModule{
         public void setOutPort(PresentationOutPortImpl outPort) {
                 this.outPort = outPort;
         }
-       
+        
+        @Override
+		public String toString() {
+			// TODO Auto-generated method stub
+			StringBuffer result = new StringBuffer();
+			result.append( "ADSR:|" );
+			result.append( "Inport:" );
+			result.append( "gate," ).append( inPort.getControl().getId() ).append( "|" );
+			result.append( "Outport:" );
+			result.append( "out," ).append( outPort.getControl().getId() ).append( "|" );
+			result.append( "Parameter:" );
+			result.append( "attackTime," ).append( ( ( ADSR )control ).getAttackTime() ).append( ";" );
+			result.append( "delayTime," ).append( ( ( ADSR )control ).getDelayTime() ).append( ";" );
+			result.append( "sustainVoltage," ).append( ( ( ADSR )control ).getSustainVoltage() ).append( ";" );
+			result.append( "finalDelay," ).append( ( ( ADSR )control ).getFinalDelayTime() ).append( "|" );
+			result.append( "Position:" );
+			result.append( "x," ).append( this.getLocation().x ).append( ";" );
+			result.append( "y," ).append( this.getLocation().y ).append( "|" );
+			return result.toString();
+		}
+        
         /**
          * attack time configuration slider
          */

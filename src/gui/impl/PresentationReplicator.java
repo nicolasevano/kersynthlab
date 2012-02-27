@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import stringloader.IConfigurationLoader;
 
 import kernel.Module;
+import kernel.impl.adsr.ADSR;
 
 import controler.CInPort;
 import controler.COutPort;
@@ -150,6 +151,23 @@ public class PresentationReplicator extends APresentationModule {
 	public void setOutPort(PresentationOutPortImpl outPort) {
 		this.outPort1 = outPort;
 		
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		StringBuffer result = new StringBuffer();
+		result.append( "Replicator:|" );
+		result.append( "Inport:" );
+		result.append( "in," ).append( inPort.getControl().getId() ).append( "|" );
+		result.append( "Outport:" );
+		result.append( "out," ).append( outPort1.getControl().getId() ).append( "|" );
+		result.append( "Parameter:" );
+		result.append( "|" );
+		result.append( "Position:" );
+		result.append( "x," ).append( this.getLocation().x ).append( ";" );
+		result.append( "y," ).append( this.getLocation().y ).append( "|" );
+		return result.toString();
 	}
 	
 	/**

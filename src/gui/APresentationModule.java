@@ -30,6 +30,8 @@ public abstract class APresentationModule extends JPanel{
 	
 	abstract public void setControl(Module module);
 	
+	abstract public String toString();
+	
 	public List<PresentationWire> getWires() {
 		return wires;
 	}

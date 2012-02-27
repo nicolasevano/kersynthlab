@@ -43,6 +43,7 @@ public class CSynthEditor {
 		presentation = new PresentationSynthEditor(configuration);
 		presentation.setControl( this );
 		cUserOption = new CUserOption(configuration);
+		cUserOption.setCeditor( this );
 		presentation.setUserOption( cUserOption.getPresentation());
 		cToolBoxes = new CToolBoxes( cUserOption, configuration );
 		presentation.setToolBoxes( cToolBoxes.getPresentation());

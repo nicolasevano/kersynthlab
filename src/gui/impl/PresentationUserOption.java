@@ -1,19 +1,31 @@
 package gui.impl;
 
+import java.awt.FlowLayout;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.Properties;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
+import javax.swing.filechooser.FileFilter;
+
+import kernel.impl.HorlogeImpl;
 
 import listener.ConfigurationListener;
 import listener.IFileChangeListener;
@@ -67,14 +79,14 @@ public class PresentationUserOption extends JMenuBar{
 		save.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {	//TODO
-					control.saveMontage();
+					doSaveGame();
 				}
 		});
 		file.add( save );
 		
 		/*load = new JMenuItem("load montage",
                 KeyEvent.VK_L);*/
-		if(language == "Chinese")
+		if( language == "Chinese" )
 			load = new JMenuItem(new String(properties.getProperty("menu.file.load").getBytes("iso8859-1"), "utf-8"),KeyEvent.VK_L);
 		else
 			load = new JMenuItem(properties.getProperty("menu.file.load"),KeyEvent.VK_L);
@@ -194,7 +206,7 @@ public class PresentationUserOption extends JMenuBar{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {	//TODO
 				control.changeSampleRate();
-				}
+			}
 		});
 		config.add( sampleRate );
 		
@@ -246,7 +258,7 @@ public class PresentationUserOption extends JMenuBar{
 				}
 		});
 		about.add( aboutK );
-		
+		fc.addChoosableFileFilter( new SynthFileFilter() );
 		//this.updateString();
 	}
 	
@@ -258,6 +270,103 @@ public class PresentationUserOption extends JMenuBar{
 		this.control = control;
 	}
 	
+	class SynthFileFilter extends FileFilter{
+		
+		public boolean accept(File f) {
+			String extension = null;
+			if (f.isDirectory()) {
+				return true;
+			}
+			try{
+				extension = f.getName().substring( f.getName().lastIndexOf("."), 
+												   f.getName().length() );
+			} catch(Exception e){}
+			if (extension != null) {
+				if (extension.equals( extentionAllowed ) ) {
+	                	return true;
+				} else {
+					return false;
+				}
+			}
+
+			return false;
+		}
+
+		@Override
+		public String getDescription() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+		private static final String extentionAllowed = ".synth";
+		
+	}
+	
+	public class ComboBox extends JDialog implements ActionListener, ItemListener {
+
+		public ComboBox() {
+			
+			setLayout(new FlowLayout());
+			combobox.setSelectedIndex( ( HorlogeImpl.getSampleRate() == 44100 )? 0 : 1 );
+			combobox.addItemListener( this );
+			add( combobox );
+
+			button.addActionListener( this );
+			add( button );
+
+			setSize(100, 120);
+			setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			setLocationRelativeTo( null );
+			setVisible( false );
+			
+		}
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+			this.dispose();
+		}
+
+		@Override
+		public void itemStateChanged(ItemEvent arg0) {
+			// TODO Auto-generated method stub
+			if ( arg0.getStateChange() == ItemEvent.SELECTED ) {
+				JComboBox combo = (JComboBox) arg0.getSource();
+				int index = combo.getSelectedIndex();
+				HorlogeImpl.setSampleRate( ( index == 0 )? 22050 : 44100 );
+			}
+		}
+		
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		final String[] sampleRate = { "22050","44100" };
+
+		JComboBox combobox = new JComboBox( sampleRate );
+		JButton button = new JButton( "Close" );
+	}
+	
+	public ComboBox getSampleRateChose() {
+		return sampleRateChose;
+	}
+
+	public void setSampleRateChose(ComboBox sampleRateChose) {
+		this.sampleRateChose = sampleRateChose;
+	}
+	
+	private void doSaveGame(){
+		
+		int returnVal = fc.showOpenDialog( this );
+        if ( returnVal == JFileChooser.APPROVE_OPTION ) {
+        	
+        	fToUse = fc.getSelectedFile();
+        	control.saveMontage( fToUse );
+        	
+        }
+        
+	}
 	
 	private CUserOption control;
 	
@@ -277,7 +386,9 @@ public class PresentationUserOption extends JMenuBar{
 
 	private static final long serialVersionUID = 1L;
 	
-	
 	private IConfigurationLoader configuration;
 	private CUserOption userOption;
+	private final JFileChooser fc = new JFileChooser();
+	private File fToUse;
+	private ComboBox sampleRateChose = new ComboBox();
 }
