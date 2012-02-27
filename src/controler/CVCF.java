@@ -10,8 +10,8 @@ public class CVCF extends VCF{
 	private PresentationVCF presentation;
 
 	public CVCF(IConfigurationLoader configuration) throws UnsupportedEncodingException{
-	presentation = new PresentationVCF(configuration);
-	presentation.setControl(this);
+	presentation = new PresentationVCF( configuration );
+	presentation.setControl( this );
 	presentation.initListener();
 	}
 	

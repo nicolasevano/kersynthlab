@@ -10,6 +10,8 @@ import javax.swing.event.ChangeListener;
 import stringloader.IConfigurationLoader;
 
 import kernel.Module;
+import controler.CInPort;
+import controler.COutPort;
 import controler.CVCF;
 import gui.APresentationModule;
 import gui.impl.subpresentation.PresentationInPortImpl;
@@ -18,17 +20,6 @@ import gui.impl.subpresentation.ReglageVCF;
 
 public class PresentationVCF extends APresentationModule {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	private ReglageVCF paramVCF;
-	private CVCF control;
-	private PresentationInPortImpl inPort;
-	private PresentationOutPortImpl outPort;
-	private JLabel labelVCF;
-	//private String nameModule = "MODULE VCF";
 
 	public PresentationVCF(IConfigurationLoader configuration) throws UnsupportedEncodingException {
 //		control = new CVCF();
@@ -47,17 +38,26 @@ public class PresentationVCF extends APresentationModule {
 		labelVCF.setHorizontalAlignment( javax.swing.SwingConstants.CENTER );
 		setSize( 380, 200 );
 		
-		paramVCF = new ReglageVCF(configuration);
-		inPort = new PresentationInPortImpl();
-		outPort = new PresentationOutPortImpl();
+		paramVCF = new ReglageVCF( configuration );
+		CInPort cFmPort = new CInPort( super.getCurrentPortId() );
+        super.setCurrentPortId( super.getCurrentPortId() + 1 );
+		fmPort = cFmPort.getPresentation();
+		CInPort cInport = new CInPort( super.getCurrentPortId() );
+        super.setCurrentPortId( super.getCurrentPortId() + 1 );
+		inPort = cInport.getPresentation();
+		COutPort cOutPort = new COutPort( super.getCurrentPortId() );
+		super.setCurrentPortId( super.getCurrentPortId() + 1 );
+		outPort = cOutPort.getPresentation();
 		
 		add(labelVCF);
+		add(fmPort);
+		fmPort.setLocation(0, ( ( getHeight() / 3 ) - ( fmPort.getHeight() / 2 ) ) );
 		add(inPort);
-		inPort.setLocation(0,(getHeight()/2) - (inPort.getHeight()/2));
+		inPort.setLocation( 0, ( ( getHeight() / 3 ) * 2 ) - ( inPort.getHeight() / 2 ) );
 		add( outPort );
 		outPort.setLocation( getWidth() - outPort.getWidth(), 
 				( getHeight() / 2 ) - ( outPort.getHeight() / 2 ) );
-		add(paramVCF);
+		add( paramVCF );
 		setParameterPosition();
 		setTitlePosition();
 	}
@@ -74,7 +74,7 @@ public class PresentationVCF extends APresentationModule {
 
 	public void initListener(){
 		setParameterListener();
-//		setDefaultValue();
+		setDefaultValue();
 	}
 
 	private void setParameterPosition() {
@@ -130,12 +130,8 @@ public class PresentationVCF extends APresentationModule {
 
 
 
-	public CVCF getControl() {
-		return control;
-	}
-
-	public void setControl(CVCF control) {
-		this.control = control;
+	public Module getControl() {
+		return super.control;
 	}
 
 	/**
@@ -151,7 +147,11 @@ public class PresentationVCF extends APresentationModule {
 	@Override
 	public void setControl(Module module) {
 		// TODO Auto-generated method stub
-		
+		super.control = module;
+		this.inPort.getControl().setInport( module.getInPorts().get( "in" ) );
+		//TODO find a wait to add am inport
+		this.fmPort.getControl().setInport( module.getInPorts().get( "fm" ) );
+		this.outPort.getControl().setModule( module );
 	}
 
 
@@ -159,7 +159,7 @@ public class PresentationVCF extends APresentationModule {
 	@Override
 	public PresentationInPortImpl getInPort() {
 		// TODO Auto-generated method stub
-		return null;
+		return inPort;
 	}
 
 
@@ -167,7 +167,7 @@ public class PresentationVCF extends APresentationModule {
 	@Override
 	public void setInPort(PresentationInPortImpl inPort) {
 		// TODO Auto-generated method stub
-		
+		this.inPort = inPort;
 	}
 
 
@@ -175,18 +175,25 @@ public class PresentationVCF extends APresentationModule {
 	@Override
 	public PresentationOutPortImpl getOutPort() {
 		// TODO Auto-generated method stub
-		return null;
+		return outPort;
 	}
-
-
 
 	@Override
 	public void setOutPort(PresentationOutPortImpl outPort) {
 		// TODO Auto-generated method stub
-		
+		this.outPort = outPort;
 	}
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
+	private ReglageVCF paramVCF;
+	private PresentationInPortImpl inPort;
+	private PresentationInPortImpl fmPort;
+	private PresentationOutPortImpl outPort;
+	private JLabel labelVCF;
 	private IConfigurationLoader configuration;
 
 }

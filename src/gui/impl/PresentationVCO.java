@@ -39,38 +39,38 @@ public class PresentationVCO extends APresentationModule {
                 this.configuration = configuration;
                 String language = configuration.getLanguage();
                 jLabel4 = new JLabel();
-        //instanciation des composants
-        CInPort cInport = new CInPort( super.getCurrentPortId() );
-        super.setCurrentPortId( super.getCurrentPortId() + 1 );
+                //instanciation des composants
+                CInPort cInport = new CInPort( super.getCurrentPortId() );
+                super.setCurrentPortId( super.getCurrentPortId() + 1 );
                 inPort = cInport.getPresentation();
                 COutPort cOutPort = new COutPort( super.getCurrentPortId() );
                 super.setCurrentPortId( super.getCurrentPortId() + 1 );
                 outPort = cOutPort.getPresentation();
-        parametre = new ReglageVCO( configuration );
-        forme = new Onde( configuration );
-        jLabel4.setHorizontalAlignment( javax.swing.SwingConstants.CENTER );
-        //jLabel4.setText( "MODULE VCO" );
-        //jLabel4.setText(configuration.getProperties().getProperty("module.VCO.title"));
-        if(language == "Chinese")
-        	jLabel4.setText(new String(configuration.getProperties().getProperty("module.VCO.title").getBytes("iso8859-1"), "utf-8"));
-        else
-        	jLabel4.setText(configuration.getProperties().getProperty("module.VCO.title"));
-        jLabel4.setBorder(new javax.swing.border.MatteBorder(null));
-        setLayout( null );
-        setBackground( Color.gray );
-        setSize( 500, 250 );//On donne une taille � notre fen�tre
-        add( inPort );
-        inPort.setLocation(0, ( getHeight() / 2 ) - ( inPort.getHeight() / 2 ) );
-        add( outPort );
-        outPort.setLocation( getWidth() - outPort.getWidth(),
-                                                 ( getHeight() / 2 ) - ( outPort.getHeight() / 2 ) );
-        add( parametre );
-        setParameterPosition();
-        add( forme );
-        setFormePosition();
-        forme.setBackground(Color.gray);
-        add( jLabel4 );
-        setTittlePosition();
+                parametre = new ReglageVCO( configuration );
+                forme = new Onde( configuration );
+                jLabel4.setHorizontalAlignment( javax.swing.SwingConstants.CENTER );
+                //jLabel4.setText( "MODULE VCO" );
+                //jLabel4.setText(configuration.getProperties().getProperty("module.VCO.title"));
+                if(language == "Chinese")
+                	jLabel4.setText(new String(configuration.getProperties().getProperty("module.VCO.title").getBytes("iso8859-1"), "utf-8"));
+                else
+                	jLabel4.setText(configuration.getProperties().getProperty("module.VCO.title"));
+                jLabel4.setBorder(new javax.swing.border.MatteBorder(null));
+                setLayout( null );
+                setBackground( Color.gray );
+                setSize( 500, 250 );//On donne une taille � notre fen�tre
+                add( inPort );
+                inPort.setLocation(0, ( getHeight() / 2 ) - ( inPort.getHeight() / 2 ) );
+                add( outPort );
+                outPort.setLocation( getWidth() - outPort.getWidth(),
+                		( getHeight() / 2 ) - ( outPort.getHeight() / 2 ) );
+                add( parametre );
+                setParameterPosition();
+                add( forme );
+                setFormePosition();
+                forme.setBackground(Color.gray);
+                add( jLabel4 );
+                setTittlePosition();
         }
        
         public void initListener(){

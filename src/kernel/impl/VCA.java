@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import controler.CInPort;
-import controler.COutPort;
 
 import kernel.HorlogeSubject;
 import kernel.InPort;
@@ -47,8 +45,6 @@ public class VCA implements Module {
 		for( Observer observer:observers ){
 			observer.update();
 		}
-		// TODO Auto-generated method stub
-
 	}
 
 	/**
@@ -86,8 +82,8 @@ public class VCA implements Module {
 				sample = inPorts.get( "in" ).getValue();
 				//TODO deal with minus att
 				if( !inPorts.get( "am" ).isEmpty())
-					sample = (att>0)? sample*(int)Math.pow(2,att*inPorts.get( "am" ).getValue() + base ):
-						sample* ( int ) Math.pow(2,inPorts.get( "am" ).getValue()/Math.abs(att));
+					sample = (att>0)? sample*(int)Math.pow(2,att*( ( inPorts.get( "am" ).getValue() / 32768 ) * 5) + base ):
+						sample* ( int ) Math.pow(2,( inPorts.get( "am" ).getValue() / ( Math.abs(att) * 32768 ) ) * 5 + base );
 				else 
 					sample = (att>0)? sample*att:sample/Math.abs(att);
 				if (sample>32768) sample = 32768;

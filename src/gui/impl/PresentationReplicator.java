@@ -9,6 +9,8 @@ import stringloader.IConfigurationLoader;
 
 import kernel.Module;
 
+import controler.CInPort;
+import controler.COutPort;
 import controler.CReplicator;
 import gui.APresentationModule;
 import gui.impl.subpresentation.PresentationInPortImpl;
@@ -16,17 +18,6 @@ import gui.impl.subpresentation.PresentationOutPortImpl;
 
 public class PresentationReplicator extends APresentationModule {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	private CReplicator control;
-	private PresentationInPortImpl inPort;
-	private PresentationOutPortImpl outPort1;
-	private PresentationOutPortImpl outPort2;
-	private PresentationOutPortImpl outPort3;
-	private JLabel labelReplicator;
 	//private String nameRepliactor = "MODULE Replicator";
 
 	public PresentationReplicator(IConfigurationLoader configuration) throws UnsupportedEncodingException {
@@ -43,14 +34,19 @@ public class PresentationReplicator extends APresentationModule {
         	labelReplicator.setText(configuration.getProperties().getProperty("module.Replicator.title"));
 		labelReplicator.setBorder(new javax.swing.border.MatteBorder(null));
 		labelReplicator.setHorizontalAlignment( javax.swing.SwingConstants.CENTER );
-		
-		inPort = new PresentationInPortImpl();
-		outPort1 = new PresentationOutPortImpl();
-		outPort2 = new PresentationOutPortImpl();
-		outPort3 = new PresentationOutPortImpl();
+		CInPort cInport = new CInPort( super.getCurrentPortId() );
+        super.setCurrentPortId( super.getCurrentPortId() + 1 );
+        inPort = cInport.getPresentation();
+        COutPort cOutPort1 = new COutPort( super.getCurrentPortId() );
+        outPort1 = cOutPort1.getPresentation();
+        COutPort cOutPort2 = new COutPort( super.getCurrentPortId() );
+		outPort2 = cOutPort2.getPresentation();
+		COutPort cOutPort3 = new COutPort( super.getCurrentPortId() );
+		super.setCurrentPortId( super.getCurrentPortId() + 1 );
+		outPort3 = cOutPort3.getPresentation();
 		
 		add(labelReplicator);
-		add(inPort);
+		add( inPort );
 		inPort.setLocation(0,(getHeight()/2) - (inPort.getHeight()/2));
 		add( outPort1 );
 		outPort1.setLocation( getWidth() - outPort1.getWidth(), 
@@ -86,19 +82,15 @@ public class PresentationReplicator extends APresentationModule {
 
 	}
 	
-	public CReplicator getControl() {
-		return control;
+	public Module getControl() {
+		return super.control;
 	}
 
-	public void setControl(CReplicator control) {
-		this.control = control;
-	}
-	
 	public PresentationInPortImpl getInPort() {
-		return inPort;
+		return this.inPort;
 	}
 
-	public void setInPort(PresentationInPortImpl inPort) {
+	public void setInPort( PresentationInPortImpl inPort ) {
 		this.inPort = inPort;
 	}
 
@@ -127,24 +119,38 @@ public class PresentationReplicator extends APresentationModule {
 	}
 
 	@Override
-	public void setControl(Module module) {
-		// TODO Auto-generated method stub
+	public void setControl( Module module ) {
+		System.out.println( "setControl" );
+        super.control = module;
+        this.inPort.getControl().setInport( super.control.getInPorts().get( "in" ) );
+        this.outPort1.getControl().setModule( super.control );
+        this.outPort2.getControl().setModule( super.control );
+        this.outPort3.getControl().setModule( super.control );
 		
 	}
 
 	@Override
 	public PresentationOutPortImpl getOutPort() {
 		// TODO Auto-generated method stub
-		return null;
+		return this.outPort1;
 	}
 
 	@Override
 	public void setOutPort(PresentationOutPortImpl outPort) {
-		// TODO Auto-generated method stub
+		this.outPort1 = outPort;
 		
 	}
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
+	private PresentationInPortImpl inPort;
+	private PresentationOutPortImpl outPort1;
+	private PresentationOutPortImpl outPort2;
+	private PresentationOutPortImpl outPort3;
+	private JLabel labelReplicator;
 	private IConfigurationLoader configuration;
 
 }

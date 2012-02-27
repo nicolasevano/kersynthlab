@@ -133,7 +133,8 @@ public class PresentationUserOption extends JMenuBar{
 		stop.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {	//TODO
-				}
+				control.stopHorloge();
+			}
 		});
 		file.add( stop );
 		
