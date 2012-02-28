@@ -36,7 +36,7 @@ public class PresentationMolette extends JPanel implements ChangeListener,IPrese
 		ts = new DKnob();
 		this.setSigneAff(signeAff);
 
-		//on met le type de layout utilisé
+		//on met le type de layout utilisï¿½
 		setLayout(new BorderLayout());
 		setBackground(new Color(200,200,255));
 		//on met le nom de la molette
@@ -45,8 +45,8 @@ public class PresentationMolette extends JPanel implements ChangeListener,IPrese
 		ts.setSize(100, 100);
 		//signeAff=SigneAffichage.negatif;
 		
-		//on précise si c'est en affichage négatif ou positif en fonction de son utilité
-		//si b est le nombre, positif [0,b] et négatif [-b,b]
+		//on pré–ise si c'est en affichage né–“atif ou positif en fonction de son utilitï¿½
+		//si b est le nombre, positif [0,b] et né–“atif [-b,b]
 		ts.setChoxSigne(signeAff);
 
 		//on met le nombre qu'on voudrait afficher
@@ -103,7 +103,7 @@ public class PresentationMolette extends JPanel implements ChangeListener,IPrese
 		ts = new DKnob();
 		this.setSigneAff(signeAff);
 
-		//on met le type de layout utilisé
+		//on met le type de layout utilisï¿½
 		setLayout(new BorderLayout());
 		setBackground(new Color(200,200,255));
 		//on met le nom de la molette
@@ -112,8 +112,8 @@ public class PresentationMolette extends JPanel implements ChangeListener,IPrese
 		ts.setSize(100, 100);
 		//signeAff=SigneAffichage.negatif;
 		
-		//on précise si c'est en affichage négatif ou positif en fonction de son utilité
-		//si b est le nombre, positif [0,b] et négatif [-b,b]
+		//on pré–ise si c'est en affichage né–“atif ou positif en fonction de son utilitï¿½
+		//si b est le nombre, positif [0,b] et né–“atif [-b,b]
 		ts.setChoxSigne(signeAff);
 
 		//on met le nombre qu'on voudrait afficher

@@ -17,16 +17,23 @@ public class ReglageVCO extends JPanel{
 		
 		if(language == "Chinese")
 		{
-			att = new PresentationMolette( SigneAffichage.negatif, 7, new String(configuration.getProperties().getProperty("module.VCO.att").getBytes("iso8859-1"), "utf-8"));
-			pitch = new PresentationMolette( SigneAffichage.positif, 100, new String(configuration.getProperties().getProperty( "module.VCO.pitch").getBytes("iso8859-1"), "utf-8"));
-			base = new PresentationMolette( SigneAffichage.puissance, 7, new String(configuration.getProperties().getProperty( "module.VCO.base").getBytes("iso8859-1"), "utf-8"));
+			nameAtt = new String(configuration.getProperties().getProperty("module.VCO.att").getBytes("iso8859-1"), "utf-8");
+			namePitch = new String(configuration.getProperties().getProperty("module.VCO.pitch").getBytes("iso8859-1"), "utf-8");
+			nameBase = new String(configuration.getProperties().getProperty("module.VCO.base").getBytes("iso8859-1"), "utf-8");
 		}
 		else
 		{
-			att = new PresentationMolette( SigneAffichage.negatif, 7, configuration.getProperties().getProperty("module.VCO.att") );
-			pitch = new PresentationMolette( SigneAffichage.positif, 100, configuration.getProperties().getProperty("module.VCO.pitch"));
-			base = new PresentationMolette( SigneAffichage.puissance, 7, configuration.getProperties().getProperty("module.VCO.base"));
+			nameAtt = configuration.getProperties().getProperty("module.VCO.att");
+			namePitch = configuration.getProperties().getProperty("module.VCO.pitch");
+			nameBase = configuration.getProperties().getProperty("module.VCO.base");
 		}
+		att = new PresentationMolette( SigneAffichage.negatif, 7, nameAtt,4);
+		att.getTs().setValue(att.getTs().getValeurAiguille());
+		pitch = new PresentationMolette( SigneAffichage.positif, 100, namePitch,20);
+		pitch.getTs().setValue(pitch.getTs().getValeurAiguille());
+		base = new PresentationMolette( SigneAffichage.puissance, 7, nameBase,3);
+		base.getTs().setValue(base.getTs().getValeurAiguille());
+	
 		//att = new PresentationMolette( SigneAffichage.negatif, 7, "Att" );
 		//pitch = new PresentationMolette( SigneAffichage.positif, 100, "Pitch" );
 		//base = new PresentationMolette( SigneAffichage.puissance, 7, "Base" );
@@ -74,6 +81,9 @@ public class ReglageVCO extends JPanel{
 	private PresentationMolette att;
 	private PresentationMolette base;
 	private PresentationMolette pitch;
+	private String nameAtt;
+	private String nameBase;
+	private String namePitch;
 	/**
 	 * 29007655
 	 */

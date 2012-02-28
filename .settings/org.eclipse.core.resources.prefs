@@ -1,5 +1,6 @@
-#Tue Feb 28 15:06:59 CET 2012
+#Tue Feb 28 16:12:48 CET 2012
 eclipse.preferences.version=1
 encoding//src/config/configurationcn.properties=UTF-8
 encoding//src/gui/impl/PresentationVCO.java=UTF-8
+encoding//src/gui/impl/subpresentation/DKnob.java=UTF-8
 encoding//src/gui/impl/subpresentation/PresentationMolette.java=UTF-8

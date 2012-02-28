@@ -23,14 +23,19 @@ public class ReglageVCF extends JPanel {
 		setLayout(null);
 		if(language == "Chinese")
 		{
-			att = new PresentationMolette (SigneAffichage.negatif, 8, new String(configuration.getProperties().getProperty("module.VCF.att").getBytes("iso8859-1"), "utf-8"));
-			base = new PresentationMolette (SigneAffichage.positif , 15 , new String(configuration.getProperties().getProperty("module.VCF.base").getBytes("iso8859-1"), "utf-8"));
+			nameAtt = new String(configuration.getProperties().getProperty("module.VCF.att").getBytes("iso8859-1"), "utf-8");
+			nameBase = new String(configuration.getProperties().getProperty("module.VCF.base").getBytes("iso8859-1"), "utf-8");
 		}
 		else
 		{
-			att = new PresentationMolette (SigneAffichage.negatif, 8, configuration.getProperties().getProperty("module.VCF.att") );
-			base = new PresentationMolette (SigneAffichage.positif , 15 , configuration.getProperties().getProperty("module.VCF.base") );
+			nameAtt = configuration.getProperties().getProperty("module.VCF.att");
+			nameBase = configuration.getProperties().getProperty("module.VCF.base");
 		}
+		att = new PresentationMolette (SigneAffichage.negatif, 8, nameAtt,4);
+		att.getTs().setValue(att.getTs().getValeurAiguille());
+		base = new PresentationMolette (SigneAffichage.positif , 15 , nameBase,7);
+		base.getTs().setValue(base.getTs().getValeurAiguille());
+	
 		
 		add(att);
 		add(base);
@@ -65,6 +70,11 @@ public class ReglageVCF extends JPanel {
 	public void setBase(PresentationMolette base) {
 		this.base = base;
 	}
+	
+	
+	private String nameAtt;
+	private String nameBase;
+	
 	
 	/*public String getNameAtt() {
 		return nameAtt;

@@ -36,8 +36,10 @@ public class ReglageVCA extends JPanel {
 		}
         	
 		
-		att = new PresentationMolette (SigneAffichage.negatif, 8, nameAtt);
-		base = new PresentationMolette (SigneAffichage.puissance , 7 , nameBase);
+		att = new PresentationMolette (SigneAffichage.negatif, 8, nameAtt,4);
+		att.getTs().setValue(att.getTs().getValeurAiguille());
+		base = new PresentationMolette (SigneAffichage.puissance , 7 , nameBase,3);
+		base.getTs().setValue(base.getTs().getValeurAiguille());
 		add(att);
 		add(base);
 		setVisible(true);
