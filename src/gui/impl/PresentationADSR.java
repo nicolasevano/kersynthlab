@@ -32,70 +32,145 @@ public class PresentationADSR extends APresentationModule{
          * Public constructor
          * @throws UnsupportedEncodingException 
          */
-        public PresentationADSR(IConfigurationLoader configuration) throws UnsupportedEncodingException{
-               
-                this.configuration = configuration;
-                String language = configuration.getLanguage();
-               
-                setBackground( Color.gray );
-                
-                if(language == "Chinese")
-                {
-                	attackTime = new PresentationMolette( SigneAffichage.positif, 1000, new String(configuration.getProperties().getProperty("module.ADSR.attackTime").getBytes("iso8859-1"), "utf-8"));
-                    initialDelay = new PresentationMolette( SigneAffichage.positif, 1000,new String(configuration.getProperties().getProperty("module.ADSR.initialDelay").getBytes("iso8859-1"), "utf-8"));
-                    sustainAmp = new PresentationMolette( SigneAffichage.positif, 32768, new String(configuration.getProperties().getProperty("module.ADSR.sustainAmp").getBytes("iso8859-1"), "utf-8") );
-                    finalDelay = new PresentationMolette( SigneAffichage.positif, 1000, new String(configuration.getProperties().getProperty("module.ADSR.finalDelay").getBytes("iso8859-1"), "utf-8"));
-                }
-                else
-                {
-                	attackTime = new PresentationMolette( SigneAffichage.positif, 1000, configuration.getProperties().getProperty("module.ADSR.attackTime") );
-                    initialDelay = new PresentationMolette( SigneAffichage.positif, 1000,configuration.getProperties().getProperty("module.ADSR.initialDelay"));
-                    sustainAmp = new PresentationMolette( SigneAffichage.positif, 32768, configuration.getProperties().getProperty("module.ADSR.sustainAmp") );
-                    finalDelay = new PresentationMolette( SigneAffichage.positif, 1000, configuration.getProperties().getProperty("module.ADSR.finalDelay"));
-                }
-                
-                jLabelIn = new JLabel();
-                if(language == "Chinese")
-                	jLabelIn.setText(new String(configuration.getProperties().getProperty("module.ADSR.in").getBytes("iso8859-1"), "utf-8"));
-                else
-                	jLabelIn.setText(configuration.getProperties().getProperty("module.ADSR.in"));
-                	
-                CInPort cInport = new CInPort( super.getCurrentPortId() );
-                super.setCurrentPortId( super.getCurrentPortId() + 1 );
-                inPort = cInport.getPresentation();
-                
-                jLabelOut = new JLabel();
-                if(language == "Chinese")
-                	jLabelOut.setText(new String(configuration.getProperties().getProperty("module.ADSR.out").getBytes("iso8859-1"), "utf-8"));
-                else
-                	jLabelOut.setText(configuration.getProperties().getProperty("module.ADSR.out"));
-                
-                COutPort cOutport = new COutPort( super.getCurrentPortId() );
-                super.setCurrentPortId( super.getCurrentPortId() + 1 );
-                outPort = cOutport.getPresentation();
-                tittle = new JLabel();
-                tittle.setHorizontalAlignment( javax.swing.SwingConstants.CENTER );
-                if(language == "Chinese")
-                	tittle.setText(new String(configuration.getProperties().getProperty("module.ADSR.title").getBytes("iso8859-1"), "utf-8"));
-                else
-                	tittle.setText(configuration.getProperties().getProperty("module.ADSR.title"));
-                //tittle.setText( "MODULE ADSR" );
-                tittle.setBorder( new javax.swing.border.MatteBorder( null ) );
-                tittle.setForeground( Color.white );
-                //tittle.setVisible( true );
-                setLayout( null );
-                add( tittle );
-                add(jLabelIn);
-                add( inPort );
-                add( attackTime );
-                add( initialDelay );
-        add( sustainAmp );
-        add( finalDelay );
-        add(jLabelOut);
-        add( outPort );
-        setVisible( true );
-        setPosition();
-        }
+	public PresentationADSR(IConfigurationLoader configuration) throws UnsupportedEncodingException{
+
+		this.configuration = configuration;
+		String language = configuration.getLanguage();
+
+		setBackground( Color.gray );
+
+		if(language == "Chinese")
+		{
+			attackTime = new PresentationMolette( SigneAffichage.positif, 1000, new String(configuration.getProperties().getProperty("module.ADSR.attackTime").getBytes("iso8859-1"), "utf-8"));
+			initialDelay = new PresentationMolette( SigneAffichage.positif, 1000,new String(configuration.getProperties().getProperty("module.ADSR.initialDelay").getBytes("iso8859-1"), "utf-8"));
+			sustainAmp = new PresentationMolette( SigneAffichage.positif, 32768, new String(configuration.getProperties().getProperty("module.ADSR.sustainAmp").getBytes("iso8859-1"), "utf-8") );
+			finalDelay = new PresentationMolette( SigneAffichage.positif, 1000, new String(configuration.getProperties().getProperty("module.ADSR.finalDelay").getBytes("iso8859-1"), "utf-8"));
+		}
+		else
+		{
+			attackTime = new PresentationMolette( SigneAffichage.positif, 1000, configuration.getProperties().getProperty("module.ADSR.attackTime") );
+			initialDelay = new PresentationMolette( SigneAffichage.positif, 1000,configuration.getProperties().getProperty("module.ADSR.initialDelay"));
+			sustainAmp = new PresentationMolette( SigneAffichage.positif, 32768, configuration.getProperties().getProperty("module.ADSR.sustainAmp") );
+			finalDelay = new PresentationMolette( SigneAffichage.positif, 1000, configuration.getProperties().getProperty("module.ADSR.finalDelay"));
+		}
+
+		jLabelIn = new JLabel();
+		if(language == "Chinese")
+			jLabelIn.setText(new String(configuration.getProperties().getProperty("module.ADSR.in").getBytes("iso8859-1"), "utf-8"));
+		else
+			jLabelIn.setText(configuration.getProperties().getProperty("module.ADSR.in"));
+
+		CInPort cInport = new CInPort( super.getCurrentPortId() );
+		super.setCurrentPortId( super.getCurrentPortId() + 1 );
+		inPort = cInport.getPresentation();
+
+		jLabelOut = new JLabel();
+		if(language == "Chinese")
+			jLabelOut.setText(new String(configuration.getProperties().getProperty("module.ADSR.out").getBytes("iso8859-1"), "utf-8"));
+		else
+			jLabelOut.setText(configuration.getProperties().getProperty("module.ADSR.out"));
+
+		COutPort cOutport = new COutPort( super.getCurrentPortId() );
+		super.setCurrentPortId( super.getCurrentPortId() + 1 );
+		outPort = cOutport.getPresentation();
+		tittle = new JLabel();
+		tittle.setHorizontalAlignment( javax.swing.SwingConstants.CENTER );
+		if(language == "Chinese")
+			tittle.setText(new String(configuration.getProperties().getProperty("module.ADSR.title").getBytes("iso8859-1"), "utf-8"));
+		else
+			tittle.setText(configuration.getProperties().getProperty("module.ADSR.title"));
+		//tittle.setText( "MODULE ADSR" );
+		tittle.setBorder( new javax.swing.border.MatteBorder( null ) );
+		tittle.setForeground( Color.white );
+		//tittle.setVisible( true );
+		setLayout( null );
+		add( tittle );
+		add(jLabelIn);
+		add( inPort );
+		add( attackTime );
+		add( initialDelay );
+		add( sustainAmp );
+		add( finalDelay );
+		add(jLabelOut);
+		add( outPort );
+		setVisible( true );
+		setPosition();
+	}
+
+	public PresentationADSR( IConfigurationLoader configuration, String savedOne ) throws UnsupportedEncodingException{
+
+		this.configuration = configuration;
+		String language = configuration.getLanguage();
+		
+		String [] savedADSR = savedOne.split( "\\|" );
+        String inPortInfo = savedADSR[ this.inPortIndex ];
+        int inPortID = Integer.valueOf( ( ( inPortInfo.split( ":" ) )[ 1 ].split( "," ) )[ 1 ] );
+        String outPortInfo = savedADSR[ this.outPortIndex ];
+        int outPortID = Integer.valueOf( ( ( outPortInfo.split( ":" ) )[ 1 ].split( "," ) )[ 1 ] );
+        String locationInfo = savedADSR[ this.locationIndex ];
+        String locationInfoX = ( ( ( locationInfo.split( ":" ) )[ 1 ].split(";") )[0] );
+        String locationInfoY = ( ( ( locationInfo.split( ":" ) )[ 1 ].split(";") )[1] );
+        int xPosition = Integer.valueOf( locationInfoX.split( "," )[ 1 ] );
+        int yPosition = Integer.valueOf( locationInfoY.split( "," )[ 1 ] );
+		
+		setBackground( Color.gray );
+
+		if(language == "Chinese")
+		{
+			attackTime = new PresentationMolette( SigneAffichage.positif, 1000, new String(configuration.getProperties().getProperty("module.ADSR.attackTime").getBytes("iso8859-1"), "utf-8"));
+			initialDelay = new PresentationMolette( SigneAffichage.positif, 1000,new String(configuration.getProperties().getProperty("module.ADSR.initialDelay").getBytes("iso8859-1"), "utf-8"));
+			sustainAmp = new PresentationMolette( SigneAffichage.positif, 32768, new String(configuration.getProperties().getProperty("module.ADSR.sustainAmp").getBytes("iso8859-1"), "utf-8") );
+			finalDelay = new PresentationMolette( SigneAffichage.positif, 1000, new String(configuration.getProperties().getProperty("module.ADSR.finalDelay").getBytes("iso8859-1"), "utf-8"));
+		}
+		else
+		{
+			attackTime = new PresentationMolette( SigneAffichage.positif, 1000, configuration.getProperties().getProperty("module.ADSR.attackTime") );
+			initialDelay = new PresentationMolette( SigneAffichage.positif, 1000,configuration.getProperties().getProperty("module.ADSR.initialDelay"));
+			sustainAmp = new PresentationMolette( SigneAffichage.positif, 32768, configuration.getProperties().getProperty("module.ADSR.sustainAmp") );
+			finalDelay = new PresentationMolette( SigneAffichage.positif, 1000, configuration.getProperties().getProperty("module.ADSR.finalDelay"));
+		}
+
+		jLabelIn = new JLabel();
+		if(language == "Chinese")
+			jLabelIn.setText(new String(configuration.getProperties().getProperty("module.ADSR.in").getBytes("iso8859-1"), "utf-8"));
+		else
+			jLabelIn.setText(configuration.getProperties().getProperty("module.ADSR.in"));
+
+		CInPort cInport = new CInPort( inPortID );
+		inPort = cInport.getPresentation();
+
+		jLabelOut = new JLabel();
+		if(language == "Chinese")
+			jLabelOut.setText(new String(configuration.getProperties().getProperty("module.ADSR.out").getBytes("iso8859-1"), "utf-8"));
+		else
+			jLabelOut.setText(configuration.getProperties().getProperty("module.ADSR.out"));
+
+		COutPort cOutport = new COutPort( outPortID );
+		outPort = cOutport.getPresentation();
+		tittle = new JLabel();
+		tittle.setHorizontalAlignment( javax.swing.SwingConstants.CENTER );
+		if(language == "Chinese")
+			tittle.setText(new String(configuration.getProperties().getProperty("module.ADSR.title").getBytes("iso8859-1"), "utf-8"));
+		else
+			tittle.setText(configuration.getProperties().getProperty("module.ADSR.title"));
+		//tittle.setText( "MODULE ADSR" );
+		tittle.setBorder( new javax.swing.border.MatteBorder( null ) );
+		tittle.setForeground( Color.white );
+		//tittle.setVisible( true );
+		setLayout( null );
+		add( tittle );
+		add(jLabelIn);
+		add( inPort );
+		add( attackTime );
+		add( initialDelay );
+		add( sustainAmp );
+		add( finalDelay );
+		add(jLabelOut);
+		add( outPort );
+		setVisible( true );
+		setPosition();
+		setLocation( xPosition, yPosition );
+	}
        
         /**
          * set position of each component on ADSR presentation JPanel

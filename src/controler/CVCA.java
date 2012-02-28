@@ -17,6 +17,13 @@ public class CVCA extends VCA {
 		presentation.initListener();
 	}
 	
+	public CVCA(IConfigurationLoader configuration, String savedOne) throws UnsupportedEncodingException {
+		this.configuration = configuration;
+		presentation = new PresentationVCA( configuration, savedOne );
+		presentation.setControl( this );
+		presentation.initListener();
+	}
+	
 	public PresentationVCA getPresentation() {
 		return presentation;
 	}

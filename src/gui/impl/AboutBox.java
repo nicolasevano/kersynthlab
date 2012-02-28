@@ -90,7 +90,7 @@ public class AboutBox extends JDialog{
        
        
          
-    	icon = new ImageIcon ("images/logo.jpg");
+    	icon = new ImageIcon (this.getClass().getResource("/images/logo.jpg"));
         jLabelLogo = new JLabel(icon);
         jLabelLogo.setVisible (true) ;
     	

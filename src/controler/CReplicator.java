@@ -15,6 +15,11 @@ public class CReplicator extends Replicator{
 		presentation.setControl(this);
 	}
 	
+	public CReplicator(IConfigurationLoader configuration,String savedOne) throws UnsupportedEncodingException {
+		presentation = new PresentationReplicator( configuration, savedOne );
+		presentation.setControl(this);
+	}
+	
 	public PresentationReplicator getPresentation() {
 		return presentation;
 	}

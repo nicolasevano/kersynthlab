@@ -65,5 +65,10 @@ public abstract class APresentationModule extends JPanel{
 	private static int currentPortId;
 	
 	private List<PresentationWire> wires = new ArrayList<PresentationWire>();
-
+	
+	protected int nameIndex = 0;
+    protected int inPortIndex = 1;
+    protected int outPortIndex = 2;
+    protected int parameterIndex = 3;
+    protected int locationIndex = 4;
 }

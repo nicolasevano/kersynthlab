@@ -101,7 +101,7 @@ public class PresentationUserOption extends JMenuBar{
 		load.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {	//TODO
-				control.loadMontage();
+					doLoadGame();
 				}
 		});
 		file.add( load );
@@ -356,6 +356,14 @@ public class PresentationUserOption extends JMenuBar{
 		this.sampleRateChose = sampleRateChose;
 	}
 	
+	public IConfigurationLoader getConfiguration() {
+		return configuration;
+	}
+
+	public void setConfiguration(IConfigurationLoader configuration) {
+		this.configuration = configuration;
+	}
+	
 	private void doSaveGame(){
 		
 		int returnVal = fc.showOpenDialog( this );
@@ -366,6 +374,16 @@ public class PresentationUserOption extends JMenuBar{
         	
         }
         
+	}
+	
+	private void doLoadGame(){
+		int returnVal = fc.showOpenDialog( this );
+        if ( returnVal == JFileChooser.APPROVE_OPTION ) {
+        	
+        	fToUse = fc.getSelectedFile();
+        	control.loadMontage( fToUse );
+        	
+        }
 	}
 	
 	private CUserOption control;

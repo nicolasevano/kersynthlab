@@ -17,7 +17,7 @@ public class PresentationInPortImpl extends JPanel implements IPresentationInPor
 
 	public PresentationInPortImpl(){
 		
-		icone = new ImageIcon ("images/port.png") ;
+		icone = new ImageIcon ( this.getClass().getResource( "/images/port.png" ) ) ;
 		face = new JLabel(icone);
 		
 		largeur = icone.getIconWidth ();

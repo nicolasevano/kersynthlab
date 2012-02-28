@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Timer;
@@ -23,15 +24,17 @@ public class ConfigurationLoader implements IConfigurationLoader {
 	@SuppressWarnings("unused")
 	public void load(){
 		properties = new Properties();
-		FileInputStream input = null;
+		//FileInputStream input = null;
+		InputStream input = null;
 		try{
 			//String fileName = "src/config/configuration.properties";
 			
 			//InputStreamReader in= new InputStreamReader(Parser.class.getResourceAsStream(dataFile),"UTF-8");
 			
 			//input = new FileInputStream(Parser.class.getResourceAsStream(configurationFileName), "GBK");
-			input = new FileInputStream(configurationFileName);
-			if(configurationFileName == "src/config/configurationcn.properties")
+			input = this.getClass().getResourceAsStream(configurationFileName);
+			//input = new FileInputStream(configurationFileName);
+			if(configurationFileName == "/config/configurationcn.properties")
 			{
 				this.setLanguage("Chinese");
 			}
@@ -42,7 +45,7 @@ public class ConfigurationLoader implements IConfigurationLoader {
 			properties.load( input );
 			
 		} catch ( IOException ioe ) {
-
+			ioe.printStackTrace();
 		} finally {
 			try {
 				input.close();

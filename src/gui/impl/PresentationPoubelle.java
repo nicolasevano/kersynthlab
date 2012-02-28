@@ -23,7 +23,7 @@ public class PresentationPoubelle extends JPanel{
 		setPreferredSize( new Dimension( 88,120 ) );
 		setBackground(Color.white);
 		//setBorder(BorderFactory.createLineBorder(Color.black));
-		ImageIcon imaPou = new ImageIcon("images/poubelle2.jpg");
+		ImageIcon imaPou = new ImageIcon(this.getClass().getResource("/images/poubelle2.jpg"));
 		JLabel poubelle = new JLabel(imaPou);
 		setSize( 88, 120 );
 		add(poubelle);

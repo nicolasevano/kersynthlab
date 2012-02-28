@@ -19,6 +19,12 @@ public class COUT extends Out{
 		presentation.setControl( this );
 	}
 	
+	public COUT( String savedOne ){
+		super();
+		presentation = new PresentationOUTImpl( savedOne );
+		presentation.setControl( this );
+	}
+	
 	public PresentationOUTImpl getPresentation() {
 		return presentation;
 	}

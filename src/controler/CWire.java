@@ -14,6 +14,11 @@ public class CWire {
 		presentation.setControl( this );
 	}
 	
+	public CWire( String savedOne ){
+		presentation = new PresentationWire( savedOne );
+		presentation.setControl( this );
+	}
+	
 	public PresentationWire getPresentation() {
 		return presentation;
 	}

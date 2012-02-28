@@ -38,7 +38,8 @@ public class ModuleListener extends MouseAdapter{
 				( ( PresentationModuleZone ) currentPlan ).setCurrentWire( currentWire.getPresentation() ); 
 				Point location = new Point( 
 						outPort.getLocation().x - outPort.getWidth() / 2,
-						outPort.getLocation().y - outPort.getHeight() / 2 );
+						outPort.getLocation().y - outPort.getHeight() / 2 
+						);
 				( ( PresentationModuleZone ) currentPlan ).getCurrentWire().setLocation( location );
 				( ( PresentationModuleZone ) currentPlan ).getCurrentWire().setVisible( true );
 				currentPlan.add( ( ( PresentationModuleZone ) currentPlan ).getCurrentWire() , 0 );

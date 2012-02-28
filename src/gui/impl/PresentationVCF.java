@@ -24,13 +24,10 @@ public class PresentationVCF extends APresentationModule {
 
 
 	public PresentationVCF(IConfigurationLoader configuration) throws UnsupportedEncodingException {
-//		control = new CVCF();
-//		control.setPresentation(this);
 		String language = configuration.getLanguage();
 		setLayout(null);
 		setBackground(Color.gray);
 		
-		//labelVCF = new JLabel(nameModule);
 		labelVCF = new JLabel();
 		if(language == "Chinese")
 			labelVCF.setText(new String(configuration.getProperties().getProperty("module.VCF.title").getBytes("iso8859-1"), "utf-8"));
@@ -75,7 +72,64 @@ public class PresentationVCF extends APresentationModule {
 		setTitlePosition();
 	}
 	
-	
+	public PresentationVCF(IConfigurationLoader configuration,String savedOne) throws UnsupportedEncodingException {
+		String language = configuration.getLanguage();
+		setLayout(null);
+		setBackground(Color.gray);
+		String [] savedVCF = savedOne.split( "\\|" );
+        String inPortInfo = savedVCF[ this.inPortIndex ];
+        int inPortID = 
+        	Integer.valueOf( ( ( inPortInfo.split( ":" ) )[ 1 ].split( ";" ) )[ 0 ].split( "," )[ 1 ] );
+        int fmPortID = 
+        	Integer.valueOf( ( ( inPortInfo.split( ":" ) )[ 1 ].split( ";" ) )[ 1 ].split( "," )[ 1 ] );
+        String outPortInfo = savedVCF[ this.outPortIndex ];
+        int outPortID = Integer.valueOf( ( ( outPortInfo.split( ":" ) )[ 1 ].split( "," ) )[ 1 ] );
+        String locationInfo = savedVCF[ this.locationIndex ];
+        String locationInfoX = ( ( ( locationInfo.split( ":" ) )[ 1 ].split(";") )[0] );
+        String locationInfoY = ( ( ( locationInfo.split( ":" ) )[ 1 ].split(";") )[1] );
+        int xPosition = Integer.valueOf( locationInfoX.split( "," )[ 1 ] );
+        int yPosition = Integer.valueOf( locationInfoY.split( "," )[ 1 ] );
+		labelVCF = new JLabel();
+		if(language == "Chinese")
+			labelVCF.setText(new String(configuration.getProperties().getProperty("module.VCF.title").getBytes("iso8859-1"), "utf-8"));
+		else
+			labelVCF.setText(configuration.getProperties().getProperty("module.VCF.title"));
+		labelVCF.setBorder(new javax.swing.border.MatteBorder(null));
+		labelVCF.setHorizontalAlignment( javax.swing.SwingConstants.CENTER );
+		setSize( 380, 200 );
+		
+		paramVCF = new ReglageVCF( configuration );
+		CInPort cFmPort = new CInPort( inPortID );
+		fmPort = cFmPort.getPresentation();
+		CInPort cInport = new CInPort( fmPortID );
+		inPort = cInport.getPresentation();
+		COutPort cOutPort = new COutPort( outPortID );
+		outPort = cOutPort.getPresentation();
+		
+		add( labelVCF );
+		add( fmPort );
+		fmPort.setLocation(0, ( ( getHeight() / 3 ) - ( fmPort.getHeight() / 2 ) ) );
+		add( inPort );
+		inPort.setLocation(0,( ( getHeight()/3 ) * 2 ) - ( inPort.getHeight() / 2 ) );
+		
+		JLabel jLabelOut = new JLabel();
+        if(language == "Chinese")
+        	jLabelOut.setText(new String(configuration.getProperties().getProperty("module.VCF.out").getBytes("iso8859-1"), "utf-8"));
+        else
+        	jLabelOut.setText(configuration.getProperties().getProperty("module.VCF.out"));
+        jLabelOut.setSize(50,50);
+        jLabelOut.setLocation(getWidth() - 20, ( getHeight() / 2 ) - ( outPort.getHeight() / 2 ) - 35);
+        jLabelOut.setForeground(Color.white);
+        add(jLabelOut);
+		
+		add( outPort );
+		outPort.setLocation( getWidth() - outPort.getWidth(), 
+				( getHeight() / 2 ) - ( outPort.getHeight() / 2 ) );
+		add( paramVCF );
+		setParameterPosition();
+		setTitlePosition();
+		setLocation( xPosition, yPosition );
+	}
 	
 	private void setTitlePosition() {
 		labelVCF.setSize( 400, 30 );
@@ -155,8 +209,6 @@ public class PresentationVCF extends APresentationModule {
 
 	}
 
-
-
 	@Override
 	public void setControl(Module module) {
 		// TODO Auto-generated method stub
@@ -167,7 +219,13 @@ public class PresentationVCF extends APresentationModule {
 		this.outPort.getControl().setModule( module );
 	}
 
+	public PresentationInPortImpl getFmPort() {
+		return fmPort;
+	}
 
+	public void setFmPort(PresentationInPortImpl fmPort) {
+		this.fmPort = fmPort;
+	}
 
 	@Override
 	public PresentationInPortImpl getInPort() {
@@ -175,15 +233,11 @@ public class PresentationVCF extends APresentationModule {
 		return inPort;
 	}
 
-
-
 	@Override
 	public void setInPort(PresentationInPortImpl inPort) {
 		// TODO Auto-generated method stub
 		this.inPort = inPort;
 	}
-
-
 
 	@Override
 	public PresentationOutPortImpl getOutPort() {
@@ -203,7 +257,7 @@ public class PresentationVCF extends APresentationModule {
 		StringBuffer result = new StringBuffer();
 		result.append( "VCF:|" );
 		result.append( "Inport:" );
-		result.append( "in," ).append( inPort.getControl().getId() ).append( "|" );
+		result.append( "in," ).append( inPort.getControl().getId() ).append( ";" );
 		result.append( "fm," ).append( fmPort.getControl().getId() ).append( "|" );
 		result.append( "Outport:" );
 		result.append( "out," ).append( outPort.getControl().getId() ).append( "|" );

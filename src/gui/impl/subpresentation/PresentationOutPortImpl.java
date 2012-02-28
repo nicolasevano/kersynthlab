@@ -33,7 +33,7 @@ public class PresentationOutPortImpl extends JPanel implements IPresentationOutP
 	public PresentationOutPortImpl(){
 		this.setBackground(Color.gray);
 	
-		icone = new ImageIcon ("images/port.png") ;
+		icone = new ImageIcon ( this.getClass().getResource( "/images/port.png" ) ) ;
 		face = new JLabel(icone);
 		largeur = icone.getIconWidth ();
 		hauteur = icone.getIconHeight ();

@@ -65,6 +65,38 @@ public class PresentationOUTImpl extends APresentationModule implements IPresent
 		setSize( largeur + portIn.getWidth() + 2 , hauteur );
 	}
 	
+	public PresentationOUTImpl( String savedOne ){
+		System.out.println( savedOne );
+		String [] savedADSR = savedOne.split( "\\|" );
+        String inPortInfo = savedADSR[ this.inPortIndex ];
+        System.out.println( inPortInfo );
+        int inPortID = Integer.valueOf( ( ( inPortInfo.split( ":" ) )[ 1 ].split( "," ) )[ 1 ] );
+        String locationInfo = savedADSR[ this.locationIndex ];
+        String locationInfoX = ( ( ( locationInfo.split( ":" ) )[ 1 ].split(";") )[0] );
+        String locationInfoY = ( ( ( locationInfo.split( ":" ) )[ 1 ].split(";") )[1] );
+        int xPosition = Integer.valueOf( locationInfoX.split( "," )[ 1 ] );
+        int yPosition = Integer.valueOf( locationInfoY.split( "," )[ 1 ] );
+		CInPort cInPort = new CInPort( inPortID );
+		portIn = cInPort.getPresentation();
+		icone = new ImageIcon ( "images/baffle.png" ) ;
+		face = new JLabel(icone);
+		this.setBackground( Color.gray );
+		this.setLayout( null );
+		
+		setPreferredSize(this.getSize());
+		largeur = icone.getIconWidth () + 2;
+		hauteur = icone.getIconHeight () + 2;
+		
+		face.setVisible ( true ) ;
+		face.setSize( icone.getIconWidth(), icone.getIconHeight() );
+		add( face );
+		face.setLocation( portIn.getWidth() + 3,1 );
+		add( portIn );
+		portIn.setLocation(0, (hauteur / 2) - (portIn.getHeight() / 2) );
+		setSize( largeur + portIn.getWidth() + 2 , hauteur );
+		setLocation( xPosition, yPosition );
+	}
+	
 	@Override
 	public boolean isConnectedCable() {
 		// TODO Auto-generated method stub

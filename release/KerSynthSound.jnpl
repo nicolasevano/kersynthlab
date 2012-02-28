@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0+" codebase="http://localhost/" href="MonApplication.jnlp">
+<information>
+	<title>Mon Application</title>
+	<vendor>KerSynthSound</vendor>
+	<homepage href="http://localhost/"/>
+	<description>KerSynthSound</description>
+	<description kind="short">syntheseur a modulation de frequence</description>
+	<offline-allowed/>
+</information>
+<security>
+</security>
+<resources>
+	<j2se version="1.6"/>
+	<jar href="KerSynthSound.jar"/>
+</resources>
+<application-desc main-class="controler.CSynthEditor" />
+</jnlp>

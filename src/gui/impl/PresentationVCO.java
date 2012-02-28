@@ -144,7 +144,7 @@ public class PresentationVCO extends APresentationModule {
             this.configuration = configuration;
             String language = configuration.getLanguage();
             jLabel4 = new JLabel();
-            String [] savedVCO = savedOne.split( "|" );
+            String [] savedVCO = savedOne.split( "\\|" );
             String inPortInfo = savedVCO[ this.inPortIndex ];
             int inPortID = Integer.valueOf( ( ( inPortInfo.split( ":" ) )[ 1 ].split( "," ) )[ 1 ] );
             String outPortInfo = savedVCO[ this.outPortIndex ];
@@ -328,12 +328,6 @@ public class PresentationVCO extends APresentationModule {
 
         private PresentationInPortImpl inPort;
         
-        protected int nameIndex = 0;
-        protected int inPortIndex = 1;
-        protected int outPortIndex = 2;
-        protected int parameterIndex = 3;
-        protected int locationIndex = 4;
-       
         /*public static void main(String[] args){
                 java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

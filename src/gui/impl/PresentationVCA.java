@@ -23,9 +23,16 @@ import gui.impl.subpresentation.ReglageVCA;
 
 public class PresentationVCA extends APresentationModule {
 
-	public PresentationVCA(IConfigurationLoader configuration) throws UnsupportedEncodingException {
+	public PresentationVCA( IConfigurationLoader configuration ) 
+	throws UnsupportedEncodingException {
 		this.configuration = configuration;
 		initComponentVCA(configuration);
+	}
+	
+	public PresentationVCA( IConfigurationLoader configuration, String savedOne ) 
+	throws UnsupportedEncodingException {
+		this.configuration = configuration;
+		initComponentVCA( configuration, savedOne );
 	}
 
 	private void initComponentVCA(IConfigurationLoader configuration) throws UnsupportedEncodingException {
@@ -102,6 +109,89 @@ public class PresentationVCA extends APresentationModule {
 
 	}
 
+	private void initComponentVCA(IConfigurationLoader configuration, String savedOne) throws UnsupportedEncodingException {
+		this.configuration = configuration;
+		String [] savedVCO = savedOne.split( "\\|" );
+        String inPortInfo = savedVCO[ this.inPortIndex ];
+        int inPortID = 
+        	Integer.valueOf( ( ( inPortInfo.split( ":" ) )[ 1 ].split( ";" ) )[ 0 ].split( "," )[ 1 ] );
+        int amPortID = 
+        	Integer.valueOf( ( ( inPortInfo.split( ":" ) )[ 1 ].split( ";" ) )[ 1 ].split( "," )[ 1 ] );
+        String outPortInfo = savedVCO[ this.outPortIndex ];
+        int outPortID = Integer.valueOf( ( ( outPortInfo.split( ":" ) )[ 1 ].split( "," ) )[ 1 ] );
+        String locationInfo = savedVCO[ this.locationIndex ];
+        String locationInfoX = ( ( ( locationInfo.split( ":" ) )[ 1 ].split(";") )[0] );
+        String locationInfoY = ( ( ( locationInfo.split( ":" ) )[ 1 ].split(";") )[1] );
+        int xPosition = Integer.valueOf( locationInfoX.split( "," )[ 1 ] );
+        int yPosition = Integer.valueOf( locationInfoY.split( "," )[ 1 ] );
+		String language  = this.configuration.getLanguage();
+		setLayout(null);
+		setBackground(Color.gray);
+		
+		labelVCA = new JLabel();
+		if(language == "Chinese")
+			labelVCA.setText(new String(configuration.getProperties().getProperty("module.VCA.title").getBytes("iso8859-1"), "utf-8"));
+        else
+        	labelVCA.setText(configuration.getProperties().getProperty("module.VCA.title"));
+		
+		labelVCA.setBorder(new javax.swing.border.MatteBorder(null));
+		labelVCA.setHorizontalAlignment( javax.swing.SwingConstants.CENTER );
+		setSize( 380, 200 );	
+		paramVCA = new ReglageVCA(configuration);
+		CInPort cAmPort = new CInPort( amPortID );
+		am = cAmPort.getPresentation();
+		CInPort cInport = new CInPort( inPortID );
+		inPort = cInport.getPresentation();
+		COutPort cOutPort = new COutPort( outPortID );
+		outPort = cOutPort.getPresentation();
+		
+		add( labelVCA );
+		
+		JLabel jLabelAm = new JLabel();
+        if(language == "Chinese")
+        	jLabelAm.setText(new String(configuration.getProperties().getProperty("module.VCA.am").getBytes("iso8859-1"), "utf-8"));
+        else
+        	jLabelAm.setText(configuration.getProperties().getProperty("module.VCA.am"));
+        jLabelAm.setSize(50,50);
+        jLabelAm.setLocation(0, ( ( getHeight()/3 ) - ( am.getHeight()/2 ) ) - 35);
+        jLabelAm.setForeground(Color.white);
+        add(jLabelAm);
+        
+		add( am );
+		am.setLocation(0, ( ( getHeight()/3 ) - ( am.getHeight()/2 ) ) );
+		add( inPort );
+		inPort.setLocation(0, ( (getHeight()/3) * 2 ) - ( inPort.getHeight()/2 ) );
+		System.out.println( ( getHeight() ) - ( inPort.getHeight() ) );
+		
+		JLabel jLabelIn = new JLabel();
+        if(language == "Chinese")
+        	jLabelIn.setText(new String(configuration.getProperties().getProperty("module.VCA.in").getBytes("iso8859-1"), "utf-8"));
+        else
+        	jLabelIn.setText(configuration.getProperties().getProperty("module.VCA.in"));
+        jLabelIn.setSize(50,50);
+        jLabelIn.setLocation(0, ( ( getHeight() / 3 ) * 2 ) - ( inPort.getHeight()/2 ) + 40);
+        jLabelIn.setForeground(Color.white);
+        add(jLabelIn);
+		
+        
+        JLabel jLabelOut = new JLabel();
+        if(language == "Chinese")
+        	jLabelOut.setText(new String(configuration.getProperties().getProperty("module.VCA.out").getBytes("iso8859-1"), "utf-8"));
+        else
+        	jLabelOut.setText(configuration.getProperties().getProperty("module.VCA.out"));
+        jLabelOut.setSize(50,50);
+        jLabelOut.setLocation(getWidth() - 20, ( getHeight() / 2 ) - ( outPort.getHeight() / 2 ) - 35);
+        jLabelOut.setForeground(Color.white);
+        add(jLabelOut);
+        
+		add( outPort );
+		outPort.setLocation( getWidth() - outPort.getWidth(), 
+				( getHeight() / 2 ) - ( outPort.getHeight() / 2 ) );
+		add(paramVCA);
+		setParameterPosition();
+		setTitlePosition();
+		setLocation( xPosition, yPosition );
+	}
 	private void setTitlePosition() {
 		labelVCA.setSize( 400, 30 );
         labelVCA.setLocation( ( getWidth() / 2 ) - ( labelVCA.getWidth() / 2 ), 0 );
@@ -213,7 +303,15 @@ public class PresentationVCA extends APresentationModule {
 		this.am.getControl().setInport( module.getInPorts().get( "am" ) );
 		this.outPort.getControl().setModule( module );
 	}
+	
+	public PresentationInPortImpl getAm() {
+		return am;
+	}
 
+	public void setAm(PresentationInPortImpl am) {
+		this.am = am;
+	}
+	
 	@Override
 	public void setInPort( PresentationInPortImpl inPort ) {
 		this.inPort = inPort;
@@ -232,7 +330,7 @@ public class PresentationVCA extends APresentationModule {
 		StringBuffer result = new StringBuffer();
 		result.append( "VCA:|" );
 		result.append( "Inport:" );
-		result.append( "in," ).append( inPort.getControl().getId() ).append( "|" );
+		result.append( "in," ).append( inPort.getControl().getId() ).append( ";" );
 		result.append( "am," ).append( am.getControl().getId() ).append( "|" );
 		result.append( "Outport:" );
 		result.append( "out," ).append( outPort.getControl().getId() ).append( "|" );

@@ -29,7 +29,7 @@ public class PresentationWire extends JPanel{
 	 * @param outPort
 	 * @param pDest
 	 */
-	public PresentationWire(PresentationOutPortImpl outPort, Point pDest){
+	public PresentationWire( PresentationOutPortImpl outPort, Point pDest ){
 		
 		this.outPort = outPort;
 		this.pInit = new Point( ( outPort.getLocation().x + ( outPort.getWidth() / 2 ) ) , 
@@ -41,6 +41,38 @@ public class PresentationWire extends JPanel{
 		setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		forme = new QuadCurve2D.Double();
 		
+	}
+	
+	public PresentationWire( String savedOne ){
+		System.out.println("Create wire with a saved one!");
+		String [] savedWire = savedOne.split( "\\|" );
+		String pInitInfo = savedWire[ this.pInitIndex ];
+		int pInitX = 
+			Integer.valueOf( ( ( pInitInfo.split( ":" ) )[ 1 ].split( ";" ) )[ 0 ].split( "," )[ 1 ] );
+		int pInitY =
+			Integer.valueOf( ( ( pInitInfo.split( ":" ) )[ 1 ].split( ";" ) )[ 1 ].split( "," )[ 1 ] );
+		String pDestInfo = savedWire[ this.pDestIndex ];
+		int pDestX = 
+			Integer.valueOf( ( ( pDestInfo.split( ":" ) )[ 1 ].split( ";" ) )[ 0 ].split( "," )[ 1 ] );
+		int pDestY = 
+			Integer.valueOf( ( ( pDestInfo.split( ":" ) )[ 1 ].split( ";" ) )[ 1 ].split( "," )[ 1 ] );
+		String positionInfo = savedWire[ this.positionIndex ];
+		int xLocation = 
+			Integer.valueOf( ( ( positionInfo.split( ":" ) )[ 1 ].split( ";" ) )[ 0 ].split( "," )[ 1 ] );
+		int yLocation = 
+			Integer.valueOf( ( ( positionInfo.split( ":" ) )[ 1 ].split( ";" ) )[ 1 ].split( "," )[ 1 ] );
+		String inPortInfo = savedWire[ this.inportIndex ];
+		this.inPortId = Integer.valueOf( ( ( inPortInfo.split( ":" ) )[ 1 ].split( "," ) )[ 1 ] );
+        String outPortInfo = savedWire[ this.outportIndex ];
+        this.outPortId = Integer.valueOf( ( ( outPortInfo.split( ":" ) )[ 1 ].split( "," ) )[ 1 ] );
+		this.pInit = new Point( pInitX , pInitY );
+		this.pDest = new Point( pDestX , pDestY );
+		setOpaque( false );
+		setSize( 120, 120 );
+		setBorder( BorderFactory.createLineBorder( Color.black ) );
+		setCursor( Cursor.getPredefinedCursor( Cursor.HAND_CURSOR ) );
+		forme = new QuadCurve2D.Double();
+		setLocation( xLocation, yLocation );
 	}
 	
 	/**
@@ -67,7 +99,7 @@ public class PresentationWire extends JPanel{
 		int yinter = Math.max( y2,y1 ) + 40;
 		
 		// define the curve
-		forme.setCurve( x1, y1, xinter, yinter, x2, y2);
+		forme.setCurve( x1, y1, xinter, yinter, x2, y2 );
 		System.out.println("ComputeSize 1[x=" + x1 +",y="+ y1 +"]");
 		System.out.println("ComputeSize 2[x=" + x2 +",y="+ y2 +"]");
 		setSize( Math.max( x1, x2 ) + 5, Math.max( y1, yinter ) );
@@ -200,10 +232,34 @@ public class PresentationWire extends JPanel{
 		
 	}
 	
-	/**
-	 * private membre
-	 */
+	public int getInportID() {
+		return inPortId;
+	}
+
+	public void setInportID(int inportID) {
+		this.inPortId = inportID;
+	}
 	
+	public int getOutPortId() {
+		return outPortId;
+	}
+
+	public void setOutPortId(int outPortId) {
+		this.outPortId = outPortId;
+	}
+	
+	/**
+	 * private member
+	 */
+	private int nameIndex = 0;
+	private int inportIndex = 1;
+	private int outportIndex = 2;
+	private int pInitIndex = 3;
+	private int pDestIndex = 4;
+	private int positionIndex = 5;
+	private int inPortId;
+	private int outPortId;
+
 	/**
 	 * wire beginning point
 	 */

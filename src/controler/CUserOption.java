@@ -16,6 +16,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 
 import command.Command;
+import command.LoadInstallation;
 import command.WriteInstallation;
 
 import listener.ConfigurationListener;
@@ -72,7 +73,14 @@ public class CUserOption {
 		
 	}
 	
-	public void loadMontage(){
+	public void loadMontage(File toLoad){
+		
+		LoadInstallation loadCmd = new LoadInstallation();
+		loadCmd.setPlan( this.ceditor.getPresentation().getModuleZone() );
+		loadCmd.setHorloge(this.getHorloge());
+		loadCmd.setToUseToLoad(toLoad);
+		loadCmd.setConfiguration(this.getPresentation().getConfiguration());
+		loadCmd.execute( null );
 		
 	}
 	

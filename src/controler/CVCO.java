@@ -19,6 +19,13 @@ public class CVCO extends VCO {
 		presentation.initListener();
 	}
 	
+	public CVCO(IConfigurationLoader configuration, String savedOne) throws UnsupportedEncodingException{
+		this.configuration = configuration;
+		presentation = new PresentationVCO( configuration, savedOne );
+		presentation.setControl( this );
+		presentation.initListener();
+	}
+	
 	public PresentationVCO getPresentation() {
 		return presentation;
 	}
