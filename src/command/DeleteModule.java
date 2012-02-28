@@ -62,6 +62,7 @@ public class DeleteModule extends Command{
 			( ( APresentationModule ) wire.getOutPort().getParent() ).getWires().remove( wire );
 			( ( APresentationModule ) wire.getInPort().getParent() ).getWires().remove( wire );
 			( ( PresentationModuleZone ) getPlan() ).remove( wire );
+			( ( PresentationModuleZone ) getPlan() ).validate();
 			( ( PresentationModuleZone ) getPlan() ).repaint();
 		}
 	}

@@ -53,11 +53,11 @@ public class PresentationOUTImpl extends APresentationModule implements IPresent
 		this.setLayout( null );
 		
 		setPreferredSize(this.getSize());
-		largeur = icone.getIconWidth () + 2;
-		hauteur = icone.getIconHeight () + 2;
+		largeur = /*icone.getIconWidth ()*/120 + 2;
+		hauteur = /*icone.getIconHeight ()*/120 + 2;
 		
 		face.setVisible ( true ) ;
-		face.setSize( icone.getIconWidth(), icone.getIconHeight() );
+		face.setSize( /*icone.getIconWidth()*/120, /*icone.getIconHeight()*/120 );
 		add( face );
 		face.setLocation( portIn.getWidth() + 3,1 );
 		add( portIn );
@@ -84,11 +84,11 @@ public class PresentationOUTImpl extends APresentationModule implements IPresent
 		this.setLayout( null );
 		
 		setPreferredSize(this.getSize());
-		largeur = icone.getIconWidth () + 2;
-		hauteur = icone.getIconHeight () + 2;
+		largeur = /*icone.getIconWidth ()*/120 + 2;
+		hauteur = /*icone.getIconHeight ()*/120 + 2;
 		
 		face.setVisible ( true ) ;
-		face.setSize( icone.getIconWidth(), icone.getIconHeight() );
+		face.setSize( 120, 120 );
 		add( face );
 		face.setLocation( portIn.getWidth() + 3,1 );
 		add( portIn );

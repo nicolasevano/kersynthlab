@@ -77,7 +77,7 @@ public class CUserOption {
 		
 		LoadInstallation loadCmd = new LoadInstallation();
 		loadCmd.setPlan( this.ceditor.getPresentation().getModuleZone() );
-		loadCmd.setHorloge(this.getHorloge());
+		loadCmd.setHorloge( this.getHorloge() );
 		loadCmd.setToUseToLoad(toLoad);
 		loadCmd.setConfiguration(this.getPresentation().getConfiguration());
 		loadCmd.execute( null );
