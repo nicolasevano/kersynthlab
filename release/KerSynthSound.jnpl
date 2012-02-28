@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<jnlp spec="1.0+" codebase="http://localhost/" href="MonApplication.jnlp">
+<jnlp spec="1.0+" codebase="http://http://code.google.com/p/kersynthlab/source/browse/release/" href="MonApplication.jnlp">
 <information>
 	<title>Mon Application</title>
 	<vendor>KerSynthSound</vendor>
-	<homepage href="http://localhost/"/>
+	<homepage href="http://http://code.google.com/p/kersynthlab/source/browse/release/"/>
 	<description>KerSynthSound</description>
 	<description kind="short">syntheseur a modulation de frequence</description>
 	<offline-allowed/>
