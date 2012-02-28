@@ -52,8 +52,32 @@ public class PresentationVCF extends APresentationModule {
 		outPort = cOutPort.getPresentation();
 		
 		add(labelVCF);
+		
+		JLabel jLabelFm = new JLabel();
+        if(language == "Chinese")
+        	jLabelFm.setText(new String(configuration.getProperties().getProperty("module.VCF.fm").getBytes("iso8859-1"), "utf-8"));
+        else
+        	jLabelFm.setText(configuration.getProperties().getProperty("module.VCF.fm"));
+        jLabelFm.setSize(50,50);
+        jLabelFm.setLocation(0, ( ( getHeight() / 3 ) - ( fmPort.getHeight() / 2 ) ) - 35);
+        jLabelFm.setForeground(Color.white);
+        add(jLabelFm);
+		
+		
 		add(fmPort);
 		fmPort.setLocation(0, ( ( getHeight() / 3 ) - ( fmPort.getHeight() / 2 ) ) );
+		
+		
+		JLabel jLabelIn = new JLabel();
+        if(language == "Chinese")
+        	jLabelIn.setText(new String(configuration.getProperties().getProperty("module.VCF.in").getBytes("iso8859-1"), "utf-8"));
+        else
+        	jLabelIn.setText(configuration.getProperties().getProperty("module.VCF.in"));
+        jLabelIn.setSize(50,50);
+        jLabelIn.setLocation(0, ( ( getHeight()/3 ) * 2 ) - ( inPort.getHeight() / 2 ) + 40);
+        jLabelIn.setForeground(Color.white);
+        add(jLabelIn);
+		
 		add(inPort);
 		inPort.setLocation(0,( ( getHeight()/3 ) * 2 ) - ( inPort.getHeight() / 2 ) );
 		
