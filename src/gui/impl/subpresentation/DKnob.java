@@ -21,22 +21,22 @@ import javax.swing.event.*;
 public class DKnob extends JComponent
 {
 	private final static float START = 225;//225, modifie les placements des traits noirs sur le cercle
-	private final static float LENGTH = 270;//270,augmente et reduit la zone de déplacement de l'aiguille et la zone de placement des traits 
+	private final static float LENGTH = 270;//270,augmente et reduit la zone de dé–œlacement de l'aiguille et la zone de placement des traits 
 	private final static float PI = (float) 3.1415;
 	private final static float START_ANG = (START/360)*PI*2;//(START/360)*PI*2
 	private final static float LENGTH_ANG = (LENGTH/360)*PI*2;
-	private final static float DRAG_RES = (float) 0.01;//0.01 à voir, on dirait, pas d'utilité
-	private final static float MULTIP = 180 / PI;//180 / PI, à voir
+	private final static float DRAG_RES = (float) 0.01;//0.01 ï¿½voir, on dirait, pas d'utilitï¿½
+	private final static float MULTIP = 180 / PI;//180 / PI, ï¿½voir
 	private final static Color DEFAULT_FOCUS_COLOR = new Color(0x8080ff);//new Color(0x8080ff) modifier la couleur du cadre
 
-	private int SHADOWX = 1;//1 à voir
-	private int SHADOWY = 1;//1 à voir
+	private int SHADOWX = 1;//1 ï¿½voir
+	private int SHADOWY = 1;//1 ï¿½voir
 	private float DRAG_SPEED;//vitesse pour le changement de l'aiguille 
 	private float CLICK_SPEED;//meme que en haut
 	private int size;//la taille du rond
-	private int middle;//le milieu à voir
+	private int middle;//le milieu ï¿½voir
 
-	public final static int SIMPLE = 1;//1 à voir
+	public final static int SIMPLE = 1;//1 ï¿½voir
 	public final static int ROUND  = 2;
 	private int dragType = ROUND;
 
@@ -194,8 +194,8 @@ public class DKnob extends JComponent
 	}
 
 	public void setValue(float val) {
-		if (val < 0 && valeurAiguille <= nombreDeTrait) val = valeurAiguille;//0
-		if (val > 1 && valeurAiguille > nombreDeTrait) val = 1;//1
+		if (val < 0) val = 0;
+		if (val > 1) val = 1;
 		this.val = val;
 		ang = START_ANG - (float) LENGTH_ANG * val;
 		repaint();
@@ -252,8 +252,8 @@ public class DKnob extends JComponent
 
 
 	//entier designant l'intervalle des nombres
-	//si on choisit le signe positif, la molette passe de 0 à entInter
-	//sinon si on choisit le signe negatif, la molette passe de -entInter à entInter
+	//si on choisit le signe positif, la molette passe de 0 ï¿½entInter
+	//sinon si on choisit le signe negatif, la molette passe de -entInter ï¿½entInter
 	private int entInter;
 
 	public int getEntInter() {
@@ -275,7 +275,7 @@ public class DKnob extends JComponent
 	}
 
 
-	//cette méthode nous sert à avoir l'affichage de la molette
+	//cette mé– hode nous sert ï¿½avoir l'affichage de la molette
 	void setValeurAffichageMolette(int val, SigneAffichage signe, Graphics g){
 		if(signe.equals(SigneAffichage.positif)){
 			// Set the position of the Zero

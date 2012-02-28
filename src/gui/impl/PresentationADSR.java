@@ -41,19 +41,24 @@ public class PresentationADSR extends APresentationModule{
 
 		if(language == "Chinese")
 		{
-			attackTime = new PresentationMolette( SigneAffichage.positif, 1000, new String(configuration.getProperties().getProperty("module.ADSR.attackTime").getBytes("iso8859-1"), "utf-8"));
-			initialDelay = new PresentationMolette( SigneAffichage.positif, 1000,new String(configuration.getProperties().getProperty("module.ADSR.initialDelay").getBytes("iso8859-1"), "utf-8"));
-			sustainAmp = new PresentationMolette( SigneAffichage.positif, 32768, new String(configuration.getProperties().getProperty("module.ADSR.sustainAmp").getBytes("iso8859-1"), "utf-8") );
-			finalDelay = new PresentationMolette( SigneAffichage.positif, 1000, new String(configuration.getProperties().getProperty("module.ADSR.finalDelay").getBytes("iso8859-1"), "utf-8"));
+			attackTime = new PresentationMolette( SigneAffichage.positif, 1000, new String(configuration.getProperties().getProperty("module.ADSR.attackTime").getBytes("iso8859-1"), "utf-8"), 100 );
+			initialDelay = new PresentationMolette( SigneAffichage.positif, 1000,new String(configuration.getProperties().getProperty("module.ADSR.initialDelay").getBytes("iso8859-1"), "utf-8"), 100 );
+			sustainAmp = new PresentationMolette( SigneAffichage.positif, 32768, new String(configuration.getProperties().getProperty("module.ADSR.sustainAmp").getBytes("iso8859-1"), "utf-8"), 100 );
+			finalDelay = new PresentationMolette( SigneAffichage.positif, 1000, new String(configuration.getProperties().getProperty("module.ADSR.finalDelay").getBytes("iso8859-1"), "utf-8"), 100 );
 		}
 		else
 		{
-			attackTime = new PresentationMolette( SigneAffichage.positif, 1000, configuration.getProperties().getProperty("module.ADSR.attackTime") );
-			initialDelay = new PresentationMolette( SigneAffichage.positif, 1000,configuration.getProperties().getProperty("module.ADSR.initialDelay"));
-			sustainAmp = new PresentationMolette( SigneAffichage.positif, 32768, configuration.getProperties().getProperty("module.ADSR.sustainAmp") );
-			finalDelay = new PresentationMolette( SigneAffichage.positif, 1000, configuration.getProperties().getProperty("module.ADSR.finalDelay"));
+			attackTime = new PresentationMolette( SigneAffichage.positif, 1000, configuration.getProperties().getProperty("module.ADSR.attackTime"), 100 );
+			initialDelay = new PresentationMolette( SigneAffichage.positif, 1000,configuration.getProperties().getProperty("module.ADSR.initialDelay"), 100 );
+			sustainAmp = new PresentationMolette( SigneAffichage.positif, 32768, configuration.getProperties().getProperty("module.ADSR.sustainAmp"), 100 );
+			finalDelay = new PresentationMolette( SigneAffichage.positif, 1000, configuration.getProperties().getProperty("module.ADSR.finalDelay"), 100 );
 		}
 
+		attackTime.getTs().setValue(attackTime.getTs().getValeurAiguille());
+        initialDelay.getTs().setValue(initialDelay.getTs().getValeurAiguille());
+        sustainAmp.getTs().setValue(sustainAmp.getTs().getValeurAiguille());
+        finalDelay.getTs().setValue(finalDelay.getTs().getValeurAiguille());
+		
 		jLabelIn = new JLabel();
 		if(language == "Chinese")
 			jLabelIn.setText(new String(configuration.getProperties().getProperty("module.ADSR.in").getBytes("iso8859-1"), "utf-8"));
@@ -117,19 +122,24 @@ public class PresentationADSR extends APresentationModule{
 
 		if(language == "Chinese")
 		{
-			attackTime = new PresentationMolette( SigneAffichage.positif, 1000, new String(configuration.getProperties().getProperty("module.ADSR.attackTime").getBytes("iso8859-1"), "utf-8"));
-			initialDelay = new PresentationMolette( SigneAffichage.positif, 1000,new String(configuration.getProperties().getProperty("module.ADSR.initialDelay").getBytes("iso8859-1"), "utf-8"));
-			sustainAmp = new PresentationMolette( SigneAffichage.positif, 32768, new String(configuration.getProperties().getProperty("module.ADSR.sustainAmp").getBytes("iso8859-1"), "utf-8") );
-			finalDelay = new PresentationMolette( SigneAffichage.positif, 1000, new String(configuration.getProperties().getProperty("module.ADSR.finalDelay").getBytes("iso8859-1"), "utf-8"));
+			attackTime = new PresentationMolette( SigneAffichage.positif, 1000, new String(configuration.getProperties().getProperty("module.ADSR.attackTime").getBytes("iso8859-1"), "utf-8"),100 );
+			initialDelay = new PresentationMolette( SigneAffichage.positif, 1000,new String(configuration.getProperties().getProperty("module.ADSR.initialDelay").getBytes("iso8859-1"), "utf-8"),100 );
+			sustainAmp = new PresentationMolette( SigneAffichage.positif, 32768, new String(configuration.getProperties().getProperty("module.ADSR.sustainAmp").getBytes("iso8859-1"), "utf-8"),100 );
+			finalDelay = new PresentationMolette( SigneAffichage.positif, 1000, new String(configuration.getProperties().getProperty("module.ADSR.finalDelay").getBytes("iso8859-1"), "utf-8"),100 );
 		}
 		else
 		{
-			attackTime = new PresentationMolette( SigneAffichage.positif, 1000, configuration.getProperties().getProperty("module.ADSR.attackTime") );
-			initialDelay = new PresentationMolette( SigneAffichage.positif, 1000,configuration.getProperties().getProperty("module.ADSR.initialDelay"));
-			sustainAmp = new PresentationMolette( SigneAffichage.positif, 32768, configuration.getProperties().getProperty("module.ADSR.sustainAmp") );
-			finalDelay = new PresentationMolette( SigneAffichage.positif, 1000, configuration.getProperties().getProperty("module.ADSR.finalDelay"));
+			attackTime = new PresentationMolette( SigneAffichage.positif, 1000, configuration.getProperties().getProperty("module.ADSR.attackTime"), 100 );
+			initialDelay = new PresentationMolette( SigneAffichage.positif, 1000,configuration.getProperties().getProperty("module.ADSR.initialDelay"), 100 );
+			sustainAmp = new PresentationMolette( SigneAffichage.positif, 32768, configuration.getProperties().getProperty("module.ADSR.sustainAmp"), 100 );
+			finalDelay = new PresentationMolette( SigneAffichage.positif, 1000, configuration.getProperties().getProperty("module.ADSR.finalDelay"), 100);
 		}
 
+		attackTime.getTs().setValue(attackTime.getTs().getValeurAiguille());
+        initialDelay.getTs().setValue(initialDelay.getTs().getValeurAiguille());
+        sustainAmp.getTs().setValue(sustainAmp.getTs().getValeurAiguille());
+        finalDelay.getTs().setValue(finalDelay.getTs().getValeurAiguille());
+        
 		jLabelIn = new JLabel();
 		if(language == "Chinese")
 			jLabelIn.setText(new String(configuration.getProperties().getProperty("module.ADSR.in").getBytes("iso8859-1"), "utf-8"));

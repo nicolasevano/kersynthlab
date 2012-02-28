@@ -44,18 +44,14 @@ public class PresentationUserOption extends JMenuBar{
 		this.configuration = configuration;
 		
 		Properties properties = configuration.getProperties();
-		String language = configuration.getLanguage();
+		language = configuration.getLanguage();
 		
 		if(language == "Chinese")
 			file = new JMenu(new String(properties.getProperty("menu.option.file").getBytes("iso8859-1"), "utf-8"));
 		else
 			file = new JMenu(properties.getProperty("menu.option.file"));
 		
-		System.out.println(language);
 		file.setMnemonic( KeyEvent.VK_F );
-		/*file.getAccessibleContext().setAccessibleDescription(
-				"option courante du montage"
-		);*/
 		if(language == "Chinese")
 			file.getAccessibleContext().setAccessibleDescription(new String(properties.getProperty("menu.option.file.description").getBytes("iso8859-1"), "utf-8"));
 		else
@@ -260,6 +256,10 @@ public class PresentationUserOption extends JMenuBar{
 		about.add( aboutK );
 		fc.addChoosableFileFilter( new SynthFileFilter() );
 		//this.updateString();
+		
+		
+	   sampleRateChose = new ComboBox(configuration);
+		
 	}
 	
 	public CUserOption getControl() {
@@ -304,13 +304,28 @@ public class PresentationUserOption extends JMenuBar{
 	
 	public class ComboBox extends JDialog implements ActionListener, ItemListener {
 
-		public ComboBox() {
+		
+		public ComboBox(IConfigurationLoader configuration) throws UnsupportedEncodingException {
+			String language = configuration.getLanguage();
+			final String[] sampleRate = { "22050","44100" };
+
+			
+			
+			JComboBox combobox = new JComboBox( sampleRate );
+			Properties properties = configuration.getProperties();
+			
+			JButton button = new JButton();
+			if(language == "Chinese")
+				button = new JButton(new String(properties.getProperty("menu.config.sampleRate.change").getBytes("iso8859-1"), "utf-8"));
+			else
+				button = new JButton(properties.getProperty("menu.config.sampleRate.change"));
+			
 			
 			setLayout(new FlowLayout());
 			combobox.setSelectedIndex( ( HorlogeImpl.getSampleRate() == 44100 )? 0 : 1 );
 			combobox.addItemListener( this );
 			add( combobox );
-
+			
 			button.addActionListener( this );
 			add( button );
 
@@ -342,10 +357,6 @@ public class PresentationUserOption extends JMenuBar{
 		 */
 		private static final long serialVersionUID = 1L;
 
-		final String[] sampleRate = { "22050","44100" };
-
-		JComboBox combobox = new JComboBox( sampleRate );
-		JButton button = new JButton( "Close" );
 	}
 	
 	public ComboBox getSampleRateChose() {
@@ -408,5 +419,6 @@ public class PresentationUserOption extends JMenuBar{
 	private CUserOption userOption;
 	private final JFileChooser fc = new JFileChooser();
 	private File fToUse;
-	private ComboBox sampleRateChose = new ComboBox();
+	private ComboBox sampleRateChose;
+	private String language;
 }

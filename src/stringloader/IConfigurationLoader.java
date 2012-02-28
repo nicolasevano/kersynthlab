@@ -11,6 +11,7 @@ public interface IConfigurationLoader {
 	 * configuration properties file path of each displed string on application
 	 */
 	public static final String configurationFileName = "/config/configurationfr.properties";
+	//public static final String configurationFileName = "src/config/configurationcn.properties";
 	
 	/**
 	 * load operation
