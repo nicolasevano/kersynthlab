@@ -3,7 +3,17 @@ package controler;
 import kernel.Module;
 import gui.impl.subpresentation.PresentationOutPortImpl;
 
+/**
+ * Controller of OutPort
+ */
+
 public class COutPort {
+	
+	/**
+	 * Constructor of COutPort
+	 * define a ID for every OutPort
+	 * @param id
+	 */
 	
 	public COutPort(int id){
 		

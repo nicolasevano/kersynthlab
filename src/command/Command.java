@@ -10,6 +10,14 @@ import kernel.HorlogeSubject;
 
 import gui.APresentationModule;
 
+/**
+ * create getters and setters for :
+ * 		plan  (JPanel)
+ * 		module (APresentationModule)
+ * 		horloge (HorlogeSubject)
+ * 		configuration (IConfigurationLoader)
+ */
+
 public abstract class Command {
 	
 	public abstract void execute(Point p);

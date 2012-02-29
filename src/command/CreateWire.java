@@ -6,8 +6,16 @@ import gui.impl.subpresentation.PresentationWire;
 
 import java.awt.Point;
 
+/**
+ * Create wire for connecting different modules
+ */
+
 public class CreateWire extends Command {
 
+	/**
+	 * set initial beginning and ending for wire
+	 */
+	
 	@Override
 	public void execute(Point p) {
 		System.out.println( "Create wire call" );
@@ -28,6 +36,11 @@ public class CreateWire extends Command {
 		}
 
 	}
+	
+	/**
+	 * calculate ratio for changing the size of wire JPanel
+	 * @param p
+	 */
 	
 	private void computeRatio( Point p ){
 		if( ( init.x ) <= p.x && 
@@ -56,6 +69,11 @@ public class CreateWire extends Command {
 				new Point( getTranslationRatioX(), getTranslationRatioY() ) );
 	}
 
+	/**
+	 * calculate wire location
+	 * @param p
+	 */
+	
 	private void computeLocation(Point p){
 		if( ( outPort.getLocation().x <= p.x ) && ( outPort.getLocation().y <= p.y ) ) {
 			System.out.println( "On first quad" );
@@ -71,6 +89,11 @@ public class CreateWire extends Command {
 			( ( PresentationModuleZone ) getPlan() ).getCurrentWire().setLocation( p );
 		}
 	}
+	
+	/**
+	 * Initiate wire location
+	 * @param p
+	 */
 	
 	private void setInit(Point p){
 		PresentationWire currentWire = ( ( PresentationModuleZone ) getPlan() ).getCurrentWire();
@@ -95,6 +118,11 @@ public class CreateWire extends Command {
 				location.y );
 		currentWire.setpInit( location );
 	}
+	
+	/**
+	 * getter and setter of translationRatioX, translationRatioY
+	 * @return
+	 */
 	
 	public int getTranslationRatioX() {
 		return translationRatioX;

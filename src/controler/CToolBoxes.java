@@ -19,7 +19,6 @@ public class CToolBoxes {
 	 */
 	public CToolBoxes( CUserOption cmenu, IConfigurationLoader configuration ) throws IOException{
 		this.cmenu = cmenu;
-		this.configuration = configuration;
 		presentation = new PresentationToolBoxes(configuration);
 		presentation.setControl( this );
 	}
@@ -54,7 +53,4 @@ public class CToolBoxes {
 	private CModuleZone cModuleZone;
 	
 	private CUserOption cmenu;
-	
-	private IConfigurationLoader configuration;
-
 }

@@ -11,6 +11,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
 
+/**
+ * Save installations (montages) which user create
+ */
+
 public class WriteInstallation extends Command {
 
 	@Override

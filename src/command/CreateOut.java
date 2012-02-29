@@ -4,6 +4,12 @@ import java.awt.Point;
 
 import controler.COUT;
 
+/**
+ * Module Out for connecting with sound card and produce the result
+ * get horloge
+ * set location for OUT
+ */
+
 public class CreateOut extends Command {
 
 	@Override

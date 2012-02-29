@@ -6,9 +6,20 @@ import stringloader.IConfigurationLoader;
 import gui.impl.PresentationVCF;
 import kernel.impl.vcf.VCF;
 
+/**
+ * Controller of VCF
+ * Control presentation of VCF
+ */
+
 public class CVCF extends VCF{
 	private PresentationVCF presentation;
 
+	/**
+	 * Constructor of CVCF
+	 * @param configuration
+	 * @throws UnsupportedEncodingException
+	 */
+	
 	public CVCF(IConfigurationLoader configuration) throws UnsupportedEncodingException{
 		presentation = new PresentationVCF( configuration );
 		presentation.setControl( this );

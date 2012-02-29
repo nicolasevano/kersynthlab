@@ -1,6 +1,8 @@
 package gui;
 
-//package port;
+/**
+ * Interface of PresentationInPort
+ */
 
 public interface IPresentationInPort {
 

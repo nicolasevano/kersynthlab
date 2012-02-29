@@ -12,7 +12,9 @@ import javax.swing.JPanel;
 
 import kernel.Module;
 
-
+/**
+ * Dealing with the presentation of wires, inport and outport
+ */
 
 public abstract class APresentationModule extends JPanel{
 	
