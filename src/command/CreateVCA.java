@@ -4,7 +4,12 @@ import java.awt.Point;
 import java.io.UnsupportedEncodingException;
 
 import controler.CVCA;
-import controler.CVCO;
+
+/**
+ * Module VCA for dealing with sound
+ * get horloge
+ * set location for VCA
+ */
 
 public class CreateVCA extends Command {
 

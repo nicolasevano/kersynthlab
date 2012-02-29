@@ -1,14 +1,22 @@
 package command;
 
 import gui.APresentationModule;
-import gui.impl.PresentationModuleZone;
 import gui.impl.subpresentation.PresentationOutPortImpl;
 import gui.impl.subpresentation.PresentationWire;
 
 import java.awt.Point;
 
+/**
+ * move wires
+ *
+ */
+
 public class MoveWire extends Command{
 
+	/**
+	 * move wires and repaint current wires
+	 */
+	
 	@Override
 	public void execute(Point p) {
 		// TODO Auto-generated method stub
@@ -72,6 +80,11 @@ public class MoveWire extends Command{
 		
 	}
 	
+	/**
+	 * calculate the size of JPnale which contains wire
+	 * @param p
+	 */
+	
 	private void computeRatio( Point p ){
 		if( ( outPortX <= inPortX ) && ( outPortY <= inPortY ) ){
 			setTranslationRatioX( currentWire.getInPort().getParent().getX() +
@@ -119,6 +132,11 @@ public class MoveWire extends Command{
 				new Point( getTranslationRatioX(), getTranslationRatioY() ) );
 	}
 	
+	/**
+	 * calculate the location of wire
+	 * @param p
+	 */
+	
 	private void computeLocation( Point p ){
 		if( ( outPortX <= inPortX ) && ( outPortY <= inPortY ) ){
 			currentWire.setLocation( 
@@ -145,6 +163,11 @@ public class MoveWire extends Command{
 					);
 		}
 	}
+	
+	/**
+	 * Initiate wire
+	 * @param p
+	 */
 	
 	private void setInit( Point p ){
 		Point location = null;

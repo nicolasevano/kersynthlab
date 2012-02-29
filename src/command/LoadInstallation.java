@@ -2,7 +2,6 @@ package command;
 
 import gui.APresentationModule;
 import gui.impl.PresentationModuleZone;
-import gui.impl.subpresentation.PresentationInPortImpl;
 import gui.impl.subpresentation.PresentationWire;
 
 import java.awt.Component;
@@ -11,16 +10,13 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
 import java.util.TreeMap;
 
-import kernel.Module;
 import listener.WireListener;
 
 import stringloader.IConfigurationLoader;
@@ -34,6 +30,10 @@ import controler.CVCA;
 import controler.CVCF;
 import controler.CVCO;
 import controler.CWire;
+
+/**
+ * Load exist installations (montages)
+ */
 
 public class LoadInstallation extends Command {
 
@@ -64,6 +64,12 @@ public class LoadInstallation extends Command {
 		}
 		APresentationModule.setCurrentPortId(counterPort);
 	}
+	
+	/**
+	 * Load each line of exist installations (montages)
+	 * Each line contains a module or a wire
+	 * @param line
+	 */
 	
 	private void loadLine( String line ){
 		try {
@@ -219,6 +225,11 @@ public class LoadInstallation extends Command {
 		wireListener.setWire( toAttach.getPresentation() );
 		toAttach.getPresentation().setWireListener( wireListener );
 	}
+	
+	/**
+	 * Delete modules which exist before
+	 * Before we load the new installation (montage)
+	 */
 	
 	private void deleteOldModules(){
 		

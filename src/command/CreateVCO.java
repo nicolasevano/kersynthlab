@@ -3,9 +3,13 @@ package command;
 import java.awt.Point;
 import java.io.UnsupportedEncodingException;
 
-import stringloader.IConfigurationLoader;
-
 import controler.CVCO;
+
+/**
+ * Module VCO for dealing with sound
+ * get horloge
+ * set location for VCO
+ */
 
 public class CreateVCO extends Command {
         

@@ -3,13 +3,27 @@ package controler;
 import kernel.InPort;
 import gui.impl.subpresentation.PresentationInPortImpl;
 
+/**
+ * controller of InPort
+ */
+
 public class CInPort {
+	
+	/**
+	 * Constructor of CInPort
+	 * @param id
+	 */
 	
 	public CInPort( int id ){
 		presentation = new PresentationInPortImpl();
 		presentation.setControl( this );
 		this.id = id;
 	}
+	
+	/**
+	 * getters and setters of inport and its presentation
+	 * @return
+	 */
 	
 	public PresentationInPortImpl getPresentation() {
 		return presentation;
@@ -19,6 +33,11 @@ public class CInPort {
 		this.presentation = presentation;
 	}
 
+	/**
+	 * getter and setter of InPort ID
+	 * @return
+	 */
+	
 	public InPort getInport() {
 		return inport;
 	}

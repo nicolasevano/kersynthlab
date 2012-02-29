@@ -5,11 +5,25 @@ import gui.impl.PresentationModuleZone;
 
 import java.awt.Point;
 
+/**
+ * move module and its related wires
+ *
+ */
+
 public class MoveModule extends Command {
+	
+	/**
+	 * move wires which are connected with this module
+	 */
 	
 	public MoveModule(){
 		moveWire = new MoveWire();
 	}
+	
+	/**
+	 * move selected module
+	 */
+	
 	@Override
 	public void execute(Point p) {
 		// TODO Auto-generated method stub

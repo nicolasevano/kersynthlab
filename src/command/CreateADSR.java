@@ -5,6 +5,12 @@ import java.io.UnsupportedEncodingException;
 
 import controler.CADSR;
 
+/**
+ * Module ADSR for dealing with sound
+ * get horloge
+ * set location for ADSR
+ */
+
 public class CreateADSR extends Command {
 
 	@Override

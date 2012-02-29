@@ -9,8 +9,17 @@ import java.awt.Point;
 
 import kernel.Module;
 
+/**
+ * delete module and its related wires
+ *
+ */
+
 public class DeleteModule extends Command{
 
+	/**
+	 * delete module according to the position of rubbish
+	 */
+	
 	@Override
 	public void execute( Point p ) {
 		// TODO Auto-generated method stub
@@ -44,6 +53,10 @@ public class DeleteModule extends Command{
 		return this.poubelle;
 	}
 	
+	/**
+	 * delete module and its related wire
+	 */
+	
 	private void deleteModule(){
 		PresentationWire wire = null;
 		int wiresSize;
@@ -54,7 +67,8 @@ public class DeleteModule extends Command{
 		APresentationModule presentationToRemove = 
 			( ( APresentationModule )( ( PresentationModuleZone ) getPlan() ).getSelected() );
 		super.getHorloge().removeModuleObserver( toRemove );
-		//TODO remove each wire at this moment
+		
+		/**remove each wire at this moment*/
 		wiresSize = presentationToRemove.getWires().size();
 		for( int i = 0; i < wiresSize; i++ ){
 			wire = presentationToRemove.getWires().get( 0 );

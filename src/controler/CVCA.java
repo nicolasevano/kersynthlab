@@ -6,19 +6,28 @@ import stringloader.IConfigurationLoader;
 import gui.impl.PresentationVCA;
 import kernel.impl.VCA;
 
+/**
+ * Controller of VCA
+ * Control presentation of VCA
+ */
+
 public class CVCA extends VCA {
 	
 	private PresentationVCA presentation;
 
+	/**
+	 * Constructor of CVCA
+	 * @param configuration
+	 * @throws UnsupportedEncodingException
+	 */
+	
 	public CVCA(IConfigurationLoader configuration) throws UnsupportedEncodingException {
-		this.configuration = configuration;
 		presentation = new PresentationVCA(configuration);
 		presentation.setControl( this );
 		presentation.initListener();
 	}
 	
 	public CVCA(IConfigurationLoader configuration, String savedOne) throws UnsupportedEncodingException {
-		this.configuration = configuration;
 		presentation = new PresentationVCA( configuration, savedOne );
 		presentation.setControl( this );
 		presentation.initListener();
@@ -32,11 +41,14 @@ public class CVCA extends VCA {
 		this.presentation = presentation;
 	}
 	
+	/**
+	 * set value of attenuator for VCA
+	 */
+	
 	public void setAttVCA(int att){
 		
 		super.setAttVCA((att == 0)? 1 : att );
 	}
 	
-	private IConfigurationLoader configuration;
 
 }

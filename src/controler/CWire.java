@@ -7,7 +7,18 @@ import kernel.Module;
 import gui.impl.subpresentation.PresentationOutPortImpl;
 import gui.impl.subpresentation.PresentationWire;
 
+/**
+ * Controller of Wire
+ * Control presentation of wire
+ */
+
 public class CWire {
+	
+	/**
+	 * Constructor of CWire
+	 * @param outPort
+	 * @param pDest
+	 */
 	
 	public CWire(PresentationOutPortImpl outPort, Point pDest){
 		presentation = new PresentationWire( outPort, pDest );

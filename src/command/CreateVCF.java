@@ -5,6 +5,12 @@ import java.io.UnsupportedEncodingException;
 
 import controler.CVCF;
 
+/**
+ * Module VCF for dealing with sound
+ * get horloge
+ * set location for ADSR
+ */
+
 public class CreateVCF extends Command {
 
 	@Override

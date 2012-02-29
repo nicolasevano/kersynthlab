@@ -6,7 +6,18 @@ import stringloader.IConfigurationLoader;
 import kernel.impl.adsr.ADSR;
 import gui.impl.PresentationADSR;
 
+/**
+ * controller of ADSR 
+ * extends class ADSR
+ */
+
 public class CADSR extends ADSR{
+	
+	/**
+	 * Constructor of CADSR
+	 * @param configuration
+	 * @throws UnsupportedEncodingException
+	 */
 	
 	public CADSR(IConfigurationLoader configuration) throws UnsupportedEncodingException{
 		

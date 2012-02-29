@@ -52,30 +52,6 @@ public class CSynthEditor {
 		cToolBoxes.setcModuleZone( cModuleZone );
 		presentation.pack();
 		
-		
-		//presentation = new PresentationUserOption(configuration);
-		
-		/*configuration.load();
-		configuration.getProperties();
-		System.out.println(configuration.getProperties());*/
-		
-		/*Properties prop = new Properties();
-	    String fileName = "src/config/configuration.properties";
-	    InputStream is = new FileInputStream(fileName);
-
-	    prop.load(is);
-
-	    System.out.println(prop.getProperty("menu.option.file"));*/
-		
-		/*configuration = new ConfigurationLoader();
-		configuration.load();
-		IFileChangeListener configurationListener = new ConfigurationListener(this, configuration);
-		try {
-			configuration.addFileChangeListener(configurationListener, IConfigurationLoader.configurationFileName, 5000);
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 	}
 	
 	public static final void main( String...args ) throws IOException{
