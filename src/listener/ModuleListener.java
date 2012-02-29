@@ -17,6 +17,10 @@ import command.Command;
 import command.CreateWire;
 import controler.CWire;
 
+/**
+ * Mouse listeners in module
+ */
+
 public class ModuleListener extends MouseAdapter{
 	
 	public void mousePressed(MouseEvent e){

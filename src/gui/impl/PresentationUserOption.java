@@ -8,17 +8,13 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.Properties;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
-import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -27,13 +23,14 @@ import javax.swing.filechooser.FileFilter;
 
 import kernel.impl.HorlogeImpl;
 
-import listener.ConfigurationListener;
-import listener.IFileChangeListener;
-
-import stringloader.ConfigurationLoader;
 import stringloader.IConfigurationLoader;
 
 import controler.CUserOption;
+
+/**
+ * Define menu bar
+ * define elements in this menu bar
+ */
 
 public class PresentationUserOption extends JMenuBar{
 
@@ -58,16 +55,12 @@ public class PresentationUserOption extends JMenuBar{
 			file.getAccessibleContext().setAccessibleDescription(properties.getProperty("menu.option.file.description"));
 		this.add( file );
 		
-		/*save = new JMenuItem("save montage",
-                KeyEvent.VK_S);*/
 		if(language == "Chinese")
 			save = new JMenuItem(new String(properties.getProperty("menu.file.save").getBytes("iso8859-1"), "utf-8"), KeyEvent.VK_S);
 		else
 			save = new JMenuItem(properties.getProperty("menu.file.save"), KeyEvent.VK_S);
 		save.setAccelerator(KeyStroke.getKeyStroke(
 				KeyEvent.VK_S, ActionEvent.ALT_MASK));
-		/*save.getAccessibleContext().setAccessibleDescription(
-				"sauvegarder un montage");*/
 		if(language == "Chinese")
 			save.getAccessibleContext().setAccessibleDescription(new String(properties.getProperty("menu.file.save.description").getBytes("iso8859-1"), "utf-8"));
 		else
@@ -75,21 +68,17 @@ public class PresentationUserOption extends JMenuBar{
 		save.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {	//TODO
-					doSaveGame();
+					doSaveInstallation();
 				}
 		});
 		file.add( save );
 		
-		/*load = new JMenuItem("load montage",
-                KeyEvent.VK_L);*/
 		if( language == "Chinese" )
 			load = new JMenuItem(new String(properties.getProperty("menu.file.load").getBytes("iso8859-1"), "utf-8"),KeyEvent.VK_L);
 		else
 			load = new JMenuItem(properties.getProperty("menu.file.load"),KeyEvent.VK_L);
 		load.setAccelerator(KeyStroke.getKeyStroke(
 				KeyEvent.VK_L, ActionEvent.ALT_MASK));
-		/*load.getAccessibleContext().setAccessibleDescription(
-				"charger un montage");*/
 		if(language == "Chinese")
 			load.getAccessibleContext().setAccessibleDescription(new String(properties.getProperty("menu.file.load.description").getBytes("iso8859-1"), "utf-8"));
 		else
@@ -97,21 +86,17 @@ public class PresentationUserOption extends JMenuBar{
 		load.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent arg0) {	//TODO
-					doLoadGame();
+					doLoadInstallation();
 				}
 		});
 		file.add( load );
 		
-		/*start = new JMenuItem("launch montage",
-                KeyEvent.VK_A);*/
 		if(language == "Chinese")
 			start = new JMenuItem(new String(properties.getProperty("menu.file.start").getBytes("iso8859-1"), "utf-8"),KeyEvent.VK_A);
 		else
 			start = new JMenuItem(properties.getProperty("menu.file.start"),KeyEvent.VK_A);
 		start.setAccelerator(KeyStroke.getKeyStroke(
 				KeyEvent.VK_A, ActionEvent.ALT_MASK));
-		/*start.getAccessibleContext().setAccessibleDescription(
-				"d�marrer montage");*/
 		if(language == "Chinese")
 			start.getAccessibleContext().setAccessibleDescription(new String(properties.getProperty("menu.file.start.description").getBytes("iso8859-1"), "utf-8"));
 		else
@@ -124,16 +109,12 @@ public class PresentationUserOption extends JMenuBar{
 		});
 		file.add( start );
 		
-		/*stop = new JMenuItem("arr montage",
-                KeyEvent.VK_O);*/
 		if(language == "Chinese")
 			stop = new JMenuItem(new String(properties.getProperty("menu.file.stop").getBytes("iso8859-1"), "utf-8"),KeyEvent.VK_O);
 		else
 			stop = new JMenuItem(properties.getProperty("menu.file.stop"),KeyEvent.VK_O);
 		stop.setAccelerator(KeyStroke.getKeyStroke(
 				KeyEvent.VK_O, ActionEvent.ALT_MASK));
-		/*stop.getAccessibleContext().setAccessibleDescription(
-				"arr�t montage");*/
 		if(language == "Chinese")
 			stop.getAccessibleContext().setAccessibleDescription(new String(properties.getProperty("menu.file.stop.description").getBytes("iso8859-1"), "utf-8"));
 		else
@@ -147,31 +128,23 @@ public class PresentationUserOption extends JMenuBar{
 		file.add( stop );
 		
 		
-		//config = new JMenu( "Config" );
 		if(language == "Chinese")
 			config = new JMenu(new String(properties.getProperty("menu.option.config").getBytes("iso8859-1"), "utf-8"));
 		else
 			config = new JMenu(properties.getProperty("menu.option.config"));
 		config.setMnemonic( KeyEvent.VK_C );
-		/*config.getAccessibleContext().setAccessibleDescription(
-				"option courante du montage"
-		);*/
 		if(language == "Chinese")
 			config.getAccessibleContext().setAccessibleDescription(new String(properties.getProperty("menu.option.config.description").getBytes("iso8859-1"), "utf-8"));
 		else
 			config.getAccessibleContext().setAccessibleDescription(properties.getProperty("menu.option.config.description"));
 		this.add( config );
 		
-		/*bufferSize = new JMenuItem("delaie demarrage carte son",
-                KeyEvent.VK_B);*/
 		if(language == "Chinese")
 			bufferSize = new JMenuItem(new String(properties.getProperty("menu.config.bufferSize").getBytes("iso8859-1"), "utf-8"),KeyEvent.VK_B);
 		else
 			bufferSize = new JMenuItem(properties.getProperty("menu.config.bufferSize"),KeyEvent.VK_B);
 		bufferSize.setAccelerator(KeyStroke.getKeyStroke(
 				KeyEvent.VK_B, ActionEvent.ALT_MASK));
-		/*bufferSize.getAccessibleContext().setAccessibleDescription(
-				"delaie demarrage carte son");*/
 		if(language == "Chinese")
 			bufferSize.getAccessibleContext().setAccessibleDescription(new String(properties.getProperty("menu.config.bufferSize.description").getBytes("iso8859-1"), "utf-8"));
 		else
@@ -184,16 +157,12 @@ public class PresentationUserOption extends JMenuBar{
 		});
 		config.add( bufferSize );
 		
-		/*sampleRate = new JMenuItem("fruence d'hantillonnage",
-                KeyEvent.VK_R);*/
 		if(language == "Chinese")
 			sampleRate = new JMenuItem(new String(properties.getProperty("menu.config.sampleRate").getBytes("iso8859-1"), "utf-8"),KeyEvent.VK_R);
 		else
 			sampleRate = new JMenuItem(properties.getProperty("menu.config.sampleRate"),KeyEvent.VK_R);
 		sampleRate.setAccelerator(KeyStroke.getKeyStroke(
 				KeyEvent.VK_R, ActionEvent.ALT_MASK));
-		/*sampleRate.getAccessibleContext().setAccessibleDescription(
-				"fr�quence d'�chantillonnage");*/
 		if(language == "Chinese")
 			sampleRate.getAccessibleContext().setAccessibleDescription(new String(properties.getProperty("menu.config.sampleRate.description").getBytes("iso8859-1"), "utf-8"));
 		else
@@ -206,24 +175,17 @@ public class PresentationUserOption extends JMenuBar{
 		});
 		config.add( sampleRate );
 		
-		
-		//about = new JMenu( "About" );
 		if(language == "Chinese")
 			about = new JMenu(new String(properties.getProperty("menu.option.about").getBytes("iso8859-1"), "utf-8"));
 		else
 			about = new JMenu(properties.getProperty("menu.option.about"));
 		about.setMnemonic( KeyEvent.VK_O );
-		/*about.getAccessibleContext().setAccessibleDescription(
-				"notre produit et notre groupe"
-		);*/
 		if(language == "Chinese")
 			about.getAccessibleContext().setAccessibleDescription(new String(properties.getProperty("menu.option.about.description").getBytes("iso8859-1"), "utf-8"));
 		else
 			about.getAccessibleContext().setAccessibleDescription(properties.getProperty("menu.option.about.description"));
 		this.add(about);
 		
-		/*aboutK = new JMenuItem("about KerSynthSound",
-                KeyEvent.VK_O);*/
 		if(language == "Chinese")
 			aboutK = new JMenuItem(new String(properties.getProperty("menu.about").getBytes("iso8859-1"), "utf-8"),
                 KeyEvent.VK_O);
@@ -232,8 +194,6 @@ public class PresentationUserOption extends JMenuBar{
 	                KeyEvent.VK_O);
 		aboutK.setAccelerator(KeyStroke.getKeyStroke(
 				KeyEvent.VK_O, ActionEvent.ALT_MASK));
-		/*aboutK.getAccessibleContext().setAccessibleDescription(
-				"notre produit et notre groupe");*/
 		if(language == "Chinese")
 			aboutK.getAccessibleContext().setAccessibleDescription(new String(properties.getProperty("menu.about.description").getBytes("iso8859-1"), "utf-8"));
 		else
@@ -255,7 +215,6 @@ public class PresentationUserOption extends JMenuBar{
 		});
 		about.add( aboutK );
 		fc.addChoosableFileFilter( new SynthFileFilter() );
-		//this.updateString();
 		
 		
 	   sampleRateChose = new ComboBox(configuration);
@@ -301,6 +260,10 @@ public class PresentationUserOption extends JMenuBar{
 		private static final String extentionAllowed = ".synth";
 		
 	}
+	
+	/**
+	 * Dialog for changing sampleRate
+	 */
 	
 	public class ComboBox extends JDialog implements ActionListener, ItemListener {
 
@@ -352,9 +315,6 @@ public class PresentationUserOption extends JMenuBar{
 			}
 		}
 		
-		/**
-		 * 
-		 */
 		private static final long serialVersionUID = 1L;
 
 	}
@@ -375,7 +335,11 @@ public class PresentationUserOption extends JMenuBar{
 		this.configuration = configuration;
 	}
 	
-	private void doSaveGame(){
+	/**
+	 * Save user's installations (montages)
+	 */
+	
+	private void doSaveInstallation(){
 		
 		int returnVal = fc.showOpenDialog( this );
         if ( returnVal == JFileChooser.APPROVE_OPTION ) {
@@ -387,7 +351,11 @@ public class PresentationUserOption extends JMenuBar{
         
 	}
 	
-	private void doLoadGame(){
+	/**
+	 * Load installations (montages) exist
+	 */
+	
+	private void doLoadInstallation(){
 		int returnVal = fc.showOpenDialog( this );
         if ( returnVal == JFileChooser.APPROVE_OPTION ) {
         	
@@ -399,12 +367,12 @@ public class PresentationUserOption extends JMenuBar{
 	
 	private CUserOption control;
 	
-	//menu
+	/**menu*/
 	private JMenu file;
 	private JMenu config;
 	private JMenu about;
 	
-	//menu option
+	/**menu option*/
 	private JMenuItem save;
 	private JMenuItem load;
 	private JMenuItem start;
@@ -416,7 +384,6 @@ public class PresentationUserOption extends JMenuBar{
 	private static final long serialVersionUID = 1L;
 	
 	private IConfigurationLoader configuration;
-	private CUserOption userOption;
 	private final JFileChooser fc = new JFileChooser();
 	private File fToUse;
 	private ComboBox sampleRateChose;

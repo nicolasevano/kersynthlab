@@ -1,7 +1,6 @@
 package stringloader;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,22 +17,16 @@ public class ConfigurationLoader implements IConfigurationLoader {
 		timer = new Timer();
 	}
 	
-	/* (non-Javadoc)
-	 * @see solitaire.stringloader.IConfigurationLoader#load()
+	/**
+	 * Read configuration file
 	 */
+	
 	@SuppressWarnings("unused")
 	public void load(){
 		properties = new Properties();
-		//FileInputStream input = null;
 		InputStream input = null;
 		try{
-			//String fileName = "src/config/configuration.properties";
-			
-			//InputStreamReader in= new InputStreamReader(Parser.class.getResourceAsStream(dataFile),"UTF-8");
-			
-			//input = new FileInputStream(Parser.class.getResourceAsStream(configurationFileName), "GBK");
 			input = this.getClass().getResourceAsStream(configurationFileName);
-			//input = new FileInputStream(configurationFileName);
 			if(configurationFileName == "/config/configurationcn.properties")
 			{
 				this.setLanguage("Chinese");
@@ -56,11 +49,10 @@ public class ConfigurationLoader implements IConfigurationLoader {
 		}
 	}
 	
-	
-
-	/* (non-Javadoc)
-	 * @see solitaire.stringloader.IConfigurationLoader#addFileChangeListener(solitaire.listener.IFileChangeListener, java.lang.String, long)
+	/**
+	 * Monitor if configuration file has been changed
 	 */
+
 	public void addFileChangeListener(IFileChangeListener listener,String fileName,long period)
 	throws FileNotFoundException {
 		removeFileChangeListener(listener, fileName);
@@ -69,9 +61,6 @@ public class ConfigurationLoader implements IConfigurationLoader {
 		timer.schedule(task, period, period);
 	}
 
-	/* (non-Javadoc)
-	 * @see solitaire.stringloader.IConfigurationLoader#removeFileChangeListener(solitaire.listener.IFileChangeListener, java.lang.String)
-	 */
 	public void removeFileChangeListener(IFileChangeListener listener,String fileName) {
 		FileMonitorTask task = (FileMonitorTask)
 		timerEntries.remove(fileName+listener.hashCode());
@@ -80,12 +69,14 @@ public class ConfigurationLoader implements IConfigurationLoader {
 		}
 	}
 	
-	/* (non-Javadoc)
-	 * @see solitaire.stringloader.IConfigurationLoader#getProperties()
-	 */
 	public Properties getProperties(){
 		return properties;
 	}
+	/**
+	 * Get which language we use:
+	 * 	English, French or Chinese
+	 * @param language
+	 */
 	
 	public void setLanguage(String language) {
 		this.language = language;

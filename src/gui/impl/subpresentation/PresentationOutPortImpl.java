@@ -1,8 +1,5 @@
 package gui.impl.subpresentation;
 
-//package port;
-
-
 import gui.IPresentationOutPort;
 import gui.impl.PresentationModuleZone;
 import gui.impl.PresentationSynthEditor;
@@ -22,7 +19,8 @@ import controler.COutPort;
 public class PresentationOutPortImpl extends JPanel implements IPresentationOutPort{
 
 	/**
-	 * 
+	 * Define components of OutPort
+	 * Class PresentationOutPortImpl implements interface IPresentationOutPort
 	 */
 	private static final long serialVersionUID = 1L;
 	private static int largeur;

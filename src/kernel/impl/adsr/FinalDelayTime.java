@@ -3,6 +3,11 @@ package kernel.impl.adsr;
 import kernel.ADSRStrategie;
 import kernel.impl.OutPortImpl;
 
+/**
+ * Module ADSR
+ * The time for release
+ */
+
 public class FinalDelayTime implements ADSRStrategie {
 
 	public FinalDelayTime( ADSR adsr ){

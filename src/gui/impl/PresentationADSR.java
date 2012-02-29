@@ -33,8 +33,6 @@ public class PresentationADSR extends APresentationModule{
          * @throws UnsupportedEncodingException 
          */
 	public PresentationADSR(IConfigurationLoader configuration) throws UnsupportedEncodingException{
-
-		this.configuration = configuration;
 		String language = configuration.getLanguage();
 
 		setBackground( Color.gray );
@@ -84,10 +82,8 @@ public class PresentationADSR extends APresentationModule{
 			tittle.setText(new String(configuration.getProperties().getProperty("module.ADSR.title").getBytes("iso8859-1"), "utf-8"));
 		else
 			tittle.setText(configuration.getProperties().getProperty("module.ADSR.title"));
-		//tittle.setText( "MODULE ADSR" );
 		tittle.setBorder( new javax.swing.border.MatteBorder( null ) );
 		tittle.setForeground( Color.white );
-		//tittle.setVisible( true );
 		setLayout( null );
 		add( tittle );
 		add(jLabelIn);
@@ -104,7 +100,6 @@ public class PresentationADSR extends APresentationModule{
 
 	public PresentationADSR( IConfigurationLoader configuration, String savedOne ) throws UnsupportedEncodingException{
 
-		this.configuration = configuration;
 		String language = configuration.getLanguage();
 		
 		String [] savedADSR = savedOne.split( "\\|" );
@@ -163,10 +158,8 @@ public class PresentationADSR extends APresentationModule{
 			tittle.setText(new String(configuration.getProperties().getProperty("module.ADSR.title").getBytes("iso8859-1"), "utf-8"));
 		else
 			tittle.setText(configuration.getProperties().getProperty("module.ADSR.title"));
-		//tittle.setText( "MODULE ADSR" );
 		tittle.setBorder( new javax.swing.border.MatteBorder( null ) );
 		tittle.setForeground( Color.white );
-		//tittle.setVisible( true );
 		setLayout( null );
 		add( tittle );
 		add(jLabelIn);
@@ -355,8 +348,6 @@ public class PresentationADSR extends APresentationModule{
          *
          */
         private static final long serialVersionUID = 1L;
-        private IConfigurationLoader configuration;
-        
         private JLabel jLabelIn;
         private JLabel jLabelOut;
 }

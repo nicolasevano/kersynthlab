@@ -1,8 +1,11 @@
 package listener;
 
 import controler.CSynthEditor;
-import controler.CUserOption;
 import stringloader.IConfigurationLoader;
+
+/**
+ * Listeners of configuration files
+ */
 
 public class ConfigurationListener implements IFileChangeListener{
 	
@@ -10,6 +13,10 @@ public class ConfigurationListener implements IFileChangeListener{
 		this.main = (CSynthEditor)main;
 		this.configuration = configuration;
 	}
+	
+	/**
+	 * monitor changes of configuration file
+	 */
 	
 	@Override
 	public void fileChanged( String fileName ) {

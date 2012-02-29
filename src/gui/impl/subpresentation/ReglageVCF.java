@@ -6,17 +6,17 @@ import javax.swing.JPanel;
 
 import stringloader.IConfigurationLoader;
 
+/**
+ * Define reglages in VCF:
+ * att and base
+ */
+
 public class ReglageVCF extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	private PresentationMolette att;
 	private PresentationMolette base;
-	//private String nameAtt= "Att";
-	//private String nameBase = "Base";
 	
 	public ReglageVCF(IConfigurationLoader configuration) throws UnsupportedEncodingException{
 		String language = configuration.getLanguage();
@@ -75,24 +75,4 @@ public class ReglageVCF extends JPanel {
 	private String nameAtt;
 	private String nameBase;
 	
-	
-	/*public String getNameAtt() {
-		return nameAtt;
-	}
-
-
-	public void setNameAtt(String nameAtt) {
-		this.nameAtt = nameAtt;
-	}
-
-
-	public String getNameBase() {
-		return nameBase;
-	}
-
-
-	public void setNameBase(String nameBase) {
-		this.nameBase = nameBase;
-	}*/
-
 }

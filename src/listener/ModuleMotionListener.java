@@ -7,6 +7,10 @@ import javax.swing.JPanel;
 
 import command.Command;
 
+/**
+ * Mouse motion listeners
+ */
+
 public class ModuleMotionListener extends MouseMotionAdapter {
 	
 	public void mouseDragged(MouseEvent e){

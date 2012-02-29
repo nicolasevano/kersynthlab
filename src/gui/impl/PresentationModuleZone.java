@@ -22,6 +22,11 @@ import listener.ModuleListener;
 import listener.ModuleMotionListener;
 import controler.CModuleZone;
 
+/**
+ * Presentation for all modules:
+ * 	VCO, VCA, VCF, ADSR, OUT, Replicator
+ */
+
 public class PresentationModuleZone extends JPanel{
 	
 	

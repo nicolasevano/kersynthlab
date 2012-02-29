@@ -1,6 +1,4 @@
 package gui.impl.subpresentation;
-//package molette;
-
 
 import gui.IPresentationMolette;
 
@@ -18,9 +16,6 @@ import javax.swing.event.ChangeListener;
 
 public class PresentationMolette extends JPanel implements ChangeListener,IPresentationMolette{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	private DKnob ts;
@@ -36,16 +31,14 @@ public class PresentationMolette extends JPanel implements ChangeListener,IPrese
 		ts = new DKnob();
 		this.setSigneAff(signeAff);
 
-		//on met le type de layout utilis�
+		//on met le type de layout utilisé
 		setLayout(new BorderLayout());
 		setBackground(new Color(200,200,255));
 		//on met le nom de la molette
 		ts.setNomMolette(nomDeLamolette);
-		/**/
 		ts.setSize(100, 100);
-		//signeAff=SigneAffichage.negatif;
 		
-		//on pr閏ise si c'est en affichage n間atif ou positif en fonction de son utilit�
+		//on prise si c'est en affichage n間atif ou positif en fonction de son utilit�
 		//si b est le nombre, positif [0,b] et n間atif [-b,b]
 		ts.setChoxSigne(signeAff);
 
@@ -60,9 +53,7 @@ public class PresentationMolette extends JPanel implements ChangeListener,IPrese
 		ts.setOpaque(false);
 		
 		ts.validate();
-		/**/
 		setSize(120,120);
-		/**/
 		//on choisit de le mettre au nord du panel
 		add(jl = new JLabel(ts.getNomMolette()+": "+( (signeAff == SigneAffichage.puissance)?(int)Math.pow(2, entier):entier) ), BorderLayout.NORTH);
 		/**/
@@ -72,7 +63,6 @@ public class PresentationMolette extends JPanel implements ChangeListener,IPrese
 		ts.setValue((float)1.0);
 
 		//on place le slider circulaire au milieu du panel
-		//add(ts, BorderLayout.CENTER);
 		add(ts);
 		ts.setLocation(0,20);
 
@@ -147,8 +137,6 @@ public class PresentationMolette extends JPanel implements ChangeListener,IPrese
 		System.out.println(getCursor().toString());
 		
 		ts.setValeurAiguille(numeroTrait);
-//	    ts.setValue(-1);
-
 		ts.addChangeListener( this );
 		
 		ts.validate();
@@ -161,12 +149,8 @@ public class PresentationMolette extends JPanel implements ChangeListener,IPrese
 	    JFrame win = new JFrame("DTest!");
 	    win.getContentPane().setLayout(new BorderLayout());
 	    win.setSize(120,140);
-
-//	    JPanel panel = new JPanel(new BorderLayout());
-//	    panel.setBackground(new Color(200,200,255));
 	    PresentationMolette viewMolette = new PresentationMolette(SigneAffichage.positif, 5, "toto",3);
 	    viewMolette.getTs().setValue(-1);
-//	    viewMolette.setNumeroTrait(3);
 	    win.getContentPane().add(viewMolette, BorderLayout.CENTER);
 	    
 	    win.addWindowListener(new WindowAdapter() {
@@ -183,10 +167,8 @@ public class PresentationMolette extends JPanel implements ChangeListener,IPrese
 	
 	@Override
 	public void stateChanged(ChangeEvent e) {
-//		ts.setValue(-1);
 		int vol = choisirAffichageValeur(getSigneAff(), ts);
 		jla.setText(ts.getNomMolette()+": " + vol);
-//		ts.setTempoValeurChangeListener(vol);
 	}
 
 /**

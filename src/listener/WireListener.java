@@ -2,7 +2,6 @@ package listener;
 
 import gui.APresentationModule;
 import gui.impl.PresentationModuleZone;
-import gui.impl.subpresentation.PresentationOutPortImpl;
 import gui.impl.subpresentation.PresentationWire;
 
 import java.awt.Component;
@@ -10,6 +9,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JOptionPane;
+
+/**
+ * Wire listener
+ * Monitor wire changes 
+ */
 
 public class WireListener implements MouseListener {
 

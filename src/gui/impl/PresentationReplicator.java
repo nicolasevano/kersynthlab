@@ -8,19 +8,21 @@ import javax.swing.JLabel;
 import stringloader.IConfigurationLoader;
 
 import kernel.Module;
-import kernel.impl.adsr.ADSR;
-
 import controler.CInPort;
 import controler.COutPort;
-import controler.CReplicator;
 import gui.APresentationModule;
 import gui.impl.subpresentation.PresentationInPortImpl;
 import gui.impl.subpresentation.PresentationOutPortImpl;
 
 public class PresentationReplicator extends APresentationModule {
 
-	//private String nameRepliactor = "MODULE Replicator";
-
+	/**
+	 * Constructor of PresentationReplicator
+	 * define size, background color and components of replicator
+	 * @param configuration
+	 * @throws UnsupportedEncodingException
+	 */
+	
 	public PresentationReplicator(IConfigurationLoader configuration) throws UnsupportedEncodingException {
 		// TODO Auto-generated constructor stub
 		String language = configuration.getLanguage();
@@ -29,6 +31,11 @@ public class PresentationReplicator extends APresentationModule {
 		setSize( 140, 200 );
 		
 		labelReplicator = new JLabel();
+		
+		/**
+		 * Displaying Chinese characters correct
+		 */
+		
 		if(language == "Chinese")
 			labelReplicator.setText(new String(configuration.getProperties().getProperty("module.Replicator.title").getBytes("iso8859-1"), "utf-8"));
         else
@@ -64,17 +71,13 @@ public class PresentationReplicator extends APresentationModule {
 		outPort1.setLocation( getWidth() - outPort1.getWidth(), 
 				(getHeight()/6) - (outPort1.getHeight()/6));
 		
-//		System.out.println("Position outPort1: "+ ((getHeight()/6) - (outPort1.getHeight()/6)));
 		add( outPort2 );
 		outPort2.setLocation( getWidth() - outPort2.getWidth(), 
 				( getHeight() / 2) - ( outPort2.getHeight() / 2 ) );
 		
-//		System.out.println("Position outPort2: "+(( getHeight() / 2) - ( outPort2.getHeight() / 2 )));
 		add( outPort3 );
 		outPort3.setLocation( getWidth() - outPort3.getWidth(), 
 				 ((getHeight()/2) -  (outPort3.getHeight()/2))+51 );
-//		System.out.println("position outPort3: "+((((getHeight()))) -  (((outPort3.getHeight())))));
-		
 		setTitlePosition();
 		
 	}
@@ -130,18 +133,12 @@ public class PresentationReplicator extends APresentationModule {
 		add( outPort1 );
 		outPort1.setLocation( getWidth() - outPort1.getWidth(), 
 				(getHeight()/6) - (outPort1.getHeight()/6));
-		
-//		System.out.println("Position outPort1: "+ ((getHeight()/6) - (outPort1.getHeight()/6)));
 		add( outPort2 );
 		outPort2.setLocation( getWidth() - outPort2.getWidth(), 
 				( getHeight() / 2) - ( outPort2.getHeight() / 2 ) );
-		
-//		System.out.println("Position outPort2: "+(( getHeight() / 2) - ( outPort2.getHeight() / 2 )));
 		add( outPort3 );
 		outPort3.setLocation( getWidth() - outPort3.getWidth(), 
 				 ((getHeight()/2) -  (outPort3.getHeight()/2))+51 );
-//		System.out.println("position outPort3: "+((((getHeight()))) -  (((outPort3.getHeight())))));
-		
 		setTitlePosition();
 		setLocation( xPosition, yPosition );
 	}
@@ -248,6 +245,4 @@ public class PresentationReplicator extends APresentationModule {
 	private PresentationOutPortImpl outPort3;
 	private JLabel labelReplicator;
 	private JLabel jLabelIn;
-	private IConfigurationLoader configuration;
-
 }

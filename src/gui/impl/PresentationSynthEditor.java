@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.UnsupportedEncodingException;
-import java.util.Properties;
 
 import javax.swing.JFrame;
 
@@ -26,7 +25,6 @@ public class PresentationSynthEditor extends JFrame{
          */
         public PresentationSynthEditor(IConfigurationLoader configuration) throws UnsupportedEncodingException{
         	String str;
-    		//super(new String(configuration.getProperties().getProperty( "title").getBytes("iso8859-1"), "utf-8"));
     		if(configuration.getLanguage() == "Chinese")
     			str = new String(configuration.getProperties().getProperty( "title").getBytes("iso8859-1"), "utf-8");
     		else 

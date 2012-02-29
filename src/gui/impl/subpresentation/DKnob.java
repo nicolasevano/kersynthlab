@@ -6,8 +6,6 @@ package gui.impl.subpresentation;
  * DKnob is a component similar to JSlider but with 
  * round "user interface", a knob. 
  */
-//package molette;
-
 
 import java.awt.*;
 import java.awt.event.*;
@@ -20,31 +18,31 @@ import javax.swing.event.*;
 
 public class DKnob extends JComponent
 {
-	private final static float START = 225;//225, modifie les placements des traits noirs sur le cercle
-	private final static float LENGTH = 270;//270,augmente et reduit la zone de d閜lacement de l'aiguille et la zone de placement des traits 
+	private final static float START = 225;//modifie les placements des traits noirs sur le cercle
+	private final static float LENGTH = 270;//augmente et reduit la zone de d閜lacement de l'aiguille et la zone de placement des traits 
 	private final static float PI = (float) 3.1415;
-	private final static float START_ANG = (START/360)*PI*2;//(START/360)*PI*2
+	private final static float START_ANG = (START/360)*PI*2;
 	private final static float LENGTH_ANG = (LENGTH/360)*PI*2;
-	private final static float DRAG_RES = (float) 0.01;//0.01 �voir, on dirait, pas d'utilit�
-	private final static float MULTIP = 180 / PI;//180 / PI, �voir
-	private final static Color DEFAULT_FOCUS_COLOR = new Color(0x8080ff);//new Color(0x8080ff) modifier la couleur du cadre
+	private final static float DRAG_RES = (float) 0.01;
+	private final static float MULTIP = 180 / PI;
+	private final static Color DEFAULT_FOCUS_COLOR = new Color(0x8080ff);//modifier la couleur du cadre
 
-	private int SHADOWX = 1;//1 �voir
-	private int SHADOWY = 1;//1 �voir
+	private int SHADOWX = 1;
+	private int SHADOWY = 1;
 	private float DRAG_SPEED;//vitesse pour le changement de l'aiguille 
 	private float CLICK_SPEED;//meme que en haut
 	private int size;//la taille du rond
-	private int middle;//le milieu �voir
+	private int middle;
 
-	public final static int SIMPLE = 1;//1 �voir
+	public final static int SIMPLE = 1;
 	public final static int ROUND  = 2;
 	private int dragType = ROUND;
 
 
 
 
-	private final static Dimension MIN_SIZE = new Dimension(40, 40);//dim 40 40 
-	private final static Dimension PREF_SIZE = new Dimension(80, 80);//dim 80 80
+	private final static Dimension MIN_SIZE = new Dimension(40, 40); 
+	private final static Dimension PREF_SIZE = new Dimension(80, 80);
 
 	// Set the antialiasing to get the right look!
 	private final static RenderingHints AALIAS = 
@@ -64,15 +62,15 @@ public class DKnob extends JComponent
 	private double lastAng;
 
 	public DKnob() {
-		DRAG_SPEED = 0.01F;//0.01F
-		CLICK_SPEED = 0.01F;//0.01F
+		DRAG_SPEED = 0.01F;
+		CLICK_SPEED = 0.01F;
 		SHADOWX = 1;
 		SHADOWY = 1;
 
 		focusColor = DEFAULT_FOCUS_COLOR;
 
 		setPreferredSize(PREF_SIZE);
-		int degrees = 235;//au debut 235
+		int degrees = 235;
 		hitArc.setAngleStart(degrees); // Degrees ??? Radians???
 		addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent me) {
@@ -202,17 +200,6 @@ public class DKnob extends JComponent
 		fireChangeEvent();
 	}
 
-//	private double tempoValeurChangeListener;
-//
-//
-//	public double getTempoValeurChangeListener() {
-//		return tempoValeurChangeListener;
-//	}
-//
-//	public void setTempoValeurChangeListener(double tempoValeurChangeListener) {
-//		this.tempoValeurChangeListener = tempoValeurChangeListener;
-//	}
-
 	public void addChangeListener(ChangeListener cl) {
 		listenerList.add(ChangeListener.class, cl);
 	}
@@ -256,10 +243,18 @@ public class DKnob extends JComponent
 	//sinon si on choisit le signe negatif, la molette passe de -entInter �entInter
 	private int entInter;
 
+	/**
+	 * get value of cutting wheel (molette)
+	 * @return
+	 */
 	public int getEntInter() {
 		return entInter;
 	}
 
+	/**
+	 * set value of cutting wheel (molette)
+	 * @param entInter
+	 */
 	public void setEntInter(int entInter) {
 		this.entInter = entInter;
 	}
@@ -275,7 +270,13 @@ public class DKnob extends JComponent
 	}
 
 
-	//cette m閠hode nous sert �avoir l'affichage de la molette
+	/**
+	 * Display values of cutting wheels (molette)
+	 * @param val
+	 * @param signe
+	 * @param g
+	 */
+	
 	void setValeurAffichageMolette(int val, SigneAffichage signe, Graphics g){
 		if(signe.equals(SigneAffichage.positif)){
 			// Set the position of the Zero
@@ -301,7 +302,7 @@ public class DKnob extends JComponent
 
 
 
-	// Paint the DKnob
+	/** Paint the DKnob*/
 	public void paint(Graphics g) {
 		int width = getWidth();
 		int height = getHeight();
@@ -329,15 +330,7 @@ public class DKnob extends JComponent
 
 
 		this.setValeurAffichageMolette(entInter, choxSigne, g);
-		// Set the position of the Zero
-		//g.drawString("0", 1, size + 10);
-
-		// Set the position of the one
-		//g.drawString("1", size+10, size+10);
-
-
-
-
+		
 		// Paint focus if in focus
 		if (hasFocus()) {
 			g.setColor(focusColor);

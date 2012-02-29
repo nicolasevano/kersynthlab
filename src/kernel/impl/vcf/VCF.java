@@ -68,17 +68,9 @@ public class VCF implements Module {
 					 Math.pow(2, this.attVCF * ( ( this.inPorts.get( "fm" ).getValue() / 32768 ) * 5 ) );
 		else
 			cutoff = 20. * Math.pow( 2, this.baseVCF );
-		//res = resonance [0 - 1] //(minimum - maximum)
-		//System.out.println("cutoff = " + cutoff );
 		double f = 2 * cutoff / HorlogeImpl.getSampleRate(); //[0 - 1]
-		//System.out.println("f = " + f );
 		double k = 3.6 * f - 1.6 * f * f -1; //(Empirical tunning)
-		//System.out.println("k = " + k );
 		double p = ( k+1 ) * 0.5;
-		//System.out.println("p = " + p );
-		
-		//scale = e^((1-p)*1.386249;
-		//r = res*scale;
 		if(!inPorts.get("in").isEmpty()){
 			//Loop
 			//--Inverted feed back for corner peaking
@@ -91,26 +83,19 @@ public class VCF implements Module {
 				if (y1.isInfinite() || y1.isNaN()) {
 					y1 = Double.valueOf( 0 );
 				}
-				//if(y1 > 7) y1 = 0;
-				//System.out.println("y1 = " + y1 );
 				y2 = y1 * p + oldy1 * p - k * y2;
 				if (y2.isInfinite() || y2.isNaN()) {
 					y2 = Double.valueOf( 0 );
 				}
-				//if(y2 > 7) y2 = 0;
-				//System.out.println("y2 = " + y2 );
 				y3 = y2 * p + oldy2 * p - k * y3;
 				if (y3.isInfinite() || y3.isNaN()) {
 					y3 = Double.valueOf( 0 );
 				}
-				//if(y3 > 7) y3 = 0;
-				//System.out.println("y3 = " + y3 );
 				y4 = y3 * p + oldy3 * p - k * y4;
 				if (y4.isInfinite() || y4.isNaN() || y4 > 7.0) {
 					y4 = Double.valueOf( 0 );
 				}
-				//if(y4 > 5) y4 = 0;
-				//System.out.println("y4 = " + y4 );
+				
 			//Clipper band limited sigmoid
 			y4 = y4 - ( Math.pow( y4.intValue(), 3 ) )/6;
 			if (y4.isInfinite() || y4.isNaN()) {
@@ -121,8 +106,6 @@ public class VCF implements Module {
 			oldy2 = y2;
 			oldy3 = y3;	
 			outPorts.get( "out" ).setValue( (int)( (y4 / 5) * 32768 ) );
-			//System.out.println("input = " + (int)x );
-			//System.out.println("samples = " + (int)( (y4 / 5) * 32768 ) );
 			masterNotify();
 			( ( OutPortImpl ) outPorts.get( "out" ) ).removeHead();
 		}
@@ -139,10 +122,7 @@ public class VCF implements Module {
 		vco.setAtt( 1 );
 		vco.setBase( 128 );
 		vco.setPitch( 30 );
-		//out.setBufferSize( 2000 );
 		vco.setWaveForm( WaveForm.SQUARE );
-		//vco.setWaveForm( WaveForm.SAW );
-		//vco.setWaveForm( WaveForm.TRIANGLE );
 		HorlogeSubject timeBase = new HorlogeImpl();
 		timeBase.addModuleObserver( vco );
 		timeBase.addModuleObserver( vcf );

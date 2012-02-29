@@ -3,6 +3,11 @@ package kernel.impl.adsr;
 import kernel.ADSRStrategie;
 import kernel.impl.OutPortImpl;
 
+/**
+ * For module ADSR
+ * The duration time from the max value of signal to sustain value
+ */
+
 public class DelayTime implements ADSRStrategie {
 
 	public DelayTime( ADSR adsr ){

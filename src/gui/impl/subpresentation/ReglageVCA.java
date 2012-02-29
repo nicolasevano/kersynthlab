@@ -1,29 +1,34 @@
 package gui.impl.subpresentation;
 
-//import java.awt.LayoutManager;
-
 import java.io.UnsupportedEncodingException;
 
 import javax.swing.JPanel;
 
 import stringloader.IConfigurationLoader;
 
+/**
+ * Define the ajustements of VCA:
+ * 	Att and Base
+ */
+
 public class ReglageVCA extends JPanel {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private PresentationMolette att;
 	private PresentationMolette base;
 	private String nameAtt;
 	private String nameBase;
 
+	/**
+	 * Constructor of ReglageVCA
+	 * set presentation properties of VCA molettes
+	 * @param configuration
+	 * @throws UnsupportedEncodingException
+	 */
+	
 	public ReglageVCA(IConfigurationLoader configuration) throws UnsupportedEncodingException {
 		String language = configuration.getLanguage();
 		setLayout(null);
-		//nameAtt = "Attr";
-		//nameBase = "Base";
 		if(language == "Chinese")
 		{
 			nameAtt = new String(configuration.getProperties().getProperty("module.VCA.att").getBytes("iso8859-1"), "utf-8");

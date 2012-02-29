@@ -1,5 +1,8 @@
 package gui.impl.subpresentation;
-//package molette;
+
+/**
+ * Types of signals
+ */
 
 public enum SigneAffichage {
 	positif,negatif,puissance

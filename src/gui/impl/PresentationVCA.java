@@ -11,8 +11,6 @@ import stringloader.IConfigurationLoader;
 
 import kernel.Module;
 import kernel.impl.VCA;
-import kernel.impl.adsr.ADSR;
-
 import controler.CInPort;
 import controler.COutPort;
 import controler.CVCA;
@@ -21,8 +19,19 @@ import gui.impl.subpresentation.PresentationInPortImpl;
 import gui.impl.subpresentation.PresentationOutPortImpl;
 import gui.impl.subpresentation.ReglageVCA;
 
+/**
+ * Class PresentationVCA extends class APresentationModule
+ * set information for displaying module VCA
+ */
+
 public class PresentationVCA extends APresentationModule {
 
+	/**
+	 * Two constructors of PresentationVCA
+	 * @param configuration
+	 * @throws UnsupportedEncodingException
+	 */
+	
 	public PresentationVCA( IConfigurationLoader configuration ) 
 	throws UnsupportedEncodingException {
 		this.configuration = configuration;
@@ -35,6 +44,12 @@ public class PresentationVCA extends APresentationModule {
 		initComponentVCA( configuration, savedOne );
 	}
 
+	/**
+	 * Initiate components of VCA
+	 * @param configuration
+	 * @throws UnsupportedEncodingException
+	 */
+	
 	private void initComponentVCA(IConfigurationLoader configuration) throws UnsupportedEncodingException {
 		this.configuration = configuration;
 		String language  = this.configuration.getLanguage();
@@ -214,6 +229,9 @@ public class PresentationVCA extends APresentationModule {
 		
 	}
 	
+	/**
+	 * set default values for VCA components
+	 */
 	
 	private void setDefaultValue(){
 		( ( CVCA ) getControl() ).setAttVCA(
@@ -275,14 +293,7 @@ public class PresentationVCA extends APresentationModule {
 		this.labelVCA = nameVCA;
 	}
 
-	/*public String getNameModule() {
-		return nameModule;
-	}
-
-	public void setNameModule(String nameModule) {
-		this.nameModule = nameModule;
-	}*/
-
+	
 	@Override
 	public PresentationInPortImpl getInPort() {
 		// TODO Auto-generated method stub
@@ -299,7 +310,7 @@ public class PresentationVCA extends APresentationModule {
 	public void setControl(Module module) {
 		super.control = module;
 		this.inPort.getControl().setInport( module.getInPorts().get( "in" ) );
-		//TODO find a wait to add am inport
+		/**find a wait to add am inport*/
 		this.am.getControl().setInport( module.getInPorts().get( "am" ) );
 		this.outPort.getControl().setModule( module );
 	}
@@ -353,7 +364,6 @@ public class PresentationVCA extends APresentationModule {
 	private PresentationInPortImpl inPort;
 	private PresentationOutPortImpl outPort;
 	private JLabel labelVCA;
-	//private String nameModule = "MODULE VCA";
 	private IConfigurationLoader configuration;
 
 }

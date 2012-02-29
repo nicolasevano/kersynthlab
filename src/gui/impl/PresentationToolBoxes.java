@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -33,13 +32,20 @@ import command.CreateVCO;
 import controler.CModuleZone;
 import controler.CToolBoxes;
 
-public class PresentationToolBoxes extends JPanel{
+/**
+ * Define the presentation of buttons
+ */
 
-	/**
-	 * 
-	 */
+public class PresentationToolBoxes extends JPanel{
+	
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Constructor of PresentationToolBoxes
+	 * define six buttons in this tool box and their positions
+	 * @param configuration
+	 * @throws IOException
+	 */
 	
 	public PresentationToolBoxes(IConfigurationLoader configuration) throws IOException{
 		
@@ -97,7 +103,6 @@ public class PresentationToolBoxes extends JPanel{
 	}
 	
 	private void setButtonImages( JButton buttonToSet, Color colorToSet, URL image ){
-		// ((JButton)arg0.getSource()).setBackground(Color.red);
 		try {
 			BufferedImage buttonRepliIcon = ImageIO.read( image );
 			buttonToSet.setIcon( new ImageIcon( buttonRepliIcon ) );

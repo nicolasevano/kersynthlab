@@ -1,8 +1,6 @@
 package gui.impl.subpresentation;
 
-//import gui.impl.subpresentation.PresentationInPortImpl;
 import gui.impl.subpresentation.PresentationOutPortImpl;
-//import gui.impl.subpresentation.PresentationPort;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -16,8 +14,6 @@ import java.awt.geom.QuadCurve2D;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-
-import kernel.impl.vco.VCO;
 
 import controler.CWire;
 

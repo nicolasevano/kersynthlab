@@ -24,13 +24,19 @@ import controler.CInPort;
 import controler.COutPort;
 import controler.CVCO;
 
-
+/**
+ * Class PresentationVCO extends class APresentationModule
+ * Define the components of VCO
+ */
 
 public class PresentationVCO extends APresentationModule {
        
-       
-    // End of variables declaration  
-       
+		/**
+		 * Two constructors for PresentationVCO
+		 * @param configuration
+		 * @throws UnsupportedEncodingException
+		 */   
+	
         public PresentationVCO(IConfigurationLoader configuration) throws UnsupportedEncodingException{
                 this.configuration = configuration;
                 initComponents(this.configuration);
@@ -40,6 +46,10 @@ public class PresentationVCO extends APresentationModule {
             this.configuration = configuration;
             initComponents(this.configuration,saveOne);
         }
+        
+        /**
+         * Initiate listener for VCO components
+         */
         
         public void initListener(){
              setParameterListener();
@@ -83,11 +93,17 @@ public class PresentationVCO extends APresentationModule {
 			return result.toString();
 		}
         
+        /**
+         * Initiate VCO components and set their displaying properties
+         * @param configuration
+         * @throws UnsupportedEncodingException
+         */
+        
         private void initComponents(IConfigurationLoader configuration) throws UnsupportedEncodingException {
             this.configuration = configuration;
             String language = configuration.getLanguage();
             jLabel4 = new JLabel();
-            //instanciation des composants
+            /**instanciation des composants*/
             CInPort cInport = new CInPort( super.getCurrentPortId() );
             super.setCurrentPortId( super.getCurrentPortId() + 1 );
             inPort = cInport.getPresentation();
@@ -97,8 +113,6 @@ public class PresentationVCO extends APresentationModule {
             parametre = new ReglageVCO( configuration );
             forme = new Onde( configuration );
             jLabel4.setHorizontalAlignment( javax.swing.SwingConstants.CENTER );
-            //jLabel4.setText( "MODULE VCO" );
-            //jLabel4.setText(configuration.getProperties().getProperty("module.VCO.title"));
             if(language == "Chinese")
             	jLabel4.setText(new String(configuration.getProperties().getProperty("module.VCO.title").getBytes("iso8859-1"), "utf-8"));
             else
@@ -106,7 +120,7 @@ public class PresentationVCO extends APresentationModule {
             jLabel4.setBorder(new javax.swing.border.MatteBorder(null));
             setLayout( null );
             setBackground( Color.gray );
-            setSize( 500, 250 );//On donne une taille � notre fen�tre
+            setSize( 500, 250 );/**On donne une taille à notre fenêtre*/
             JLabel jLabelFm = new JLabel();
             if(language == "Chinese")
             	jLabelFm.setText(new String(configuration.getProperties().getProperty("module.VCO.fm").getBytes("iso8859-1"), "utf-8"));
@@ -139,7 +153,7 @@ public class PresentationVCO extends APresentationModule {
             setTittlePosition();
         }
         
-        //TODO parameter setting still in progress
+        /**parameter setting still in progress*/
         private void initComponents( IConfigurationLoader configuration,String savedOne ) throws UnsupportedEncodingException {
             this.configuration = configuration;
             String language = configuration.getLanguage();
@@ -154,7 +168,7 @@ public class PresentationVCO extends APresentationModule {
             String locationInfoY = ( ( ( locationInfo.split( ":" ) )[ 1 ].split(";") )[1] );
             int xPosition = Integer.valueOf( locationInfoX.split( "," )[ 1 ] );
             int yPosition = Integer.valueOf( locationInfoY.split( "," )[ 1 ] );
-            //instanciation des composants
+            /**instanciation des composants*/
             CInPort cInport = new CInPort( inPortID );
             inPort = cInport.getPresentation();
             COutPort cOutPort = new COutPort( outPortID );
@@ -162,8 +176,6 @@ public class PresentationVCO extends APresentationModule {
             parametre = new ReglageVCO( configuration );
             forme = new Onde( configuration );
             jLabel4.setHorizontalAlignment( javax.swing.SwingConstants.CENTER );
-            //jLabel4.setText( "MODULE VCO" );
-            //jLabel4.setText(configuration.getProperties().getProperty("module.VCO.title"));
             if( language == "Chinese" )
             	jLabel4.setText(new String(configuration.getProperties().getProperty("module.VCO.title").getBytes("iso8859-1"), "utf-8"));
             else
@@ -171,7 +183,7 @@ public class PresentationVCO extends APresentationModule {
             jLabel4.setBorder(new javax.swing.border.MatteBorder(null));
             setLayout( null );
             setBackground( Color.gray );
-            setSize( 500, 250 );//On donne une taille � notre fen�tre
+            setSize( 500, 250 );/**On donne une taille à notre fenêtre*/
             JLabel jLabelFm = new JLabel();
             if( language == "Chinese" )
             	jLabelFm.setText(new String(configuration.getProperties().getProperty("module.VCO.fm").getBytes("iso8859-1"), "utf-8"));
@@ -254,6 +266,10 @@ public class PresentationVCO extends APresentationModule {
                 this.inPort.getControl().setInport( module.getInPorts().get( "fm" ) );
                 this.outPort.getControl().setModule( module );
         }
+        
+        /**
+         * set default values for attenuator and base
+         */
        
         private void setDefaultValue(){
                 ( ( CVCO ) getControl() ).setAtt(
@@ -308,6 +324,10 @@ public class PresentationVCO extends APresentationModule {
                 });
                 forme.getCarre().setSelected( true );
         }
+        
+        /**
+         * Set VCO title location
+         */
        
         private void setTittlePosition(){
                 jLabel4.setSize( 400, 30 );
@@ -319,7 +339,8 @@ public class PresentationVCO extends APresentationModule {
          * 29007655
          */
         private static final long serialVersionUID = 1L;
-        // Variables declaration                    
+        
+        /** Variables declaration  */                  
         private JLabel jLabel4;
         private ReglageVCO parametre;
         private Onde forme;
@@ -327,15 +348,6 @@ public class PresentationVCO extends APresentationModule {
         private PresentationOutPortImpl outPort;
 
         private PresentationInPortImpl inPort;
-        
-        /*public static void main(String[] args){
-                java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new PresentationVCO(IConfigurationLoader configuration).setVisible(true);
-            }
-        });    
-        }*/
-       
         private IConfigurationLoader configuration;
 }
 

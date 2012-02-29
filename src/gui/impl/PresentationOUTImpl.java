@@ -11,7 +11,6 @@ import javax.swing.JLabel;
 import controler.CInPort;
 
 import kernel.Module;
-import kernel.impl.adsr.ADSR;
 import gui.IPresentationOUT;
 import gui.APresentationModule;
 import gui.impl.subpresentation.PresentationInPortImpl;
@@ -24,6 +23,11 @@ public class PresentationOUTImpl extends APresentationModule implements IPresent
 		// TODO Auto-generated method stub
 		return portIn;
 	}
+	
+	/**
+	 * Constructor of PresentationOUTImpl
+	 * define components and their locations for OUT
+	 */
 
 	@Override
 	public PresentationOutPortImpl getOutPort() {

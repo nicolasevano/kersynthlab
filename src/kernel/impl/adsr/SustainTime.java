@@ -3,6 +3,11 @@ package kernel.impl.adsr;
 import kernel.ADSRStrategie;
 import kernel.impl.OutPortImpl;
 
+/**
+ * Module ADSR
+ * The duration which signal values don't change
+ */
+
 public class SustainTime implements ADSRStrategie {
 
 	public SustainTime(ADSR adsr){

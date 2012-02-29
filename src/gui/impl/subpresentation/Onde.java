@@ -10,12 +10,21 @@ import javax.swing.JPanel;
 
 import stringloader.IConfigurationLoader;
 
+/**
+ * Define three kinds of waves for module VCO
+ */
 
 public class Onde extends JPanel {
 	
+	/**
+	 * Constructor of Onde
+	 * Define three kinds of waves and their properties
+	 * @param configuration
+	 * @throws UnsupportedEncodingException
+	 */
+	
 	public Onde(IConfigurationLoader configuration) throws UnsupportedEncodingException {		
 		
-		this.configuration = configuration;
 		String language= configuration.getLanguage();
 		
 		setLayout(null);
@@ -24,7 +33,6 @@ public class Onde extends JPanel {
 			carre = new JCheckBox(new String(configuration.getProperties().getProperty( "module.VCO.onde.carre").getBytes("iso8859-1"), "utf-8"));
 		else
 			carre = new JCheckBox(configuration.getProperties().getProperty( "module.VCO.onde.carre"));
-		//carre = new JCheckBox("Carre");
 		waveGroup.add(carre);
 		carre.setSize( 80,20 );
 		carre.setBackground( Color.gray );
@@ -33,7 +41,6 @@ public class Onde extends JPanel {
 			triangle = new JCheckBox(new String(configuration.getProperties().getProperty( "module.VCO.onde.triangle").getBytes("iso8859-1"), "utf-8"));
 		else
 			triangle = new JCheckBox(configuration.getProperties().getProperty( "module.VCO.onde.triangle"));
-		//triangle = new JCheckBox("Triangle");
 		waveGroup.add(triangle);
 		triangle.setSize( 80,20 );
 		triangle.setBackground( Color.gray );
@@ -42,7 +49,6 @@ public class Onde extends JPanel {
 			scie = new JCheckBox(new String(configuration.getProperties().getProperty( "module.VCO.onde.scie").getBytes("iso8859-1"), "utf-8"));
 		else
 			scie = new JCheckBox(configuration.getProperties().getProperty( "module.VCO.onde.scie"));
-		//scie = new JCheckBox("Scie");
 		waveGroup.add(scie);
 		scie.setSize( 80,20 );
 		scie.setBackground( Color.gray );
@@ -109,8 +115,6 @@ public class Onde extends JPanel {
 	private JCheckBox carre;
 	private JCheckBox scie;
 	private ButtonGroup waveGroup;
-	
-	private IConfigurationLoader configuration;
 	
 	
 	ImageIcon icone1;

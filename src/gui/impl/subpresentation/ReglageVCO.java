@@ -7,6 +7,10 @@ import javax.swing.JPanel;
 
 import stringloader.IConfigurationLoader;
 
+/**
+ * Define reglages of VCO:
+ * 	att, pitch and base
+ */
 
 public class ReglageVCO extends JPanel{
 

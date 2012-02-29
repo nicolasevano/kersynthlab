@@ -10,7 +10,6 @@ import javax.swing.event.ChangeListener;
 import stringloader.IConfigurationLoader;
 
 import kernel.Module;
-import kernel.impl.VCA;
 import kernel.impl.vcf.VCF;
 import controler.CInPort;
 import controler.COutPort;
@@ -20,9 +19,20 @@ import gui.impl.subpresentation.PresentationInPortImpl;
 import gui.impl.subpresentation.PresentationOutPortImpl;
 import gui.impl.subpresentation.ReglageVCF;
 
+/**
+ * Class PresentationVCF extends class APresentationModule
+ * Define presentation of VCF components
+ */
+
 public class PresentationVCF extends APresentationModule {
 
-
+	/**
+	 * Constructor of PresentationVCF
+	 * Set Layout of VCF and components properties in VCF
+	 * @param configuration
+	 * @throws UnsupportedEncodingException
+	 */
+	
 	public PresentationVCF(IConfigurationLoader configuration) throws UnsupportedEncodingException {
 		String language = configuration.getLanguage();
 		setLayout(null);
@@ -155,6 +165,10 @@ public class PresentationVCF extends APresentationModule {
 		setLocation( xPosition, yPosition );
 	}
 	
+	/**
+	 * Set VCF title location
+	 */
+	
 	private void setTitlePosition() {
 		labelVCF.setSize( 400, 30 );
         labelVCF.setLocation( ( getWidth() / 2 ) - ( labelVCF.getWidth() / 2 ), 0 );
@@ -162,11 +176,18 @@ public class PresentationVCF extends APresentationModule {
 		
 	}
 
-
+	/**
+	 * Initiate listener for VCF components
+	 */
+	
 	public void initListener(){
 		setParameterListener();
 		setDefaultValue();
 	}
+	
+	/**
+	 * Set locations for parameters of VCF components
+	 */
 
 	private void setParameterPosition() {
 		paramVCF.setSize(/*360*/240, 120);
@@ -175,6 +196,10 @@ public class PresentationVCF extends APresentationModule {
 		paramVCF.setLocation();
 		
 	}
+	
+	/**
+	 * Set default values for VCF components
+	 */
 	
 	private void setDefaultValue(){
 		( ( CVCF ) getControl() ).setAttVCF(
@@ -187,6 +212,10 @@ public class PresentationVCF extends APresentationModule {
 														    paramVCF.getBase().getTs() )
 						);
 	}
+	
+	/**
+	 * Set listener for VCF parameters
+	 */
 	
 	private void setParameterListener() {
 		paramVCF.getAtt().getTs().addChangeListener(new ChangeListener() {			
@@ -238,7 +267,7 @@ public class PresentationVCF extends APresentationModule {
 		// TODO Auto-generated method stub
 		super.control = module;
 		this.inPort.getControl().setInport( module.getInPorts().get( "in" ) );
-		//TODO find a wait to add am inport
+		/**find a wait to add am inport*/
 		this.fmPort.getControl().setInport( module.getInPorts().get( "fm" ) );
 		this.outPort.getControl().setModule( module );
 	}
@@ -304,6 +333,4 @@ public class PresentationVCF extends APresentationModule {
 	private PresentationInPortImpl fmPort;
 	private PresentationOutPortImpl outPort;
 	private JLabel labelVCF;
-	private IConfigurationLoader configuration;
-
 }

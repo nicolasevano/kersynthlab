@@ -21,7 +21,6 @@ public class AboutBox extends JDialog{
 	
 	public AboutBox(java.awt.Frame parent, boolean modal, IConfigurationLoader configuration) throws UnsupportedEncodingException{
 		super(parent, modal);
-		this.configuration = configuration;
 		initComponents(configuration);
 	}
 
@@ -33,7 +32,6 @@ public class AboutBox extends JDialog{
 	 * @throws UnsupportedEncodingException 
 	 */
 	private void initComponents(IConfigurationLoader configuration) throws UnsupportedEncodingException {
-		this.configuration = configuration;
 		String language = configuration.getLanguage();
 		
 		jTabbedPane = new javax.swing.JTabbedPane();
@@ -47,8 +45,6 @@ public class AboutBox extends JDialog{
         	setTitle(new String(configuration.getProperties().getProperty("about.title").getBytes("iso8859-1"), "utf-8"));
         else
         	setTitle(configuration.getProperties().getProperty("about.title"));
-        //setTitle("About");
-        //setName(new String(configuration.getProperties().getProperty("about.name").getBytes("iso8859-1"), "utf-8"));
         setName("About");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -100,12 +96,10 @@ public class AboutBox extends JDialog{
     	jLabelAffiliation = new JLabel(strA);
     	
         
-    	//jThanxPanel.setName(new String(configuration.getProperties().getProperty("about.panel.about").getBytes("iso8859-1"), "utf-8"));
-        jThanxPanel.setName("About");
+    	jThanxPanel.setName("About");
         jThanxPanel.setLayout(new java.awt.GridLayout(2, 1));
         jThanxPanel.add(jLabelLogo);
         jThanxPanel.add(jLabelInfo);
-        //jTabbedPane.addTab("About", jThanxPanel);
         if(language == "Chinese")
         	jTabbedPane.addTab(new String(configuration.getProperties().getProperty("about.panel.about").getBytes("iso8859-1"), "utf-8"), jThanxPanel);
         else
@@ -136,10 +130,6 @@ public class AboutBox extends JDialog{
         dispose();
     }
 	
-	/*public static void main(String args[]) {
-        new AboutBox(new javax.swing.JFrame(), true).show();
-    }*/
-	
 	private JPanel jThanxPanel;
 	private JPanel jAffiliationsPanel;
     private ImageIcon icon;
@@ -147,7 +137,4 @@ public class AboutBox extends JDialog{
     private JLabel jLabelInfo;
     private JLabel jLabelAffiliation;
     private JTabbedPane jTabbedPane;
-    
-    private IConfigurationLoader configuration;
-    
 }

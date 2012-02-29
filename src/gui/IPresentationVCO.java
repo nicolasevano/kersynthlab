@@ -2,10 +2,13 @@ package gui;
 
 import kernel.impl.vco.VCO.WaveForm;
 
+/**
+ * Interface of PresentationVCO
+ */
 
 public interface IPresentationVCO {
 
-	//bouton radio
+	/**button radio*/
 	void setFormeOnde(WaveForm wf);
 	
 	WaveForm getFormeOnde();
