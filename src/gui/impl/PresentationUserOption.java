@@ -155,7 +155,8 @@ public class PresentationUserOption extends JMenuBar{
 				control.changeBufferSize();
 				}
 		});
-		config.add( bufferSize );
+		//remove buffer size parameter no need with sequential sound engine.
+		/*config.add( bufferSize );*/
 		
 		if(language == "Chinese")
 			sampleRate = new JMenuItem(new String(properties.getProperty("menu.config.sampleRate").getBytes("iso8859-1"), "utf-8"),KeyEvent.VK_R);

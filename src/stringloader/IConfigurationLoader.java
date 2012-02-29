@@ -10,7 +10,7 @@ public interface IConfigurationLoader {
 	/**
 	 * configuration properties file path of each displed string on application
 	 */
-	public static final String configurationFileName = "/config/configurationen.properties";
+	public static final String configurationFileName = "/config/configurationcn.properties";
 	
 	/**
 	 * load operation

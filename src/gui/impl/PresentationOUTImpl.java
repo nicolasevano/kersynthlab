@@ -51,17 +51,17 @@ public class PresentationOUTImpl extends APresentationModule implements IPresent
 		CInPort cInPort = new CInPort( super.getCurrentPortId() );
 		super.setCurrentPortId( super.getCurrentPortId() + 1 );
 		portIn = cInPort.getPresentation();
-		icone = new ImageIcon ( "images/baffle.png" ) ;
+		icone = new ImageIcon ( this.getClass().getResource( "/images/baffle.png" ) ) ;
 		face = new JLabel(icone);
 		this.setBackground( Color.gray );
 		this.setLayout( null );
 		
 		setPreferredSize(this.getSize());
-		largeur = /*icone.getIconWidth ()*/120 + 2;
-		hauteur = /*icone.getIconHeight ()*/120 + 2;
+		largeur = icone.getIconWidth ()/*120*/ + 2;
+		hauteur = icone.getIconHeight ()/*120*/ + 2;
 		
 		face.setVisible ( true ) ;
-		face.setSize( /*icone.getIconWidth()*/120, /*icone.getIconHeight()*/120 );
+		face.setSize( icone.getIconWidth()/*120*/, icone.getIconHeight()/*120*/ );
 		add( face );
 		face.setLocation( portIn.getWidth() + 3,1 );
 		add( portIn );
@@ -82,17 +82,17 @@ public class PresentationOUTImpl extends APresentationModule implements IPresent
         int yPosition = Integer.valueOf( locationInfoY.split( "," )[ 1 ] );
 		CInPort cInPort = new CInPort( inPortID );
 		portIn = cInPort.getPresentation();
-		icone = new ImageIcon ( "images/baffle.png" ) ;
+		icone = new ImageIcon ( this.getClass().getResource( "/images/baffle.png" ) ) ;
 		face = new JLabel(icone);
 		this.setBackground( Color.gray );
 		this.setLayout( null );
 		
 		setPreferredSize(this.getSize());
-		largeur = /*icone.getIconWidth ()*/120 + 2;
-		hauteur = /*icone.getIconHeight ()*/120 + 2;
+		largeur = icone.getIconWidth ()/*120 + 2*/;
+		hauteur = icone.getIconHeight ()/*120 + 2*/;
 		
 		face.setVisible ( true ) ;
-		face.setSize( 120, 120 );
+		face.setSize( largeur/*120*/,hauteur /*120*/ );
 		add( face );
 		face.setLocation( portIn.getWidth() + 3,1 );
 		add( portIn );
