@@ -62,6 +62,7 @@ public class LoadInstallation extends Command {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		APresentationModule.setCurrentPortId(counterPort);
 	}
 	
 	private void loadLine( String line ){
@@ -70,8 +71,10 @@ public class LoadInstallation extends Command {
 				CVCO cVco = new CVCO( configuration, line );
 				outports.put(cVco.getPresentation().getOutPort().getControl().getId(),
 							 cVco.getPresentation().getOutPort().getControl() );
+				counterPort++;
 				inports.put(cVco.getPresentation().getInPort().getControl().getId(),
 						 cVco.getPresentation().getInPort().getControl() );
+				counterPort++;
 				cVcos.put(counterVCO, cVco);
 				getHorloge().addModuleObserver( cVco );
 				( (PresentationModuleZone) getPlan() ).add( cVco.getPresentation(),0 );
@@ -80,10 +83,13 @@ public class LoadInstallation extends Command {
 				CVCA cVca = new CVCA( configuration, line );
 				outports.put( cVca.getPresentation().getOutPort().getControl().getId(),
 							  cVca.getPresentation().getOutPort().getControl() );
+				counterPort++;
 				inports.put( cVca.getPresentation().getInPort().getControl().getId(),
 							 cVca.getPresentation().getInPort().getControl() );
+				counterPort++;
 				inports.put( cVca.getPresentation().getAm().getControl().getId(),
 						     cVca.getPresentation().getAm().getControl() );
+				counterPort++;
 				cVcas.put(this.counterVcas, cVca);
 				this.counterVcas++;
 				getHorloge().addModuleObserver( cVca );
@@ -92,8 +98,10 @@ public class LoadInstallation extends Command {
 				CADSR cAdsr = new CADSR( configuration, line );
 				outports.put(cAdsr.getPresentation().getOutPort().getControl().getId(),
 							 cAdsr.getPresentation().getOutPort().getControl() );
+				counterPort++;
 				inports.put(cAdsr.getPresentation().getInPort().getControl().getId(),
 							cAdsr.getPresentation().getInPort().getControl() );
+				counterPort++;
 				cAdsrs.put( this.counterADSR, cAdsr );
 				this.counterADSR++;
 				getHorloge().addModuleObserver( cAdsr );
@@ -102,10 +110,13 @@ public class LoadInstallation extends Command {
 				CVCF cVcf = new CVCF( configuration, line );
 				outports.put(cVcf.getPresentation().getOutPort().getControl().getId(),
 							 cVcf.getPresentation().getOutPort().getControl() );
+				counterPort++;
 				inports.put(cVcf.getPresentation().getInPort().getControl().getId(),
 							cVcf.getPresentation().getInPort().getControl() );
+				counterPort++;
 				inports.put(cVcf.getPresentation().getFmPort().getControl().getId(),
 							cVcf.getPresentation().getFmPort().getControl() );
+				counterPort++;
 				cVcfs.put( this.counterVCF, cVcf );
 				this.counterVCF++;
 				getHorloge().addModuleObserver( cVcf );
@@ -114,6 +125,7 @@ public class LoadInstallation extends Command {
 				COUT cOut = new COUT( line );
 				inports.put(cOut.getPresentation().getInPort().getControl().getId(),
 							cOut.getPresentation().getInPort().getControl() );
+				counterPort++;
 				cOuts.put(this.counterCout, cOut);
 				this.counterCout++;
 				getHorloge().addModuleObserver( cOut );
@@ -122,8 +134,10 @@ public class LoadInstallation extends Command {
 				CReplicator cReplicator = new CReplicator( configuration,line );
 				outports.put(cReplicator.getPresentation().getOutPort().getControl().getId(),
 							 cReplicator.getPresentation().getOutPort().getControl() );
+				counterPort++;
 				inports.put(cReplicator.getPresentation().getInPort().getControl().getId(),
 							cReplicator.getPresentation().getInPort().getControl() );
+				counterPort++;
 				cReplicators.put(this.counterReplicator, cReplicator);
 				this.counterReplicator++;
 				getHorloge().addModuleObserver( cReplicator );
@@ -269,7 +283,7 @@ public class LoadInstallation extends Command {
 	private int counterVcas = 0;
 	private Map<Integer,COUT> cOuts = new TreeMap<Integer,COUT>();
 	private int counterCout = 0;
-	
+	private int counterPort = 0;
 	
 	private File toUseToLoad;
 	
